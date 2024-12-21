@@ -81,6 +81,7 @@ const About = () => {
               <li>NPTEL (elite): Programming in C</li>
               <li>NPTEL (elite):  Cloud Computing</li>
               <li>Workshop: AI Tools and Techniques @be10x</li>
+              <li>Udemy:Machine Learning and Data Science with python</li>
             </ul>
 
           </div>
