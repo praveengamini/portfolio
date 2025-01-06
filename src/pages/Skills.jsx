@@ -24,7 +24,7 @@ const Skills = () => {
   const [showSkillLevels, setShowSkillLevels] = useState(false);
 
   return (
-    <div className='bg-gradient-to-r from-indigo-300 via-indigo-200 to-indigo-300 min-h-screen  flex flex-col justify-around max-sm:justify-start gap-3 pr-20 pl-20 max-sm:pl-3 max-sm:pr-3'>
+    <div className='bg-gradient-to-r from-indigo-300 via-indigo-200 to-indigo-300 min-h-screen  flex flex-col  max-sm:justify-start gap-3 pr-20 pl-20 max-sm:pl-3 max-sm:pr-3'>
       <div
         className="flex bg-slate-200 hover:bg-slate-400 transition-all  rounded-[10rem] duration-500 w-full h-14 justify-center cursor-pointer max-sm:h-14 mt-4 "
         onClick={() => setShowSkillLevels(!showSkillLevels)}
