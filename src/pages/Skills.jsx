@@ -16,6 +16,7 @@ import { TbWorld } from "react-icons/tb";
 import { LuBrainCircuit } from "react-icons/lu";
 import { SiFuturelearn } from "react-icons/si";
 import { FaKeyboard } from "react-icons/fa";
+import { Tilt } from 'react-tilt';
 const Skills = () => {
   const [showSkills, setShowSkills] = useState(false);
   const [showWebTech, setShowWebTech] = useState(false);
@@ -55,33 +56,48 @@ const Skills = () => {
       </div>
       <div className={`overflow-hidden transition-all duration-1000 ${showSkills ? 'max-h-[1000px]' : 'max-h-0'}`}>
       <div className="flex max-sm:overflow-scroll">
-  <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-    <CardContent className="flex justify-center">
-      <h1 className="text-5xl text-center font-semibold text-orange-600">C</h1> 
-    </CardContent>
-    <CardFooter className="flex justify-center">C Language</CardFooter>
-  </Card>
+      <Tilt options={{ max: 25, speed: 400 }}>
 
-  <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-    <CardContent className="flex justify-center">
-      <FaPython className="text-yellow-600 text-5xl" /> 
-    </CardContent>
-    <CardFooter className="flex justify-center">Python</CardFooter>
-  </Card>
+        <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
+          <CardContent className="flex justify-center">
+            <h1 className="text-5xl text-center font-semibold text-orange-600">C</h1> 
+          </CardContent>
+          <CardFooter className="flex justify-center">C Language</CardFooter>
+        </Card>
+      </Tilt>
 
-  <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-    <CardContent className="flex justify-center">
-      <FaJava className="text-red-600 text-5xl" />
-    </CardContent>
-    <CardFooter className="flex justify-center">Java</CardFooter>
-  </Card>
+      <Tilt options={{ max: 25, speed: 400 }}>
 
-  <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-    <CardContent className="flex justify-center">
-      <FaJs className="text-yellow-500 text-5xl" /> 
-    </CardContent>
-    <CardFooter className="flex justify-center">JavaScript</CardFooter>
-  </Card>
+      <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
+        <CardContent className="flex justify-center">
+          <FaPython className="text-yellow-600 text-5xl" /> 
+        </CardContent>
+        <CardFooter className="flex justify-center">Python</CardFooter>
+      </Card>
+      </Tilt>
+
+
+      <Tilt options={{ max: 25, speed: 400 }}>
+
+        <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
+          <CardContent className="flex justify-center">
+            <FaJava className="text-red-600 text-5xl" />
+          </CardContent>
+          <CardFooter className="flex justify-center">Java</CardFooter>
+        </Card>
+      </Tilt>
+      <Tilt options={{ max: 25, speed: 400 }}>
+
+      <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
+        <CardContent className="flex justify-center">
+          <FaJs className="text-yellow-500 text-5xl" /> 
+        </CardContent>
+        <CardFooter className="flex justify-center">JavaScript</CardFooter>
+      </Card>
+      </Tilt>
+
+
+
 </div>
 
       </div>
@@ -100,96 +116,123 @@ const Skills = () => {
       </div>
       <div className={`overflow-x-scroll transition-all duration-1000 ${showWebTech ? 'max-h-[1000px]' : 'max-h-0'}`}>
       <div className="flex">
+      <Tilt options={{ max: 25, speed: 400 }}>
   <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
     <CardContent className="flex justify-center">
-      <FaHtml5 className="text-orange-600 text-5xl" /> 
+      <FaHtml5 className="text-orange-600 text-5xl" />
     </CardContent>
     <CardFooter className="flex justify-center">HTML5</CardFooter>
   </Card>
+</Tilt>
 
+<Tilt options={{ max: 25, speed: 400 }}>
   <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
     <CardContent className="flex justify-center">
       <FaCss3Alt className="text-blue-600 text-5xl" />
     </CardContent>
     <CardFooter className="flex justify-center">CSS3</CardFooter>
   </Card>
+</Tilt>
 
+<Tilt options={{ max: 25, speed: 400 }}>
   <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
     <CardContent className="flex justify-center">
-      <FaBootstrap className="text-purple-600 text-5xl" /> 
+      <FaBootstrap className="text-purple-600 text-5xl" />
     </CardContent>
     <CardFooter className="flex justify-center">Bootstrap</CardFooter>
   </Card>
+</Tilt>
 
+<Tilt options={{ max: 25, speed: 400 }}>
   <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
     <CardContent className="flex justify-center">
-      <RiTailwindCssLine className="text-teal-600 text-5xl" /> 
+      <RiTailwindCssLine className="text-teal-600 text-5xl" />
     </CardContent>
     <CardFooter className="flex justify-center">Tailwind CSS</CardFooter>
   </Card>
+</Tilt>
 
+<Tilt options={{ max: 25, speed: 400 }}>
   <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
     <CardContent className="flex justify-center">
-      <DiJqueryLogo className="text-blue-400 text-5xl" /> 
+      <DiJqueryLogo className="text-blue-400 text-5xl" />
     </CardContent>
     <CardFooter className="flex justify-center">jQuery</CardFooter>
   </Card>
+</Tilt>
 
+<Tilt options={{ max: 25, speed: 400 }}>
   <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
     <CardContent className="flex justify-center">
-      <FaReact className="text-cyan-600 text-5xl" /> 
+      <FaReact className="text-cyan-600 text-5xl" />
     </CardContent>
     <CardFooter className="flex justify-center">React</CardFooter>
   </Card>
+</Tilt>
 
+<Tilt options={{ max: 25, speed: 400 }}>
   <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
     <CardContent className="flex justify-center">
-      <SiRedux className="text-purple-700 text-5xl" /> 
+      <SiRedux className="text-purple-700 text-5xl" />
     </CardContent>
     <CardFooter className="flex justify-center">Redux</CardFooter>
   </Card>
+</Tilt>
 
+<Tilt options={{ max: 25, speed: 400 }}>
   <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
     <CardContent className="flex justify-center">
       <FaNode className="text-green-600 text-5xl" />
     </CardContent>
     <CardFooter className="flex justify-center">Node.js</CardFooter>
   </Card>
+</Tilt>
 
+<Tilt options={{ max: 25, speed: 400 }}>
   <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
     <CardContent className="flex justify-center">
-      <SiExpress className="text-gray-800 text-5xl" /> 
+      <SiExpress className="text-gray-800 text-5xl" />
     </CardContent>
     <CardFooter className="flex justify-center">Express</CardFooter>
   </Card>
+</Tilt>
 
+<Tilt options={{ max: 25, speed: 400 }}>
   <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
     <CardContent className="flex justify-center">
       <SiMongodb className="text-green-500 text-5xl" />
     </CardContent>
     <CardFooter className="flex justify-center">MongoDB</CardFooter>
   </Card>
+</Tilt>
 
+<Tilt options={{ max: 25, speed: 400 }}>
   <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
     <CardContent className="flex justify-center">
-      <SiMysql className="text-blue-700 text-5xl" /> 
+      <SiMysql className="text-blue-700 text-5xl" />
     </CardContent>
     <CardFooter className="flex justify-center">MySQL</CardFooter>
   </Card>
+</Tilt>
 
+<Tilt options={{ max: 25, speed: 400 }}>
   <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
     <CardContent className="flex justify-center">
-      <FaGitAlt className="text-red-600 text-5xl" /> 
+      <FaGitAlt className="text-red-600 text-5xl" />
     </CardContent>
     <CardFooter className="flex justify-center">Git & GitHub</CardFooter>
   </Card>
+</Tilt>
 
+<Tilt options={{ max: 25, speed: 400 }}>
   <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
     <CardContent className="flex justify-center">
-      <SiPostman className="text-orange-600 text-5xl" /> 
+      <SiPostman className="text-orange-600 text-5xl" />
     </CardContent>
     <CardFooter className="flex justify-center">Postman</CardFooter>
   </Card>
+</Tilt>
+
     </div>
       </div>
 
@@ -207,12 +250,18 @@ const Skills = () => {
       </div>
       <div className={`overflow-hidden transition-all duration-1000 ${showAI ? 'max-h-[1000px]' : 'max-h-0'}`}>
       <div className="flex max-sm:overflow-x-auto">
-  <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-    <CardContent className="flex justify-center">
-      <img src={ml} className="w-20 h-20" alt="" /> 
-    </CardContent>
-    <CardFooter className="flex justify-center text-blue-600">Machine Learning</CardFooter> 
-  </Card>
+      <Tilt options={{ max: 25, speed: 400 }}>
+
+    <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
+      <CardContent className="flex justify-center">
+        <img src={ml} className="w-20 h-20" alt="" /> 
+      </CardContent>
+      <CardFooter className="flex justify-center text-blue-600">Machine Learning</CardFooter> 
+    </Card>
+      </Tilt>
+
+
+      <Tilt options={{ max: 25, speed: 400 }}>
 
   <Card className="border-slate-400 shadow-lg w-52 p-5 m-6 ">
     <CardContent className="flex justify-center">
@@ -220,20 +269,27 @@ const Skills = () => {
     </CardContent>
     <CardFooter className="flex justify-center text-green-600">Text Summarization</CardFooter> 
   </Card>
+      </Tilt>
+
+
+      <Tilt options={{ max: 25, speed: 400 }}>
+    <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
+      <CardContent className="flex justify-center">
+        <img src={tensorflow} className="w-20 h-[6.5rem]" alt="" /> 
+      </CardContent>
+      <CardFooter className="flex justify-center text-orange-600">TensorFlow</CardFooter> 
+    </Card>
+      </Tilt>
+      <Tilt options={{ max: 25, speed: 400 }}>
 
   <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
     <CardContent className="flex justify-center">
-      <img src={tensorflow} className="w-20 h-20" alt="" /> 
-    </CardContent>
-    <CardFooter className="flex justify-center text-orange-600">TensorFlow</CardFooter> 
-  </Card>
-
-  <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-    <CardContent className="flex justify-center">
-      <img src={opencv} className="w-20 h-20" alt="" /> 
+      <img src={opencv} className="w-20 h-[6.5rem]" alt="" /> 
     </CardContent>
     <CardFooter className="flex justify-center text-teal-600">Basic-OpenCV</CardFooter> 
   </Card>
+      </Tilt>
+
 </div>
 
       </div>
@@ -252,12 +308,17 @@ const Skills = () => {
       </div>
       <div className={`overflow-hidden transition-all duration-1000 ${showFutureLearnings ? 'max-h-[1000px]' : 'max-h-0'}`}>
       <div className="flex max-sm:overflow-scroll">
-  <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
+      <Tilt options={{ max: 25, speed: 400 }}>
+
+    <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
     <CardContent className="flex justify-center">
       <FaAws className="text-yellow-600 text-9xl " /> 
     </CardContent>
     <CardFooter className="flex justify-center text-yellow-600">AWS (Cloud)</CardFooter> 
   </Card>
+      </Tilt>
+
+      <Tilt options={{ max: 25, speed: 400 }}>
 
   <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
     <CardContent className="flex justify-center">
@@ -265,6 +326,8 @@ const Skills = () => {
     </CardContent>
     <CardFooter className="flex justify-center text-blue-600">Convolutional Neural Network (CNN)</CardFooter> 
   </Card>
+      </Tilt>
+
 </div>
 
       </div>
