@@ -308,7 +308,7 @@ const Skills = () => {
       </div>
       <div className={`overflow-hidden transition-all duration-1000 ${showFutureLearnings ? 'max-h-[1000px]' : 'max-h-0'}`}>
       <div className="flex max-sm:overflow-scroll">
-      <Tilt options={{ max: 25, speed: 401 }}>
+      <Tilt options={{ max: 25, speed: 400 }}>
 
     <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
     <CardContent className="flex justify-center">
@@ -318,7 +318,7 @@ const Skills = () => {
   </Card>
       </Tilt>
 
-      <Tilt options={{ max: 25, speed: 400 }}>
+      <Tilt options={{ max: 25, speed: 405 }}>
 
   <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
     <CardContent className="flex justify-center">
