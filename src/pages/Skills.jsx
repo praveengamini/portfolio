@@ -16,7 +16,7 @@ import { TbWorld } from "react-icons/tb";
 import { LuBrainCircuit } from "react-icons/lu";
 import { SiFuturelearn } from "react-icons/si";
 import { FaKeyboard } from "react-icons/fa";
-import { Tilt } from 'react-tilt';
+import  {Tilt}  from 'react-tilt';
 const Skills = () => {
   const [showSkills, setShowSkills] = useState(false);
   const [showWebTech, setShowWebTech] = useState(false);
