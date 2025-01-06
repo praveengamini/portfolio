@@ -318,7 +318,7 @@ const Skills = () => {
   </Card>
       </Tilt>
 
-      <Tilt options={{ max: 25, speed: 405 }}>
+      <Tilt options={{ max: 25, speed: 400 }}>
 
   <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
     <CardContent className="flex justify-center">
