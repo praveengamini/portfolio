@@ -7,7 +7,12 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'), // Add this line
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
+  build: {
+    rollupOptions: {
+      external: ['react-tilt'],
     },
   },
 });
