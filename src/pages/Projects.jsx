@@ -9,7 +9,7 @@ import clock from '../assets/images/clock.png'
 
 const Projects = () => {
   return (
-    <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-2 bg-gradient-to-r from-indigo-100 via-indigo-200 to-indigo-300">
+    <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  bg-gradient-to-r from-indigo-100 via-indigo-200 to-indigo-300 p-4">
       <Card className='max-w-sm shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-xl'>
         <CardContent>
           <img src={qmart} className='w-full h-64 object-cover rounded-lg transition-all duration-300 hover:opacity-80' alt="Q-Mart" />
