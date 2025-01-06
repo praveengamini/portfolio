@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaBookOpen, FaUser } from "react-icons/fa";
+import { FaBookOpen, FaUser, FaTrophy } from "react-icons/fa";
 import { GrCertificate } from "react-icons/gr";
 import { IoLanguage } from "react-icons/io5";
 import { PiMaskHappyLight } from "react-icons/pi";
@@ -41,35 +41,42 @@ const About = () => {
       console.error("Error sending feedback:", error);
     }
   };
-  
 
   return (
     <div className="flex flex-col items-center bg-gradient-to-r from-indigo-100 via-indigo-200 to-indigo-300 p-8 rounded-xl shadow-lg w-full mx-auto">
 
       <div className="flex flex-col space-y-6 w-full">
+      <div className="flex items-center space-x-4 bg-white p-6 rounded-lg shadow-md hover:bg-indigo-50">
+          <FaTrophy className="text-yellow-500 text-3xl" />
+          <div className="flex-1">
+            <h3 className="text-xl font-semibold text-gray-800">Achievements</h3>
+            <ul className="list-disc pl-6 space-y-2 text-gray-600 mt-2">
+              <li>Winner-2 at National Level Hackathon at AITEM College</li>
+            </ul>
+          </div>
+        </div>
         <div className="flex items-center space-x-4 bg-white p-6 rounded-lg shadow-md hover:bg-indigo-50">
           <FaBookOpen className="text-blue-500 text-3xl" />
           <div className="flex-1">
-   <h3 className="text-xl font-semibold text-gray-800">Education</h3>
-   <div class="relative pl-6 mt-2">
-  <ul class="list-none">
-    <li class="text-gray-600 relative pl-6">
-      <span class="absolute left-[-8px] top-1/2 transform -translate-y-1/2 w-3 h-3 rounded-full bg-green-500"></span>
-      MVGR College of Engineering, 2022-2026. CGPA: 8.89 (for 4 semesters)
-    </li>
-    <li class="text-gray-600 relative pl-6 mt-4">
-      <span class="absolute left-[-8px] top-1/2 transform -translate-y-1/2 w-3 h-3 rounded-full bg-yellow-500"></span>
-      SriViswa Jr. College, Intermediate: MPC, 2022. Percentage: 97.5%
-    </li>
-    <li class="text-gray-600 relative pl-6 mt-4">
-      <span class="absolute left-[-8px] top-1/2 transform -translate-y-1/2 w-3 h-3 rounded-full bg-red-500"></span>
-      Ravindra Bharathi School, 2020
-    </li>
-  </ul>
-  <div class="absolute left-[23px] rounded-md top-0 bottom-0 border-l-[] border-black"></div>
-</div>
-
-    </div>
+            <h3 className="text-xl font-semibold text-gray-800">Education</h3>
+            <div className="relative pl-6 mt-2">
+              <ul className="list-none">
+                <li className="text-gray-600 relative pl-6">
+                  <span className="absolute left-[-8px] top-1/2 transform -translate-y-1/2 w-3 h-3 rounded-full bg-green-500"></span>
+                  MVGR College of Engineering, 2022-2026. CGPA: 8.89 (for 4 semesters)
+                </li>
+                <li className="text-gray-600 relative pl-6 mt-4">
+                  <span className="absolute left-[-8px] top-1/2 transform -translate-y-1/2 w-3 h-3 rounded-full bg-yellow-500"></span>
+                  SriViswa Jr. College, Intermediate: MPC, 2022. Percentage: 97.5%
+                </li>
+                <li className="text-gray-600 relative pl-6 mt-4">
+                  <span className="absolute left-[-8px] top-1/2 transform -translate-y-1/2 w-3 h-3 rounded-full bg-red-500"></span>
+                  Ravindra Bharathi School, 2020
+                </li>
+              </ul>
+              <div className="absolute left-[23px] rounded-md top-0 bottom-0 border-l-[] border-black"></div>
+            </div>
+          </div>
         </div>
 
         <div className="flex items-center space-x-4 bg-white p-6 rounded-lg shadow-md hover:bg-indigo-50">
@@ -79,11 +86,10 @@ const About = () => {
             <ul className="list-disc pl-6 space-y-2 text-gray-600 mt-2">
               <li>Udemy: Web Development - MERN Stack</li>
               <li>NPTEL (elite): Programming in C</li>
-              <li>NPTEL (elite):  Cloud Computing</li>
+              <li>NPTEL (elite): Cloud Computing</li>
               <li>Workshop: AI Tools and Techniques @be10x</li>
-              <li>Udemy:Machine Learning and Data Science with python</li>
+              <li>Udemy: Machine Learning and Data Science with Python</li>
             </ul>
-
           </div>
         </div>
 
@@ -92,11 +98,10 @@ const About = () => {
           <div className="flex-1">
             <h3 className="text-xl font-semibold text-gray-800">Languages</h3>
             <ul className="list-disc pl-6 space-y-2 text-gray-600 mt-2">
-            <li>English (full proficiency)</li>
-            <li>Telugu (native)</li>
-            <li>Hindi (limited work proficiency)</li>
-          </ul>
-
+              <li>English (full proficiency)</li>
+              <li>Telugu (native)</li>
+              <li>Hindi (limited work proficiency)</li>
+            </ul>
           </div>
         </div>
 
@@ -105,10 +110,10 @@ const About = () => {
           <div className="flex-1">
             <h3 className="text-xl font-semibold text-gray-800">Hobbies</h3>
             <ul className="list-disc pl-6 space-y-2 text-gray-600 mt-2">
-          <li>Watching Movies</li>
-          <li>Singing</li>
-          <li>Exploring Quantum Mechanics</li>
-        </ul>
+              <li>Watching Movies</li>
+              <li>Singing</li>
+              <li>Exploring Quantum Mechanics</li>
+            </ul>
           </div>
         </div>
 
@@ -120,10 +125,12 @@ const About = () => {
           </div>
         </div>
 
+      
+
         <div className="bg-white p-6 rounded-lg shadow-md hover:bg-indigo-50 mt-8">
-          <div className='flex text-2xl  '>
+          <div className='flex text-2xl'>
             <h3 className="text-xl font-semibold text-gray-800 mb-4">Feedback</h3>
-          <RiFeedbackLine className='text-amber-500 hover:scale-110 transition-all duration-1000'/>
+            <RiFeedbackLine className='text-amber-500 hover:scale-110 transition-all duration-1000' />
           </div>
           <form onSubmit={handleFeedbackSubmit}>
             <input
