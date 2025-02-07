@@ -76,88 +76,85 @@ const Nav = () => {
     }, []);
 
     return (
-        <div className="flex items-center justify-between px-6 py-4 bg-gray-800 text-white">
+        <div className="flex items-center justify-between px-6 py-4 bg-gray-800 text-white ">
             <div className="relative text-2xl group">
                 <span className="transition-all duration-1000 select-none">Praveen Gamini</span>
                 <div className="absolute bottom-0 left-0 w-full h-1 bg-orange-600 scale-x-0 group-hover:scale-x-100 transition-all duration-1000"></div>
             </div>
 
             <div>
-            <button
-            className="sm:hidden p-2"
-            id="menuToggle"
-            onClick={() => setOpenMenu(!openMenu)}
-              >
-            {!openMenu ? (
-                <GiHamburgerMenu className="text-3xl" />
-            ) : (
-                <div className="text-4xl text-white">X</div> 
-            )}
-        </button>
-                {openMenu && (
-                    
-                    <div
-                        className={`flex-col text-2xl z-10 space-y-10 fixed right-0 top-0 h-full w-64 bg-black/50 backdrop-blur-md backdrop-opacity-95 text-white transform ${
-                            openMenu ? 'translate-x-0' : '-translate-x-full'
-                        } transition-transform duration-300 ease-in-out text-center`}
-                    >
-                         <button
+                <button
+                    className="sm:hidden p-2"
+                    id="menuToggle"
+                    onClick={() => setOpenMenu(!openMenu)}
+                >
+                    {!openMenu ? (
+                        <GiHamburgerMenu className="text-3xl" />
+                    ) : (
+                        <div className="text-4xl text-white">X</div> 
+                    )}
+                </button>
+                <div
+                    className={`flex-col text-2xl z-10 space-y-10 fixed right-0 top-0 h-full w-64 bg-black/50 backdrop-blur-md backdrop-opacity-95 text-white transform ${
+                        openMenu ? 'translate-x-0' : 'translate-x-full'
+                    } transition-transform duration-300 ease-in-out text-center`}
+                >
+                    <button
                         className="sm:hidden p-2 mr-[-13.5rem]"
                         id="menuToggle"
                         onClick={() => setOpenMenu(!openMenu)}
-                        >
+                    >
                         {!openMenu ? (
                             <GiHamburgerMenu className="text-3xl" />
                         ) : (
                             <div className="text-4xl text-white">X</div> 
                         )}
-                 </button>
-                        <Link to="/">
-                            <div
-                                className={`hover:text-gray-300 hover:underline cursor-pointer ${
-                                    arr0 ? 'text-orange-500' : ''
-                                } mt-28`}
-                                id="home"
-                                onClick={() => setOpenMenu(false)}
-                            >
-                                Home
-                            </div>
-                        </Link>
-                        <Link to="/skills">
-                            <div
-                                className={`hover:text-gray-300 hover:underline cursor-pointer ${
-                                    arr1 ? 'text-orange-500' : ''
-                                } mt-10`}
-                                id="skills"
-                                onClick={() => setOpenMenu(false)}
-                            >
-                                Skills
-                            </div>
-                        </Link>
-                        <Link to="/projects">
-                            <div
-                                className={`hover:text-gray-300 hover:underline cursor-pointer ${
-                                    arr2 ? 'text-orange-500' : ''
-                                } mt-10`}
-                                id="projects"
-                                onClick={() => setOpenMenu(false)}
-                            >
-                                Projects
-                            </div>
-                        </Link>
-                        <Link to="/about">
-                            <div
-                                className={`hover:text-gray-300 hover:underline cursor-pointer ${
-                                    arr3 ? 'text-orange-500' : ''
-                                } mt-10`}
-                                id="about"
-                                onClick={() => setOpenMenu(false)}
-                            >
-                                About
-                            </div>
-                        </Link>
-                    </div>
-                )}
+                    </button>
+                    <Link to="/">
+                        <div
+                            className={`hover:text-gray-300 hover:underline cursor-pointer ${
+                                arr0 ? 'text-orange-500' : ''
+                            } mt-28`}
+                            id="home"
+                            onClick={() => setOpenMenu(false)}
+                        >
+                            Home
+                        </div>
+                    </Link>
+                    <Link to="/skills">
+                        <div
+                            className={`hover:text-gray-300 hover:underline cursor-pointer ${
+                                arr1 ? 'text-orange-500' : ''
+                            } mt-10`}
+                            id="skills"
+                            onClick={() => setOpenMenu(false)}
+                        >
+                            Skills
+                        </div>
+                    </Link>
+                    <Link to="/projects">
+                        <div
+                            className={`hover:text-gray-300 hover:underline cursor-pointer ${
+                                arr2 ? 'text-orange-500' : ''
+                            } mt-10`}
+                            id="projects"
+                            onClick={() => setOpenMenu(false)}
+                        >
+                            Projects
+                        </div>
+                    </Link>
+                    <Link to="/about">
+                        <div
+                            className={`hover:text-gray-300 hover:underline cursor-pointer ${
+                                arr3 ? 'text-orange-500' : ''
+                            } mt-10`}
+                            id="about"
+                            onClick={() => setOpenMenu(false)}
+                        >
+                            About
+                        </div>
+                    </Link>
+                </div>
             </div>
 
             <div className="hidden md:flex space-x-52 mr-16 text-xl">

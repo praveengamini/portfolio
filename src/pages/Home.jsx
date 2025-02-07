@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Spline from '@splinetool/react-spline';
 import Footer from '../components/Footer';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
@@ -8,6 +8,29 @@ import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px)"); 
+
+    if (mediaQuery.matches) {
+      document.body.classList.add("overflow-hidden");
+    }
+
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        document.body.classList.add("overflow-hidden");
+      } else {
+        document.body.classList.remove("overflow-hidden");
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-r from-indigo-100 via-indigo-200 to-indigo-300">
       <div className="flex flex-col flex-grow w-full px-6 md:px-12 lg:px-20 py-10">
@@ -15,7 +38,7 @@ const Home = () => {
           <div className="w-full md:w-[30rem] font-serif text-lg bg-white shadow-lg rounded-lg hover:shadow-2xl transition-transform duration-500 hover:scale-105">
             <Card>
               <div className="flex items-center p-5 max-sm:p-2">
-                <CardHeader className="text-2xl  font-semibold text-gray-800">
+                <CardHeader className="text-2xl font-semibold text-gray-800">
                   I am ..........
                 </CardHeader>
                 <SlPencil className="ml-[-20px] text-gray-600 text-lg" />
