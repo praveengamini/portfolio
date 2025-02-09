@@ -10,6 +10,7 @@ const App = () => {
   return (
     <div>
       <Nav />
+      <div className='h-14 max-sm:h-[4.5rem]'></div>
        <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='about' element={<About/>}/>

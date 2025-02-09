@@ -16,7 +16,8 @@ import { TbWorld } from "react-icons/tb";
 import { LuBrainCircuit } from "react-icons/lu";
 import { SiFuturelearn } from "react-icons/si";
 import { FaKeyboard } from "react-icons/fa";
-import  {Tilt}  from 'react-tilt';
+import { Tilt } from 'react-tilt';
+
 const Skills = () => {
   const [showSkills, setShowSkills] = useState(false);
   const [showWebTech, setShowWebTech] = useState(false);
@@ -25,311 +26,288 @@ const Skills = () => {
   const [showSkillLevels, setShowSkillLevels] = useState(false);
 
   return (
-    <div className='bg-gradient-to-r from-indigo-300 via-indigo-200 to-indigo-300 min-h-screen  flex flex-col  max-sm:justify-start gap-3 pr-20 pl-20 max-sm:pl-3 max-sm:pr-3'>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white p-4 md:p-8 flex flex-col gap-4 md:gap-6 overflow-y-auto">
+
+      {/* Skill Levels Section */}
       <div
-        className="flex bg-slate-200 hover:bg-slate-400 transition-all  rounded-[10rem] duration-500 w-full h-14 justify-center cursor-pointer max-sm:h-14 mt-4 "
+        className="flex bg-gray-700 hover:bg-gray-600 transition-all rounded-lg duration-500 w-full h-12 md:h-14 justify-center items-center cursor-pointer"
         onClick={() => setShowSkillLevels(!showSkillLevels)}
       >
-        <div className="text-3xl select-none flex gap-4 max-sm:mt-3 max-sm:text-xl">
-        <GiMuscleUp className='size-10 hover:scale-110 transition-all duration-500 select-none text-orange-950 max-sm:size-7 ' />
-          <div>
-              Skill Levels 
+        <div className="text-xl md:text-3xl select-none flex gap-2 md:gap-4 items-center">
+          <GiMuscleUp className="size-6 md:size-10 hover:scale-110 transition-all duration-500 text-orange-400" />
+          <div>Skill Levels</div>
         </div>
-        </div>  
-        {showSkillLevels ? <FaAngleUp className="size-12" /> : <FaAngleDown className="size-12  max-sm:size-10 max-sm:mt-2" />}
+        {showSkillLevels ? <FaAngleUp className="size-6 md:size-12" /> : <FaAngleDown className="size-6 md:size-12" />}
       </div>
       <div className={`overflow-hidden transition-all duration-1000 ${showSkillLevels ? 'max-h-[570px]' : 'max-h-0'}`}>
         <SkillBarChart />
       </div>
 
+      {/* Programming Languages Section */}
       <div
-        className="flex bg-slate-200 hover:bg-slate-400 transition-all duration-500 rounded-[60px] w-full mt-6  h-14 justify-center cursor-pointer "
+        className="flex bg-gray-700 hover:bg-gray-600 transition-all duration-500 rounded-lg w-full h-12 md:h-14 justify-center items-center cursor-pointer"
         onClick={() => setShowSkills(!showSkills)}
       >
-        <div className="text-3xl select-none flex gap-4  max-sm:text-xl max-sm:mt-4">
-        <FaKeyboard className='size-10 hover:scale-110 transition-all duration-500 select-none text-yellow-500  max-sm:size-7' />
-          <div>
-              Programming Languages
+        <div className="text-xl md:text-3xl select-none flex gap-2 md:gap-4 items-center">
+          <FaKeyboard className="size-6 md:size-10 hover:scale-110 transition-all duration-500 text-yellow-400" />
+          <div>Programming Languages</div>
         </div>
-        </div> 
-        {showSkills ? <FaAngleUp className="size-12" /> : <FaAngleDown className="size-12 max-sm:size-9 max-sm:mt-3" />}
+        {showSkills ? <FaAngleUp className="size-6 md:size-12" /> : <FaAngleDown className="size-6 md:size-12" />}
       </div>
       <div className={`overflow-hidden transition-all duration-1000 ${showSkills ? 'max-h-[1000px]' : 'max-h-0'}`}>
-      <div className="flex max-sm:overflow-scroll">
-      <Tilt options={{ max: 25, speed: 400 }}>
+        <div className="flex overflow-x-auto md:flex-wrap md:justify-center gap-4 md:gap-6 p-2 md:p-6">
+          <Tilt options={{ max: 25, speed: 400 }}>
+            <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6">
+              <CardContent className="flex justify-center">
+                <h1 className="text-3xl md:text-5xl text-center font-semibold text-orange-400">C</h1>
+              </CardContent>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">C Language</CardFooter>
+            </Card>
+          </Tilt>
 
-        <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-          <CardContent className="flex justify-center">
-            <h1 className="text-5xl text-center font-semibold text-orange-600">C</h1> 
-          </CardContent>
-          <CardFooter className="flex justify-center">C Language</CardFooter>
-        </Card>
-      </Tilt>
+          <Tilt options={{ max: 25, speed: 400 }}>
+            <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6">
+              <CardContent className="flex justify-center">
+                <FaPython className="text-yellow-400 text-3xl md:text-5xl" />
+              </CardContent>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Python</CardFooter>
+            </Card>
+          </Tilt>
 
-      <Tilt options={{ max: 25, speed: 400 }}>
+          <Tilt options={{ max: 25, speed: 400 }}>
+            <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6">
+              <CardContent className="flex justify-center">
+                <FaJava className="text-red-400 text-3xl md:text-5xl" />
+              </CardContent>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Java</CardFooter>
+            </Card>
+          </Tilt>
 
-      <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-        <CardContent className="flex justify-center">
-          <FaPython className="text-yellow-600 text-5xl" /> 
-        </CardContent>
-        <CardFooter className="flex justify-center">Python</CardFooter>
-      </Card>
-      </Tilt>
-
-
-      <Tilt options={{ max: 25, speed: 400 }}>
-
-        <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-          <CardContent className="flex justify-center">
-            <FaJava className="text-red-600 text-5xl" />
-          </CardContent>
-          <CardFooter className="flex justify-center">Java</CardFooter>
-        </Card>
-      </Tilt>
-      <Tilt options={{ max: 25, speed: 400 }}>
-
-      <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-        <CardContent className="flex justify-center">
-          <FaJs className="text-yellow-500 text-5xl" /> 
-        </CardContent>
-        <CardFooter className="flex justify-center">JavaScript</CardFooter>
-      </Card>
-      </Tilt>
-
-
-
-</div>
-
+          <Tilt options={{ max: 25, speed: 400 }}>
+            <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6">
+              <CardContent className="flex justify-center">
+                <FaJs className="text-yellow-400 text-3xl md:text-5xl" />
+              </CardContent>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">JavaScript</CardFooter>
+            </Card>
+          </Tilt>
+        </div>
       </div>
 
+      {/* Web Technologies Section */}
       <div
-        className="flex bg-slate-200 hover:bg-slate-400 transition-all duration-500 w-full rounded-[60px] h-14 justify-center cursor-pointer mt-6"
+        className="flex bg-gray-700 hover:bg-gray-600 transition-all duration-500 rounded-lg w-full h-12 md:h-14 justify-center items-center cursor-pointer"
         onClick={() => setShowWebTech(!showWebTech)}
       >
-         <div className="text-3xl select-none flex gap-4 max-sm:text-xl max-sm:mt-2">
-        <TbWorld className='size-10 hover:scale-110 transition-all duration-500 select-none text-sky-500 max-sm:size-9' />
-          <div>
-           Web Technologies
+        <div className="text-xl md:text-3xl select-none flex gap-2 md:gap-4 items-center">
+          <TbWorld className="size-6 md:size-10 hover:scale-110 transition-all duration-500 text-blue-400" />
+          <div>Web Technologies</div>
         </div>
-        </div> 
-        {showWebTech ? <FaAngleUp className="size-12" /> : <FaAngleDown className="size-12 max-sm:size-10 max-sm:mt-1" />}
+        {showWebTech ? <FaAngleUp className="size-6 md:size-12" /> : <FaAngleDown className="size-6 md:size-12" />}
       </div>
-      <div className={`overflow-x-scroll transition-all duration-1000 ${showWebTech ? 'max-h-[1000px]' : 'max-h-0'}`}>
-      <div className="flex">
-      <Tilt options={{ max: 25, speed: 400 }}>
-  <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-    <CardContent className="flex justify-center">
-      <FaHtml5 className="text-orange-600 text-5xl" />
-    </CardContent>
-    <CardFooter className="flex justify-center">HTML5</CardFooter>
-  </Card>
-</Tilt>
+      <div className={`overflow-hidden transition-all duration-1000 ${showWebTech ? 'max-h-[1000px]' : 'max-h-0'}`}>
+        <div className="flex overflow-x-auto md:flex-wrap md:justify-center gap-4 md:gap-6 p-2 md:p-6">
+          <Tilt options={{ max: 25, speed: 400 }}>
+            <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6">
+              <CardContent className="flex justify-center">
+                <FaHtml5 className="text-orange-400 text-3xl md:text-5xl" />
+              </CardContent>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">HTML5</CardFooter>
+            </Card>
+          </Tilt>
 
-<Tilt options={{ max: 25, speed: 400 }}>
-  <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-    <CardContent className="flex justify-center">
-      <FaCss3Alt className="text-blue-600 text-5xl" />
-    </CardContent>
-    <CardFooter className="flex justify-center">CSS3</CardFooter>
-  </Card>
-</Tilt>
+          <Tilt options={{ max: 25, speed: 400 }}>
+            <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6">
+              <CardContent className="flex justify-center">
+                <FaCss3Alt className="text-blue-400 text-3xl md:text-5xl" />
+              </CardContent>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">CSS3</CardFooter>
+            </Card>
+          </Tilt>
 
-<Tilt options={{ max: 25, speed: 400 }}>
-  <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-    <CardContent className="flex justify-center">
-      <FaBootstrap className="text-purple-600 text-5xl" />
-    </CardContent>
-    <CardFooter className="flex justify-center">Bootstrap</CardFooter>
-  </Card>
-</Tilt>
+          <Tilt options={{ max: 25, speed: 400 }}>
+            <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6">
+              <CardContent className="flex justify-center">
+                <FaBootstrap className="text-purple-400 text-3xl md:text-5xl" />
+              </CardContent>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Bootstrap</CardFooter>
+            </Card>
+          </Tilt>
 
-<Tilt options={{ max: 25, speed: 400 }}>
-  <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-    <CardContent className="flex justify-center">
-      <RiTailwindCssLine className="text-teal-600 text-5xl" />
-    </CardContent>
-    <CardFooter className="flex justify-center">Tailwind CSS</CardFooter>
-  </Card>
-</Tilt>
+          <Tilt options={{ max: 25, speed: 400 }}>
+            <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6">
+              <CardContent className="flex justify-center">
+                <RiTailwindCssLine className="text-teal-400 text-3xl md:text-5xl" />
+              </CardContent>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Tailwind CSS</CardFooter>
+            </Card>
+          </Tilt>
 
-<Tilt options={{ max: 25, speed: 400 }}>
-  <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-    <CardContent className="flex justify-center">
-      <DiJqueryLogo className="text-blue-400 text-5xl" />
-    </CardContent>
-    <CardFooter className="flex justify-center">jQuery</CardFooter>
-  </Card>
-</Tilt>
+          <Tilt options={{ max: 25, speed: 400 }}>
+            <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6">
+              <CardContent className="flex justify-center">
+                <DiJqueryLogo className="text-blue-400 text-3xl md:text-5xl" />
+              </CardContent>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">jQuery</CardFooter>
+            </Card>
+          </Tilt>
 
-<Tilt options={{ max: 25, speed: 400 }}>
-  <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-    <CardContent className="flex justify-center">
-      <FaReact className="text-cyan-600 text-5xl" />
-    </CardContent>
-    <CardFooter className="flex justify-center">React</CardFooter>
-  </Card>
-</Tilt>
+          <Tilt options={{ max: 25, speed: 400 }}>
+            <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6">
+              <CardContent className="flex justify-center">
+                <FaReact className="text-cyan-400 text-3xl md:text-5xl" />
+              </CardContent>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">React</CardFooter>
+            </Card>
+          </Tilt>
 
-<Tilt options={{ max: 25, speed: 400 }}>
-  <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-    <CardContent className="flex justify-center">
-      <SiRedux className="text-purple-700 text-5xl" />
-    </CardContent>
-    <CardFooter className="flex justify-center">Redux</CardFooter>
-  </Card>
-</Tilt>
+          <Tilt options={{ max: 25, speed: 400 }}>
+            <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6">
+              <CardContent className="flex justify-center">
+                <SiRedux className="text-purple-400 text-3xl md:text-5xl" />
+              </CardContent>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Redux</CardFooter>
+            </Card>
+          </Tilt>
 
-<Tilt options={{ max: 25, speed: 400 }}>
-  <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-    <CardContent className="flex justify-center">
-      <FaNode className="text-green-600 text-5xl" />
-    </CardContent>
-    <CardFooter className="flex justify-center">Node.js</CardFooter>
-  </Card>
-</Tilt>
+          <Tilt options={{ max: 25, speed: 400 }}>
+            <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6">
+              <CardContent className="flex justify-center">
+                <FaNode className="text-green-400 text-3xl md:text-5xl" />
+              </CardContent>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Node.js</CardFooter>
+            </Card>
+          </Tilt>
 
-<Tilt options={{ max: 25, speed: 400 }}>
-  <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-    <CardContent className="flex justify-center">
-      <SiExpress className="text-gray-800 text-5xl" />
-    </CardContent>
-    <CardFooter className="flex justify-center">Express</CardFooter>
-  </Card>
-</Tilt>
+          <Tilt options={{ max: 25, speed: 400 }}>
+            <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6">
+              <CardContent className="flex justify-center">
+                <SiExpress className="text-gray-300 text-3xl md:text-5xl" />
+              </CardContent>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Express</CardFooter>
+            </Card>
+          </Tilt>
 
-<Tilt options={{ max: 25, speed: 400 }}>
-  <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-    <CardContent className="flex justify-center">
-      <SiMongodb className="text-green-500 text-5xl" />
-    </CardContent>
-    <CardFooter className="flex justify-center">MongoDB</CardFooter>
-  </Card>
-</Tilt>
+          <Tilt options={{ max: 25, speed: 400 }}>
+            <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6">
+              <CardContent className="flex justify-center">
+                <SiMongodb className="text-green-400 text-3xl md:text-5xl" />
+              </CardContent>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">MongoDB</CardFooter>
+            </Card>
+          </Tilt>
 
-<Tilt options={{ max: 25, speed: 400 }}>
-  <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-    <CardContent className="flex justify-center">
-      <SiMysql className="text-blue-700 text-5xl" />
-    </CardContent>
-    <CardFooter className="flex justify-center">MySQL</CardFooter>
-  </Card>
-</Tilt>
+          <Tilt options={{ max: 25, speed: 400 }}>
+            <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6">
+              <CardContent className="flex justify-center">
+                <SiMysql className="text-blue-400 text-3xl md:text-5xl" />
+              </CardContent>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">MySQL</CardFooter>
+            </Card>
+          </Tilt>
 
-<Tilt options={{ max: 25, speed: 400 }}>
-  <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-    <CardContent className="flex justify-center">
-      <FaGitAlt className="text-red-600 text-5xl" />
-    </CardContent>
-    <CardFooter className="flex justify-center">Git & GitHub</CardFooter>
-  </Card>
-</Tilt>
+          <Tilt options={{ max: 25, speed: 400 }}>
+            <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6">
+              <CardContent className="flex justify-center">
+                <FaGitAlt className="text-red-400 text-3xl md:text-5xl" />
+              </CardContent>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Git & GitHub</CardFooter>
+            </Card>
+          </Tilt>
 
-<Tilt options={{ max: 25, speed: 400 }}>
-  <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-    <CardContent className="flex justify-center">
-      <SiPostman className="text-orange-600 text-5xl" />
-    </CardContent>
-    <CardFooter className="flex justify-center">Postman</CardFooter>
-  </Card>
-</Tilt>
-
-    </div>
+          <Tilt options={{ max: 25, speed: 400 }}>
+            <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6">
+              <CardContent className="flex justify-center">
+                <SiPostman className="text-orange-400 text-3xl md:text-5xl" />
+              </CardContent>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Postman</CardFooter>
+            </Card>
+          </Tilt>
+        </div>
       </div>
 
+      {/* AI & Machine Learning Section */}
       <div
-        className="flex bg-slate-200 hover:bg-slate-400 transition-all duration-500 w-full  rounded-[60px] h-14 justify-center cursor-pointer mt-6"
+        className="flex bg-gray-700 hover:bg-gray-600 transition-all duration-500 rounded-lg w-full h-12 md:h-14 justify-center items-center cursor-pointer"
         onClick={() => setShowAI(!showAI)}
       >
-         <div className="text-3xl select-none flex gap-4 max-sm:text-xl max-sm:mt-3 ">
-        <LuBrainCircuit className='size-10 hover:scale-110 transition-all duration-500 select-none text-amber-800 max-sm:size-9' />
-          <div>
-           AI & Machine Learning
+        <div className="text-xl md:text-3xl select-none flex gap-2 md:gap-4 items-center">
+          <LuBrainCircuit className="size-6 md:size-10 hover:scale-110 transition-all duration-500 text-amber-400" />
+          <div>AI & Machine Learning</div>
         </div>
-        </div>
-        {showAI ? <FaAngleUp className="size-12" /> : <FaAngleDown className="size-12 max-sm:size-9 max-sm:mt-2" />}
+        {showAI ? <FaAngleUp className="size-6 md:size-12" /> : <FaAngleDown className="size-6 md:size-12" />}
       </div>
       <div className={`overflow-hidden transition-all duration-1000 ${showAI ? 'max-h-[1000px]' : 'max-h-0'}`}>
-      <div className="flex max-sm:overflow-x-auto">
-      <Tilt options={{ max: 25, speed: 400 }}>
+        <div className="flex overflow-x-auto md:flex-wrap md:justify-center gap-4 md:gap-6 p-2 md:p-6">
+          <Tilt options={{ max: 25, speed: 400 }}>
+            <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6">
+              <CardContent className="flex justify-center">
+                <img src={ml} className="w-16 h-16 md:w-20 md:h-20" alt="Machine Learning" />
+              </CardContent>
+              <CardFooter className="flex justify-center text-sm md:text-base text-blue-400">Machine Learning</CardFooter>
+            </Card>
+          </Tilt>
 
-    <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-      <CardContent className="flex justify-center">
-        <img src={ml} className="w-20 h-20" alt="" /> 
-      </CardContent>
-      <CardFooter className="flex justify-center text-blue-600">Machine Learning</CardFooter> 
-    </Card>
-      </Tilt>
+          <Tilt options={{ max: 25, speed: 400 }}>
+            <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6">
+              <CardContent className="flex justify-center">
+                <img src={nlp} className="w-16 h-16 md:w-20 md:h-20" alt="Text Summarization" />
+              </CardContent>
+              <CardFooter className="flex justify-center text-sm md:text-base text-green-400">Text Summarization</CardFooter>
+            </Card>
+          </Tilt>
 
+          <Tilt options={{ max: 25, speed: 400 }}>
+            <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6 max-sm:h-[11rem]">
+              <CardContent className="flex justify-center">
+                <img src={tensorflow} className="w-16 h-16 md:w-20 md:h-[6.5rem]" alt="TensorFlow" />
+              </CardContent>
+              <CardFooter className="flex justify-center text-sm md:text-base text-orange-400">TensorFlow</CardFooter>
+            </Card>
+          </Tilt>
 
-      <Tilt options={{ max: 25, speed: 400 }}>
-
-  <Card className="border-slate-400 shadow-lg w-52 p-5 m-6 ">
-    <CardContent className="flex justify-center">
-      <img src={nlp} className="w-20 h-20" alt="" /> 
-    </CardContent>
-    <CardFooter className="flex justify-center text-green-600">Text Summarization</CardFooter> 
-  </Card>
-      </Tilt>
-
-
-      <Tilt options={{ max: 25, speed: 400 }}>
-    <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-      <CardContent className="flex justify-center">
-        <img src={tensorflow} className="w-20 h-[6.5rem]" alt="" /> 
-      </CardContent>
-      <CardFooter className="flex justify-center text-orange-600">TensorFlow</CardFooter> 
-    </Card>
-      </Tilt>
-      <Tilt options={{ max: 25, speed: 400 }}>
-
-  <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-    <CardContent className="flex justify-center">
-      <img src={opencv} className="w-20 h-[6.5rem]" alt="" /> 
-    </CardContent>
-    <CardFooter className="flex justify-center text-teal-600">Basic-OpenCV</CardFooter> 
-  </Card>
-      </Tilt>
-
-</div>
-
+          <Tilt options={{ max: 25, speed: 400 }}>
+            <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6">
+              <CardContent className="flex justify-center">
+                <img src={opencv} className="w-16 h-16 md:w-20 md:h-[6.5rem]" alt="OpenCV" />
+              </CardContent>
+              <CardFooter className="flex justify-center text-sm md:text-base text-teal-400">Basic-OpenCV</CardFooter>
+            </Card>
+          </Tilt>
+        </div>
       </div>
 
+      {/* Future Learnings Section */}
       <div
-        className="flex bg-slate-200 hover:bg-slate-400 transition-all  rounded-[10rem] duration-500 w-full h-14 justify-center cursor-pointer mt-6"
+        className="flex bg-gray-700 hover:bg-gray-600 transition-all duration-500 rounded-lg w-full h-12 md:h-14 justify-center items-center cursor-pointer"
         onClick={() => setShowFutureLearnings(!showFutureLearnings)}
       >
-          <div className="text-3xl select-none flex gap-4 max-sm:text-xl max-sm:mt-3 ">
-        <SiFuturelearn className='size-10 hover:scale-110 transition-all duration-500 select-none text-green-600 max-sm:size-9' />
-          <div>
-          Future Learnings
+        <div className="text-xl md:text-3xl select-none flex gap-2 md:gap-4 items-center">
+          <SiFuturelearn className="size-6 md:size-10 hover:scale-110 transition-all duration-500 text-green-400" />
+          <div>Future Learnings</div>
         </div>
-        </div>
-        {showFutureLearnings ? <FaAngleUp className="size-12" /> : <FaAngleDown className="size-12 max-sm:size-9 max-sm:mt-2" />}
+        {showFutureLearnings ? <FaAngleUp className="size-6 md:size-12" /> : <FaAngleDown className="size-6 md:size-12" />}
       </div>
       <div className={`overflow-hidden transition-all duration-1000 ${showFutureLearnings ? 'max-h-[1000px]' : 'max-h-0'}`}>
-      <div className="flex max-sm:overflow-scroll">
-      <Tilt options={{ max: 25, speed: 400 }}>
+        <div className="flex overflow-x-auto md:flex-wrap md:justify-center gap-4 md:gap-6 p-2 md:p-6">
+          <Tilt options={{ max: 25, speed: 400 }}>
+            <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6 max-sm:h-[12rem]">
+              <CardContent className="flex justify-center">
+                <FaAws className="text-yellow-400 text-6xl md:text-9xl" />
+              </CardContent>
+              <CardFooter className="flex justify-center text-sm md:text-base text-yellow-400">AWS (Cloud)</CardFooter>
+            </Card>
+          </Tilt>
 
-    <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-    <CardContent className="flex justify-center">
-      <FaAws className="text-yellow-600 text-9xl " /> 
-    </CardContent>
-    <CardFooter className="flex justify-center text-yellow-600">AWS (Cloud)</CardFooter> 
-  </Card>
-      </Tilt>
-
-      <Tilt options={{ max: 25, speed: 400 }}>
-
-  <Card className="border-slate-400 shadow-lg w-52 p-5 m-6">
-    <CardContent className="flex justify-center">
-      <img src={cnn} className="w-20 h-20" alt="" /> 
-    </CardContent>
-    <CardFooter className="flex justify-center text-blue-600">Convolutional Neural Network (CNN)</CardFooter> 
-  </Card>
-      </Tilt>
-
-</div>
-
+          <Tilt options={{ max: 25, speed: 400 }}>
+            <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6 max-sm:h-[12rem]">
+              <CardContent className="flex justify-center">
+                <img src={cnn} className="w-16 h-16 md:w-20 md:h-20" alt="CNN" />
+              </CardContent>
+              <CardFooter className="flex justify-center text-sm md:text-base text-blue-400">Convolutional Neural Network (CNN)</CardFooter>
+            </Card>
+          </Tilt>
+        </div>
       </div>
     </div>
   );

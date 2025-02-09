@@ -76,7 +76,7 @@ const Nav = () => {
     }, []);
 
     return (
-        <div className="flex items-center justify-between px-6 py-4 bg-gray-800 text-white ">
+        <div className="flex items-center justify-between px-6 py-4 bg-gray-800 text-white z-50 fixed w-full">
             <div className="relative text-2xl group">
                 <span className="transition-all duration-1000 select-none">Praveen Gamini</span>
                 <div className="absolute bottom-0 left-0 w-full h-1 bg-orange-600 scale-x-0 group-hover:scale-x-100 transition-all duration-1000"></div>
@@ -84,7 +84,7 @@ const Nav = () => {
 
             <div>
                 <button
-                    className="sm:hidden p-2"
+                    className="md:hidden p-2"
                     id="menuToggle"
                     onClick={() => setOpenMenu(!openMenu)}
                 >
@@ -100,7 +100,7 @@ const Nav = () => {
                     } transition-transform duration-300 ease-in-out text-center`}
                 >
                     <button
-                        className="sm:hidden p-2 mr-[-13.5rem]"
+                        className="md:hidden p-2 mr-[-13.5rem]"
                         id="menuToggle"
                         onClick={() => setOpenMenu(!openMenu)}
                     >

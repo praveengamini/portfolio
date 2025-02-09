@@ -10,4 +10,8 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'), // Add this line
     },
   },
+  server: {
+    host: '0.0.0.0', // Allow connections from your local network
+    port: 3000, // Or any other port you prefer
+  },
 });
