@@ -7,6 +7,7 @@ import { PiMaskHappyLight } from "react-icons/pi";
 import { RiFeedbackLine } from "react-icons/ri";
 import { CiMail } from "react-icons/ci";
 import emailjs from 'emailjs-com';
+import Copyright from '../components/Copyright';
 
 const About = () => {
   const [name, setName] = useState("");
@@ -50,6 +51,7 @@ const About = () => {
   };
 
   return (
+    <div className='flex flex-col'>
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white flex">
       {/* Mobile Footer Toggle Button */}
       <div className="fixed bottom-4 right-4 md:hidden z-50">
@@ -137,7 +139,7 @@ const About = () => {
           <div className="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all">
             <FaUser className="text-red-400 text-4xl mb-3" />
             <h3 className="text-2xl font-semibold">Personal Info</h3>
-            <p className="text-gray-300 mt-2">Born on 28th January 2004. Currently living in Kailsapatnam, Kotauratla, Visakhapatnam.</p>
+            <p className="text-gray-300 mt-2">Born on 28th January 2004. Currently living in Kailasapatnam, Kotauratla, Visakhapatnam.</p>
           </div>
         </div>
 
@@ -174,6 +176,9 @@ const About = () => {
           )}
         </div>
       </div>
+    </div>
+    <Copyright />
+
     </div>
   );
 };

@@ -17,6 +17,7 @@ import { LuBrainCircuit } from "react-icons/lu";
 import { SiFuturelearn } from "react-icons/si";
 import { FaKeyboard } from "react-icons/fa";
 import { Tilt } from 'react-tilt';
+import { motion } from 'framer-motion';
 
 const Skills = () => {
   const [showSkills, setShowSkills] = useState(false);
@@ -29,7 +30,10 @@ const Skills = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white p-4 md:p-8 flex flex-col gap-4 md:gap-6 overflow-y-auto">
 
       {/* Skill Levels Section */}
-      <div
+      <motion.div
+      initial={{ opacity: 0, x: -1000 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.1, delay: 0.2 }}
         className="flex bg-gray-700 hover:bg-gray-600 transition-all rounded-lg duration-500 w-full h-12 md:h-14 justify-center items-center cursor-pointer"
         onClick={() => setShowSkillLevels(!showSkillLevels)}
       >
@@ -38,13 +42,16 @@ const Skills = () => {
           <div>Skill Levels</div>
         </div>
         {showSkillLevels ? <FaAngleUp className="size-6 md:size-12" /> : <FaAngleDown className="size-6 md:size-12" />}
-      </div>
+      </motion.div>
       <div className={`overflow-hidden transition-all duration-1000 ${showSkillLevels ? 'max-h-[570px]' : 'max-h-0'}`}>
         <SkillBarChart />
       </div>
 
       {/* Programming Languages Section */}
-      <div
+      <motion.div
+      initial={{ opacity: 0, x: 1000 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.1, delay: 0.2 }}
         className="flex bg-gray-700 hover:bg-gray-600 transition-all duration-500 rounded-lg w-full h-12 md:h-14 justify-center items-center cursor-pointer"
         onClick={() => setShowSkills(!showSkills)}
       >
@@ -53,7 +60,7 @@ const Skills = () => {
           <div>Programming Languages</div>
         </div>
         {showSkills ? <FaAngleUp className="size-6 md:size-12" /> : <FaAngleDown className="size-6 md:size-12" />}
-      </div>
+      </motion.div>
       <div className={`overflow-hidden transition-all duration-1000 ${showSkills ? 'max-h-[1000px]' : 'max-h-0'}`}>
         <div className="flex overflow-x-auto md:flex-wrap md:justify-center gap-4 md:gap-6 p-2 md:p-6">
           <Tilt options={{ max: 25, speed: 400 }}>
@@ -95,7 +102,10 @@ const Skills = () => {
       </div>
 
       {/* Web Technologies Section */}
-      <div
+      <motion.div
+      initial={{ opacity: 0, x: -1000 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.1, delay: 0.2 }}
         className="flex bg-gray-700 hover:bg-gray-600 transition-all duration-500 rounded-lg w-full h-12 md:h-14 justify-center items-center cursor-pointer"
         onClick={() => setShowWebTech(!showWebTech)}
       >
@@ -104,7 +114,7 @@ const Skills = () => {
           <div>Web Technologies</div>
         </div>
         {showWebTech ? <FaAngleUp className="size-6 md:size-12" /> : <FaAngleDown className="size-6 md:size-12" />}
-      </div>
+      </motion.div>
       <div className={`overflow-hidden transition-all duration-1000 ${showWebTech ? 'max-h-[1000px]' : 'max-h-0'}`}>
         <div className="flex overflow-x-auto md:flex-wrap md:justify-center gap-4 md:gap-6 p-2 md:p-6">
           <Tilt options={{ max: 25, speed: 400 }}>
@@ -227,7 +237,10 @@ const Skills = () => {
       </div>
 
       {/* AI & Machine Learning Section */}
-      <div
+      <motion.div
+      initial={{ opacity: 0, x: 1000 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.1, delay: 0.2 }}
         className="flex bg-gray-700 hover:bg-gray-600 transition-all duration-500 rounded-lg w-full h-12 md:h-14 justify-center items-center cursor-pointer"
         onClick={() => setShowAI(!showAI)}
       >
@@ -236,7 +249,7 @@ const Skills = () => {
           <div>AI & Machine Learning</div>
         </div>
         {showAI ? <FaAngleUp className="size-6 md:size-12" /> : <FaAngleDown className="size-6 md:size-12" />}
-      </div>
+      </motion.div>
       <div className={`overflow-hidden transition-all duration-1000 ${showAI ? 'max-h-[1000px]' : 'max-h-0'}`}>
         <div className="flex overflow-x-auto md:flex-wrap md:justify-center gap-4 md:gap-6 p-2 md:p-6">
           <Tilt options={{ max: 25, speed: 400 }}>
@@ -278,7 +291,10 @@ const Skills = () => {
       </div>
 
       {/* Future Learnings Section */}
-      <div
+      <motion.div
+      initial={{ opacity: 0, x: -1000 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.1, delay: 0.2 }}
         className="flex bg-gray-700 hover:bg-gray-600 transition-all duration-500 rounded-lg w-full h-12 md:h-14 justify-center items-center cursor-pointer"
         onClick={() => setShowFutureLearnings(!showFutureLearnings)}
       >
@@ -287,7 +303,7 @@ const Skills = () => {
           <div>Future Learnings</div>
         </div>
         {showFutureLearnings ? <FaAngleUp className="size-6 md:size-12" /> : <FaAngleDown className="size-6 md:size-12" />}
-      </div>
+      </motion.div>
       <div className={`overflow-hidden transition-all duration-1000 ${showFutureLearnings ? 'max-h-[1000px]' : 'max-h-0'}`}>
         <div className="flex overflow-x-auto md:flex-wrap md:justify-center gap-4 md:gap-6 p-2 md:p-6">
           <Tilt options={{ max: 25, speed: 400 }}>

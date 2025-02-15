@@ -1,107 +1,176 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useEffect } from 'react';
 import Footer from '../components/Footer';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { SlPencil } from 'react-icons/sl';
-import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { motion } from 'framer-motion';
-
-// Lazy load the Spline component
-const Spline = lazy(() => import('@splinetool/react-spline'));
+import { TypeAnimation } from 'react-type-animation';
+import { useNavigate } from 'react-router-dom';
+import praveenprofile from '../assets/images/praveen-profile.jpg';
+import { GiCoffeeCup } from "react-icons/gi";
+import background from '../assets/images/background.png';
 
 const Home = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [splineError, setSplineError] = useState(false);
+  const navigate = useNavigate();
+  const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 768px)");
-
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        document.body.classList.add("overflow-hidden");
-      } else {
-        document.body.classList.remove("overflow-hidden");
-      }
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768); 
     };
 
-    if (mediaQuery.matches) {
-      document.body.classList.add("overflow-hidden");
-    }
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
 
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      document.body.classList.remove("overflow-hidden");
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
 
-  const handleSplineLoad = () => {
-    setIsLoading(false);
-  };
-
-  const handleSplineError = () => {
-    setSplineError(true);
-    setIsLoading(false);
+  const handleDownloadResume = () => {
+    const resumeUrl = 'https://drive.google.com/file/d/13Lorj0A0VgolEoXH1rB-4lE66SHr7k1z/view?usp=sharing';
+    const link = document.createElement('a');
+    link.href = resumeUrl;
+    link.target = '_blank';
+    link.download = 'Praveen_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-      <div className="flex flex-col flex-grow w-full px-6 md:px-12 lg:px-20 py-10">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-10 mt-5">
-          {/* Card Section */}
+    <div className="relative flex flex-col min-h-screen bg-gray-900 text-white overflow-hidden" style={{ height: '100vh' }}>
+      {/* Cracked Glass Effect */}
+      <div className="absolute inset-0 bg-[url('/src/assets/images/cracked-glass.png')] bg-cover bg-center opacity-30 pointer-events-none"></div>
+      
+      <div className="relative z-10 flex flex-col flex-grow w-full px-6 md:px-12 lg:px-20 py-10" style={{ height: 'calc(100vh - 80px)' }}>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-10 mt-5 flex-grow">
+          {/* Left Side: Text Content */}
           <motion.div
-            className="w-full md:w-[30rem] bg-gray-700 shadow-lg rounded-lg hover:shadow-2xl transition-transform duration-500 hover:scale-105"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="w-full md:w-1/2"
           >
-            <Card className="bg-gray-700 border-none">
-              <div className="flex items-center p-5 max-sm:p-2">
-                <CardHeader className="text-2xl font-semibold text-white">
-                  I am ..........
-                </CardHeader>
-                <SlPencil className="ml-[-20px] text-gray-300 text-lg" aria-hidden="true" />
+            <div className="space-y-6">
+              <h1 className="text-2xl md:text-5xl font-bold flex items-center whitespace-nowrap">
+                <TypeAnimation
+                  sequence={[
+                    "Hello, I'm a Developer",
+                    1000,
+                    "Hello, I'm a Problem Solver",
+                    1000,
+                    "Hello, I'm a Tech Enthusiast",
+                    1000,
+                  ]}
+                  speed={50}
+                  repeat={Infinity}
+                  style={{ display: 'inline-block' }} 
+                />
+                <motion.span transition={{ duration: 2, repeat: Infinity }}>
+                  <SlPencil className="text-white text-4xl md:text-5xl" />
+                </motion.span>
+              </h1>
+              <p className="text-lg text-gray-300 leading-relaxed">
+                I specialize in creating innovative and impactful solutions using cutting-edge technologies. With expertise in Full Stack Development (MERN), Machine Learning, and AI, I aim to drive technological advancements that make a difference.
+              </p>
+              <div className="flex gap-4">
+                <button
+                  className="px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105"
+                  onClick={() => navigate('/projects')}
+                >
+                  View My Work
+                </button>
+                <button
+                  className="px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105"
+                  onClick={handleDownloadResume}
+                >
+                  Download Resume
+                </button>
               </div>
-              <CardContent className="p-6 text-gray-300 leading-relaxed">
-                To leverage my technical expertise in Computer Science and Engineering,
-                combined with my passion for learning new technologies, to develop
-                innovative and impactful solutions. As a self-motivated and enthusiastic
-                individual with proficiency in Full Stack Development (MERN), Machine
-                Learning, and Image Processing in AI, I aim to contribute to cutting-edge
-                projects while continuously growing as a skilled engineer and problem
-                solver. My goal is to excel in a dynamic and challenging environment,
-                driving technological advancements that make a difference.
-              </CardContent>
-            </Card>
+            </div>
           </motion.div>
 
-          {/* Spline Section */}
-          <div className="h-[400px] md:h-[500px] w-full md:w-[500px] relative max-sm:hidden">
-            {isLoading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-gray-800 rounded-3xl">
-                <div className="text-lg font-semibold flex text-blue-500 animate-spin">
-                  <AiOutlineLoading3Quarters className="text-3xl" aria-label="Loading" />
+          <motion.div
+            className="w-full md:w-1/2 flex justify-center"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <div
+              className="relative rounded-2xl h-96 w-full overflow-hidden"
+              onMouseEnter={() => !isMobile && setIsHovered(true)}
+              onMouseLeave={() => !isMobile && setIsHovered(false)}
+            >
+              <img
+                src={background}
+                alt="Background"
+                className={`w-full h-full object-cover rounded-2xl border-4 border-gray-700 shadow-lg transition-opacity duration-300 ${
+                  isHovered && !isMobile ? 'opacity-0' : 'opacity-100' 
+                } ${isMobile?'hidden':''} `}
+              />
+
+              {/* Hover Overlay (Only for Non-Mobile Devices) */}
+              {!isMobile && (
+                <div className="absolute inset-0 flex">
+                  {/* Left Half: Praveen Profile */}
+                  <div
+                    className={`w-[600px] h-[600px] flex items-center justify-center transition-opacity duration-300 ${
+                      isHovered ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  >
+                    <img
+                      src={praveenprofile}
+                      alt="Praveen Profile"
+                      className="w-[500px] h-[1000px] object-contain rounded-lg border-1 border-white shadow-lg"
+                    />
+                  </div>
+
+                  {/* Right Half: Buy Me a Coffee Button */}
+                  <div
+                    className={`w-1/2 h-full flex items-center justify-center transition-opacity duration-300 ${
+                      isHovered ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  >
+                    <button
+                      className="flex items-center justify-center px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105"
+                      onClick={() => window.open('https://buymeacoffee.com/praveengamini', '_blank')}
+                    >
+                      <GiCoffeeCup className="text-2xl mr-2" />
+                      Buy Me a Coffee
+                    </button>
+                  </div>
                 </div>
-              </div>
-            )}
-            {splineError ? (
-              <div className="absolute inset-0 flex items-center justify-center bg-gray-800 rounded-3xl">
-                <p className="text-red-500">Failed to load 3D animation.</p>
-              </div>
-            ) : (
-              <Suspense fallback={<div>Loading...</div>}>
-                <Spline
-                  scene="https://prod.spline.design/4y6MUt4fLXEbhlFX/scene.splinecode"
-                  className="rounded-3xl"
-                  onLoad={handleSplineLoad}
-                  onError={handleSplineError}
-                />
-              </Suspense>
-            )}
-          </div>
+              )}
+
+              {/* Mobile Layout (Static) */}
+              {isMobile && (
+                <div className="flex flex-col items-center justify-center h-full">
+                  {/* Top Half: Praveen Profile */}
+                  <div className=" h-[500px] flex items-center justify-center mb-4">
+                    <img
+                      src={praveenprofile}
+                      alt="Praveen Profile"
+                      className=" h-[280px] object-contain border-1 rounded-lg border-white shadow-lg"
+                    />
+                  </div>
+
+                  {/* Bottom Half: Buy Me a Coffee Button */}
+                  <div className="w-full flex items-center justify-center">
+                    <button
+                      className="flex items-center justify-center px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105"
+                      onClick={() => window.open('https://buymeacoffee.com/praveengamini', '_blank')}
+                    >
+                      <GiCoffeeCup className="text-2xl mr-2" />
+                      Buy Me a Coffee
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </motion.div>
         </div>
       </div>
-      <Footer />
+      <div className=" z-10 mt-auto">
+        <Footer />
+      </div>
     </div>
   );
 };
