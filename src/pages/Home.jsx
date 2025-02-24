@@ -28,7 +28,7 @@ const Home = () => {
   }, []);
 
   const handleDownloadResume = () => {
-    const resumeUrl = 'https://drive.google.com/file/d/13Lorj0A0VgolEoXH1rB-4lE66SHr7k1z/view?usp=sharing';
+    const resumeUrl = 'https://drive.google.com/file/d/1HbGXcDxrzu_Ik3HlqdjbUhwfrFAHnqHF/view?usp=sharing';
     const link = document.createElement('a');
     link.href = resumeUrl;
     link.target = '_blank';
@@ -67,9 +67,7 @@ const Home = () => {
               repeat={Infinity}
               style={{ display: 'inline-block' }} // Ensure the animation stays inline
             />
-            <motion.span transition={{ duration: 2, repeat: Infinity }}>
-              <SlPencil className="text-white text-4xl md:text-5xl" />
-            </motion.span>
+        
           </h1>
               <p className="text-lg text-gray-300 leading-relaxed">
                 I specialize in creating innovative and impactful solutions using cutting-edge technologies. With expertise in Full Stack Development (MERN), Machine Learning, and AI, I aim to drive technological advancements that make a difference.

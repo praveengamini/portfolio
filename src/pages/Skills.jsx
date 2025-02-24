@@ -29,7 +29,6 @@ const Skills = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white p-4 md:p-8 flex flex-col gap-4 md:gap-6 overflow-y-auto">
 
-      {/* Skill Levels Section */}
       <motion.div
       initial={{ opacity: 0, x: -1000 }}
       animate={{ opacity: 1, x: 0 }}
@@ -47,7 +46,6 @@ const Skills = () => {
         <SkillBarChart />
       </div>
 
-      {/* Programming Languages Section */}
       <motion.div
       initial={{ opacity: 0, x: 1000 }}
       animate={{ opacity: 1, x: 0 }}
