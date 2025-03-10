@@ -8,14 +8,14 @@ import { RiFeedbackLine } from "react-icons/ri";
 import { CiMail } from "react-icons/ci";
 import emailjs from 'emailjs-com';
 import Copyright from '../components/Copyright';
-import useScrollToTop from '@/components/useScrollTop';
+import { ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 const About = () => {
-  useScrollToTop();
-
   const [name, setName] = useState("");
   const [feedback, setFeedback] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [isFooterOpen, setIsFooterOpen] = useState(false); // State to manage footer visibility
+  const [loading, setLoading] = useState(false); // State to manage loading state
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -27,6 +27,7 @@ const About = () => {
 
   const handleFeedbackSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Disable the button and show loading state
 
     const emailData = {
       name: name,
@@ -43,11 +44,14 @@ const About = () => {
       setSubmitted(true);
       setName("");
       setFeedback("");
+      toast.success("Feedback sent successfully!"); // Show success toast
     } catch (error) {
       console.error("Error sending feedback:", error);
+      toast.error("Failed to send feedback. Please try again."); // Show error toast
+    } finally {
+      setLoading(false); // Re-enable the button
     }
   };
-
   const toggleFooter = () => {
     setIsFooterOpen(!isFooterOpen);
   };
@@ -144,43 +148,56 @@ const About = () => {
             <p className="text-gray-300 mt-2">Born on 28th January 2004. Currently living in Kailasapatnam, Kotauratla, Visakhapatnam.</p>
           </div>
         </div>
-
         <div className="mt-10 bg-gray-700 p-6 rounded-lg shadow-lg w-full max-w-2xl">
-          <h3 className="text-2xl font-semibold mb-4 flex items-center">
-            Feedback <RiFeedbackLine className="text-amber-400 ml-2" />
-          </h3>
-          <form onSubmit={handleFeedbackSubmit}>
-            <input
-              type="text"
-              value={name}
-              onChange={handleNameChange}
-              placeholder="Your Name"
-              className="w-full p-3 border-none rounded-md bg-gray-800 text-white focus:ring-2 focus:ring-blue-500 mb-3"
-              required
-            />
-            <textarea
-              value={feedback}
-              onChange={handleFeedbackChange}
-              placeholder="Leave your feedback..."
-              className="w-full p-3 border-none rounded-md bg-gray-800 text-white focus:ring-2 focus:ring-blue-500 mb-3"
-              rows="4"
-              required
-            />
-            <button
-              type="submit"
-              className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition-all"
-            >
-              Submit Feedback
-            </button>
-          </form>
-          {submitted && (
-            <p className="mt-3 text-green-400 text-sm">Thank you for your feedback!</p>
-          )}
+            <h3 className="text-2xl font-semibold mb-4 flex items-center">
+              Feedback <RiFeedbackLine className="text-amber-400 ml-2" />
+            </h3>
+            <form onSubmit={handleFeedbackSubmit}>
+              <input
+                type="text"
+                value={name}
+                onChange={handleNameChange}
+                placeholder="Your Name"
+                className="w-full p-3 border-none rounded-md bg-gray-800 text-white focus:ring-2 focus:ring-blue-500 mb-3"
+                required
+              />
+              <textarea
+                value={feedback}
+                onChange={handleFeedbackChange}
+                placeholder="Leave your feedback..."
+                className="w-full p-3 border-none rounded-md bg-gray-800 text-white focus:ring-2 focus:ring-blue-500 mb-3"
+                rows="4"
+                required
+              />
+              <button
+                type="submit"
+                className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition-all disabled:bg-blue-300 disabled:cursor-not-allowed"
+                disabled={loading} // Disable button when loading
+              >
+                {loading ? "Sending..." : "Submit Feedback"}
+              </button>
+            </form>
+            {submitted && (
+              <p className="mt-3 text-green-400 text-sm">Thank you for your feedback!</p>
+            )}
+          </div>
         </div>
       </div>
-    </div>
-    <Copyright />
 
+      {/* Toast Container */}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+
+      <Copyright />
     </div>
   );
 };
