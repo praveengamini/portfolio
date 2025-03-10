@@ -11,7 +11,7 @@ const Projects = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white p-8">
       <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        <Card className='bg-gray-700 max-w-sm shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-xl'>
+        <Card className='bg-gray-700 max-w-sm shadow-lg transform transition-all duration-500  hover:shadow-xl'>
           <CardContent>
             <img src={qmart} className='w-full h-64 object-cover rounded-lg transition-all duration-300 hover:opacity-80' alt="Q-Mart" />
           </CardContent>
@@ -29,7 +29,7 @@ const Projects = () => {
           </CardFooter>
         </Card>
 
-        <Card className='bg-gray-700 max-w-sm shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-xl'>
+        <Card className='bg-gray-700 max-w-sm shadow-lg transform transition-all duration-500  hover:shadow-xl'>
           <CardContent>
             <img src={measurements} className='w-full h-64 object-cover rounded-lg transition-all duration-300 hover:opacity-80' alt="Smart-Fit" />
           </CardContent>
@@ -47,7 +47,7 @@ const Projects = () => {
           </CardFooter>
         </Card>
 
-        <Card className='bg-gray-700 max-w-sm shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-xl'>
+        <Card className='bg-gray-700 max-w-sm shadow-lg transform transition-all duration-500  hover:shadow-xl'>
           <CardContent className='w-full object-cover rounded-lg'>
             <video src={javaPbl} controls loop muted className='rounded-2xl h-64 transition-all duration-300 hover:opacity-80'>
               Your browser does not support the video.
@@ -64,7 +64,7 @@ const Projects = () => {
           </CardFooter>
         </Card>
 
-        <Card className='bg-gray-700 max-w-sm shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-xl'>
+        <Card className='bg-gray-700 max-w-sm shadow-lg transform transition-all duration-500  hover:shadow-xl'>
           <CardContent>
             <img src={smartStudy} className='w-full h-64 object-fill mt-4 rounded-lg transition-all duration-300 hover:opacity-80' alt="SmartStudy" />
           </CardContent>
@@ -82,7 +82,7 @@ const Projects = () => {
           </CardFooter>
         </Card>
 
-        <Card className='bg-gray-700 max-w-sm shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-xl'>
+        <Card className='bg-gray-700 max-w-sm shadow-lg transform transition-all duration-500  hover:shadow-xl'>
           <CardContent>
             <img src={clock} className='w-full h-64 object-fill mt-4 rounded-lg transition-all duration-300 hover:opacity-80' alt="Clock" />
           </CardContent>
