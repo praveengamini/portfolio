@@ -7,8 +7,10 @@ import { useNavigate } from 'react-router-dom';
 import praveenprofile from '../assets/images/praveen-profile.jpg';
 import { GiCoffeeCup } from "react-icons/gi";
 import background from '../assets/images/background.png';
+import useScrollToTop from '@/components/useScrollTop';
 
 const Home = () => {
+  useScrollToTop();
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false);

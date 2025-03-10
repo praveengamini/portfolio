@@ -18,8 +18,9 @@ import { SiFuturelearn } from "react-icons/si";
 import { FaKeyboard } from "react-icons/fa";
 import { Tilt } from 'react-tilt';
 import { motion } from 'framer-motion';
-
+import useScrollToTop from '@/components/useScrollTop';
 const Skills = () => {
+  useScrollToTop();
   const [showSkills, setShowSkills] = useState(false);
   const [showWebTech, setShowWebTech] = useState(false);
   const [showAI, setShowAI] = useState(false);

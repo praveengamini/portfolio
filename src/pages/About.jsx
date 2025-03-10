@@ -8,8 +8,10 @@ import { RiFeedbackLine } from "react-icons/ri";
 import { CiMail } from "react-icons/ci";
 import emailjs from 'emailjs-com';
 import Copyright from '../components/Copyright';
-
+import useScrollToTop from '@/components/useScrollTop';
 const About = () => {
+  useScrollToTop();
+
   const [name, setName] = useState("");
   const [feedback, setFeedback] = useState("");
   const [submitted, setSubmitted] = useState(false);

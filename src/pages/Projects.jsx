@@ -6,8 +6,10 @@ import { Button } from "@/components/ui/button";
 import measurements from '../assets/images/measurements.png';
 import smartStudy from '../assets/images/smartStudy.png';
 import clock from '../assets/images/clock.png';
+import useScrollToTop from '@/components/useScrollTop';
 
 const Projects = () => {
+  useScrollToTop();
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white p-8">
       <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
