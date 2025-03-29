@@ -67,7 +67,7 @@ const Skills = () => {
               <CardContent className="flex justify-center">
                 <h1 className="text-3xl md:text-5xl text-center font-semibold text-orange-400">C</h1>
               </CardContent>
-              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">C Language</CardFooter>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">C Language <span className='font-bold ml-1'>(A)</span> </CardFooter>
             </Card>
           </Tilt>
 
@@ -76,7 +76,7 @@ const Skills = () => {
               <CardContent className="flex justify-center">
                 <FaPython className="text-yellow-400 text-3xl md:text-5xl" />
               </CardContent>
-              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Python</CardFooter>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Python<span className='font-bold ml-1'>(A)</span> </CardFooter>
             </Card>
           </Tilt>
 
@@ -85,7 +85,7 @@ const Skills = () => {
               <CardContent className="flex justify-center">
                 <FaJava className="text-red-400 text-3xl md:text-5xl" />
               </CardContent>
-              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Java</CardFooter>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Java<span className='font-bold ml-1'>(A)</span> </CardFooter>
             </Card>
           </Tilt>
 
@@ -94,7 +94,7 @@ const Skills = () => {
               <CardContent className="flex justify-center">
                 <FaJs className="text-yellow-400 text-3xl md:text-5xl" />
               </CardContent>
-              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">JavaScript</CardFooter>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">JavaScript<span className='font-bold ml-1'>(A)</span> </CardFooter>
             </Card>
           </Tilt>
         </div>
@@ -121,7 +121,7 @@ const Skills = () => {
               <CardContent className="flex justify-center">
                 <FaHtml5 className="text-orange-400 text-3xl md:text-5xl" />
               </CardContent>
-              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">HTML5</CardFooter>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">HTML5<span className='font-bold ml-1'>(A)</span> </CardFooter>
             </Card>
           </Tilt>
 
@@ -130,7 +130,7 @@ const Skills = () => {
               <CardContent className="flex justify-center">
                 <FaCss3Alt className="text-blue-400 text-3xl md:text-5xl" />
               </CardContent>
-              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">CSS3</CardFooter>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">CSS3<span className='font-bold ml-1'>(A)</span> </CardFooter>
             </Card>
           </Tilt>
 
@@ -139,7 +139,7 @@ const Skills = () => {
               <CardContent className="flex justify-center">
                 <FaBootstrap className="text-purple-400 text-3xl md:text-5xl" />
               </CardContent>
-              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Bootstrap</CardFooter>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Bootstrap<span className='font-bold ml-1 font-serif'>(&#73;)</span> </CardFooter>
             </Card>
           </Tilt>
 
@@ -148,7 +148,7 @@ const Skills = () => {
               <CardContent className="flex justify-center">
                 <RiTailwindCssLine className="text-teal-400 text-3xl md:text-5xl" />
               </CardContent>
-              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Tailwind CSS</CardFooter>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Tailwind CSS<span className='font-bold ml-1'>(A)</span> </CardFooter>
             </Card>
           </Tilt>
 
@@ -157,7 +157,7 @@ const Skills = () => {
               <CardContent className="flex justify-center">
                 <DiJqueryLogo className="text-blue-400 text-3xl md:text-5xl" />
               </CardContent>
-              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">jQuery</CardFooter>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">jQuery<span className='font-bold ml-1'>(B)</span> </CardFooter>
             </Card>
           </Tilt>
 
@@ -166,7 +166,7 @@ const Skills = () => {
               <CardContent className="flex justify-center">
                 <FaReact className="text-cyan-400 text-3xl md:text-5xl" />
               </CardContent>
-              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">React</CardFooter>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">React<span className='font-bold ml-1'>(A)</span> </CardFooter>
             </Card>
           </Tilt>
 
@@ -175,7 +175,7 @@ const Skills = () => {
               <CardContent className="flex justify-center">
                 <SiRedux className="text-purple-400 text-3xl md:text-5xl" />
               </CardContent>
-              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Redux</CardFooter>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Redux<span className='font-bold ml-1 font-serif'>(I)</span> </CardFooter>
             </Card>
           </Tilt>
 
@@ -184,7 +184,7 @@ const Skills = () => {
               <CardContent className="flex justify-center">
                 <FaNode className="text-green-400 text-3xl md:text-5xl" />
               </CardContent>
-              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Node.js</CardFooter>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Node.js<span className='font-bold ml-1'>(A)</span> </CardFooter>
             </Card>
           </Tilt>
 
@@ -193,7 +193,7 @@ const Skills = () => {
               <CardContent className="flex justify-center">
                 <SiExpress className="text-gray-300 text-3xl md:text-5xl" />
               </CardContent>
-              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Express</CardFooter>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Express<span className='font-bold ml-1'>(A)</span> </CardFooter>
             </Card>
           </Tilt>
 
@@ -202,7 +202,7 @@ const Skills = () => {
               <CardContent className="flex justify-center">
                 <SiMongodb className="text-green-400 text-3xl md:text-5xl" />
               </CardContent>
-              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">MongoDB</CardFooter>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">MongoDB<span className='font-bold ml-1 font-serif'>(I)</span> </CardFooter>
             </Card>
           </Tilt>
 
@@ -211,7 +211,7 @@ const Skills = () => {
               <CardContent className="flex justify-center">
                 <SiMysql className="text-blue-400 text-3xl md:text-5xl" />
               </CardContent>
-              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">MySQL</CardFooter>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">MySQL<span className='font-bold ml-1 font-serif'>(I)</span> </CardFooter>
             </Card>
           </Tilt>
 
@@ -220,7 +220,7 @@ const Skills = () => {
               <CardContent className="flex justify-center">
                 <FaGitAlt className="text-red-400 text-3xl md:text-5xl" />
               </CardContent>
-              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Git & GitHub</CardFooter>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Git & GitHub<span className='font-bold'>(A)</span> </CardFooter>
             </Card>
           </Tilt>
 
@@ -229,7 +229,7 @@ const Skills = () => {
               <CardContent className="flex justify-center">
                 <SiPostman className="text-orange-400 text-3xl md:text-5xl" />
               </CardContent>
-              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Postman</CardFooter>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Postman<span className='font-bold ml-1'>(A)</span> </CardFooter>
             </Card>
           </Tilt>
         </div>
@@ -256,7 +256,7 @@ const Skills = () => {
               <CardContent className="flex justify-center">
                 <img src={ml} className="w-16 h-16 md:w-20 md:h-20" alt="Machine Learning" />
               </CardContent>
-              <CardFooter className="flex justify-center text-sm md:text-base text-blue-400">Machine Learning</CardFooter>
+              <CardFooter className="flex justify-center text-sm md:text-base text-blue-400">Machine Learning<span className='font-bold font-serif'>(I)</span> </CardFooter>
             </Card>
           </Tilt>
 
@@ -265,7 +265,7 @@ const Skills = () => {
               <CardContent className="flex justify-center">
                 <img src={nlp} className="w-16 h-16 md:w-20 md:h-20" alt="Text Summarization" />
               </CardContent>
-              <CardFooter className="flex justify-center text-sm md:text-base text-green-400">Text Summarization</CardFooter>
+              <CardFooter className="flex justify-center text-sm md:text-base text-green-400">Text Summarization<span className='font-bold '>(A)</span> </CardFooter>
             </Card>
           </Tilt>
 
@@ -274,7 +274,7 @@ const Skills = () => {
               <CardContent className="flex justify-center">
                 <img src={tensorflow} className="w-16 h-16 md:w-20 md:h-[6.5rem]" alt="TensorFlow" />
               </CardContent>
-              <CardFooter className="flex justify-center text-sm md:text-base text-orange-400">TensorFlow</CardFooter>
+              <CardFooter className="flex justify-center text-sm md:text-base text-orange-400">TensorFlow<span className='font-bold ml-1'>(B)</span> </CardFooter>
             </Card>
           </Tilt>
 
@@ -283,7 +283,7 @@ const Skills = () => {
               <CardContent className="flex justify-center">
                 <img src={opencv} className="w-16 h-16 md:w-20 md:h-[6.5rem]" alt="OpenCV" />
               </CardContent>
-              <CardFooter className="flex justify-center text-sm md:text-base text-teal-400">Basic-OpenCV</CardFooter>
+              <CardFooter className="flex justify-center text-sm md:text-base text-teal-400">OpenCV<span className='font-bold ml-1'>(B)</span> </CardFooter>
             </Card>
           </Tilt>
         </div>
