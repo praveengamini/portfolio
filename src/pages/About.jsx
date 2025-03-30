@@ -10,6 +10,7 @@ import emailjs from 'emailjs-com';
 import Copyright from '../components/Copyright';
 import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
+import useScrollToTop from '@/components/useScrollTop';
 
 const About = () => {
   const [name, setName] = useState("");
@@ -17,6 +18,7 @@ const About = () => {
   const [submitted, setSubmitted] = useState(false);
   const [isFooterOpen, setIsFooterOpen] = useState(false); 
   const [loading, setLoading] = useState(false); 
+  useScrollToTop();
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
