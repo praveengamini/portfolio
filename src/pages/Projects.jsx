@@ -73,7 +73,7 @@ const Projects = () => {
 
           <h2 className='text-center text-xl font-bold text-white hover:text-indigo-400 transition-colors duration-300 slide-down'>Quick Mart</h2>
           <CardFooter className='flex justify-center slide-up'>
-            <a href="https://github.com/praveengamini/q-mart">
+            <a target="_blank" href="https://github.com/praveengamini/q-mart">
               <Button className='bg-indigo-600 text-white rounded-md px-4 py-2 mt-4 hover:bg-indigo-700 transition duration-300'>Code</Button>
             </a>
           </CardFooter>
@@ -106,7 +106,7 @@ const Projects = () => {
           </h2>
 
           <CardFooter className="flex justify-center slide-up mt-4">
-            <a href="https://github.com/praveengamini/MeetingExtension.git" target="_blank" rel="noopener noreferrer">
+            <a target="_blank" href="https://github.com/praveengamini/MeetingExtension.git" target="_blank" rel="noopener noreferrer">
               <Button className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-md px-4 py-2 transition duration-300">
                 Code
               </Button>
@@ -130,7 +130,7 @@ const Projects = () => {
           </CardContent>
           <h2 className='text-center text-xl font-bold text-white hover:text-indigo-400 transition-colors duration-300 slide-down'>Smart-Fit</h2>
           <CardFooter className='flex justify-center slide-up'>
-            <a href="https://github.com/praveengamini/SmarFitting">
+            <a target="_blank" href="https://github.com/praveengamini/SmarFitting">
               <Button className='bg-indigo-600 text-white rounded-md px-4 py-2 mt-4 hover:bg-indigo-700 transition duration-300'>Code</Button>
             </a>
           </CardFooter>
@@ -152,7 +152,7 @@ const Projects = () => {
           </CardContent>
           <h2 className='text-center text-xl font-bold text-white hover:text-indigo-400 transition-colors duration-300 slide-down'>Java E-Commerce</h2>
           <CardFooter className='flex justify-center slide-up'>
-            <a href="https://github.com/praveengamini/JavaEcommerce">
+            <a target="_blank" href="https://github.com/praveengamini/JavaEcommerce">
               <Button className='bg-indigo-600 text-white rounded-md px-4 py-2 mt-4 hover:bg-indigo-700 transition duration-300'>Code</Button>
             </a>
           </CardFooter>
@@ -175,10 +175,10 @@ const Projects = () => {
           <h2 className='text-center text-xl font-bold text-white hover:text-indigo-400 transition-colors duration-300 slide-down'>Smart Study</h2>
 
           <CardFooter className='flex justify-between slide-up'>
-            <a href="https://github.com/praveengamini/SmartStudy">
+            <a target="_blank" href="https://github.com/praveengamini/SmartStudy">
               <Button className='bg-indigo-600 text-white rounded-md px-4 py-2 mt-4 hover:bg-indigo-700 transition duration-300'>Code</Button>
             </a>
-            <a href="https://praveengamini.github.io/SmartStudy/">
+            <a target="_blank" href="https://praveengamini.github.io/SmartStudy/">
               <Button className='bg-blue-500 text-white rounded-md px-4 py-2 mt-4 hover:bg-blue-600 transition duration-300'>Website</Button>
             </a>
           </CardFooter>
@@ -200,7 +200,7 @@ const Projects = () => {
           </CardContent>
           <h2 className='text-center text-xl font-bold text-white hover:text-indigo-400 transition-colors duration-300 slide-down'>Clock</h2>
           <CardFooter className='flex justify-center slide-up'>
-            <a href="https://onlinegdb.com/pHVyzhK5T">
+            <a target="_blank" href="https://onlinegdb.com/pHVyzhK5T">
               <Button className='bg-indigo-600 text-white rounded-md px-4 py-2 mt-4 hover:bg-indigo-700 transition duration-300'>Execute</Button>
             </a>
           </CardFooter>
