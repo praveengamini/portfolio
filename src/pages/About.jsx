@@ -135,7 +135,10 @@ const About = () => {
             <div className="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all fade-in">
               <FaTrophy className="text-yellow-400 text-4xl mb-3 slide-down" />
               <h3 className="text-2xl font-semibold slide-down">Achievements</h3>
-              <p className="text-gray-300 mt-2 slide-up">Winner-2 at National Level Hackathon at AITEM College</p>
+              <ul className="list-disc pl-6">
+              <li className="text-gray-300 mt-2 slide-up">Winner-2 at National Level Hackathon at AITEM College</li>
+              <li className="text-gray-300 mt-2 slide-up">participated in Finals of NLP Challenge, Organized by IIT Kharagpur</li>
+              </ul>
             </div>
 
             <div className="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all fade-in">
