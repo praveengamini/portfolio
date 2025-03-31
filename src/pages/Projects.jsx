@@ -175,10 +175,10 @@ const Projects = () => {
           <h2 className='text-center text-xl font-bold text-white hover:text-indigo-400 transition-colors duration-300 slide-down'>Smart Study</h2>
 
           <CardFooter className='flex justify-between slide-up'>
-            <a href="https://github.com/praveengamini/index">
+            <a href="https://github.com/praveengamini/SmartStudy">
               <Button className='bg-indigo-600 text-white rounded-md px-4 py-2 mt-4 hover:bg-indigo-700 transition duration-300'>Code</Button>
             </a>
-            <a href="https://praveengamini.github.io/index/">
+            <a href="https://praveengamini.github.io/SmartStudy/">
               <Button className='bg-blue-500 text-white rounded-md px-4 py-2 mt-4 hover:bg-blue-600 transition duration-300'>Website</Button>
             </a>
           </CardFooter>
