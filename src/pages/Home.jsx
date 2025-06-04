@@ -8,6 +8,7 @@ import praveenprofile from '../assets/images/praveen-profile.jpg';
 import { GiCoffeeCup } from "react-icons/gi";
 import background from '../assets/images/background.png';
 import useScrollToTop from '@/components/useScrollTop';
+import { FaCode, FaBrain, FaRocket } from "react-icons/fa";
 
 const Home = () => {
   useScrollToTop();
@@ -15,6 +16,11 @@ const Home = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
+    const skills = [
+      { icon: FaCode, name: "Full Stack Development", color: "text-blue-400" },
+      { icon: FaBrain, name: "Machine Learning", color: "text-green-400" },
+      { icon: FaRocket, name: "Innovation", color: "text-purple-400" },
+    ];
   // Detect if the device is a mobile device
   useEffect(() => {
     const checkIfMobile = () => {
@@ -28,9 +34,20 @@ const Home = () => {
     // Cleanup event listener
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
+    const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
 
   const handleDownloadResume = () => {
-    const resumeUrl = 'https://drive.google.com/file/d/1HbGXcDxrzu_Ik3HlqdjbUhwfrFAHnqHF/view?usp=sharing';
+    const resumeUrl = 'https://drive.google.com/file/d/1jl69OvfT03tZwFVsMGaj5MoLYX78ZGWW/view';
     const link = document.createElement('a');
     link.href = resumeUrl;
     link.target = '_blank';
@@ -74,6 +91,29 @@ const Home = () => {
               <p className="text-lg text-gray-300 leading-relaxed">
                 I specialize in creating innovative and impactful solutions using cutting-edge technologies. With expertise in Full Stack Development (MERN), Machine Learning, and AI, I aim to drive technological advancements that make a difference.
               </p>
+               <motion.div 
+                className="flex gap-6"
+                variants={itemVariants}
+              >
+                {skills.map((skill, index) => (
+                  <motion.div
+                    key={skill.name}
+                    className="flex flex-col items-center group cursor-pointer"
+                    whileHover={{ scale: 1.1, y: -5 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.8 + index * 0.1 }}
+                  >
+                    <div className="p-3 bg-gray-800/50 rounded-lg backdrop-blur-sm border border-gray-700/50 group-hover:border-purple-500/50 transition-all duration-300">
+                      <skill.icon className={`text-2xl ${skill.color} group-hover:scale-110 transition-transform duration-300`} />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      {skill.name}
+                    </span>
+                  </motion.div>
+                ))}
+              </motion.div>
+              
               <div className="flex gap-4">
                 <button
                   className="px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105"

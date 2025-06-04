@@ -19,6 +19,7 @@ import { FaKeyboard } from "react-icons/fa";
 import { Tilt } from 'react-tilt';
 import { motion } from 'framer-motion';
 import useScrollToTop from '@/components/useScrollTop';
+import { SiLangchain } from "react-icons/si";
 const Skills = () => {
   useScrollToTop();
   const [showSkills, setShowSkills] = useState(false);
@@ -263,9 +264,9 @@ const Skills = () => {
           <Tilt options={{ max: 25, speed: 400 }}>
             <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6">
               <CardContent className="flex justify-center">
-                <img src={nlp} className="w-16 h-16 md:w-20 md:h-20" alt="Text Summarization" />
+                <SiLangchain className="w-16 h-16 md:w-24 md:h-[105px]" alt="LangChain"/>
               </CardContent>
-              <CardFooter className="flex justify-center text-sm md:text-base text-green-400">Text Summarization<span className='font-bold '>(A)</span> </CardFooter>
+              <CardFooter className="flex justify-center text-sm md:text-base text-green-400">LangChain<span className='font-bold '>(M)</span> </CardFooter>
             </Card>
           </Tilt>
 
