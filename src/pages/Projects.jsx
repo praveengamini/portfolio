@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import measurements from '../assets/images/measurements.png';
 import smartStudy from '../assets/images/smartStudy.png';
 import clock from '../assets/images/clock.png';
+import ChatPdf from '../assets/images/ChatPdf.png';
 import useScrollToTop from '@/components/useScrollTop';
 import meetingExtensionImg from '../assets/images/meetingExtensionImg.png'
 
@@ -56,6 +57,26 @@ const Projects = () => {
       `}</style>
       
       <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
+           <Card className='bg-gray-700 max-w-sm shadow-lg transform transition-all duration-500 h-[360px] select-none hover:shadow-xl relative overflow-hidden group p-1 fade-in'>
+          <CardContent className="relative h-64">
+            <img src={ChatPdf} className='w-full h-full object-cover rounded-lg transition-all duration-300 group-hover:opacity-80' alt="Q-Mart" />
+<div className="absolute inset-0 select-none bg-black bg-opacity-75 flex flex-col justify-center items-center 
+               opacity-0 group-hover:opacity-100 
+               transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] 
+               transform translate-y-4 group-hover:translate-y-0 
+               p-4 space-y-3 overflow-hidden">              <h2 className='text-center text-xl font-bold text-white hover:text-indigo-400 transition-colors duration-300'>ChatPdf</h2>
+              <CardDescription className='text-center text-lg font-medium text-gray-300'>
+ChatPDF is a MERN application integrated with langchain used for interacting with PDFs. Upload any PDF and start having conversations with your content using AI.</CardDescription>
+            </div>
+          </CardContent>
+
+          <h2 className='text-center text-xl font-bold text-white hover:text-indigo-400 transition-colors duration-300 slide-down'>ChatPdf</h2>
+          <CardFooter className='flex justify-center slide-up'>
+            <a target="_blank" href="https://github.com/praveengamini/ChatPdf">
+              <Button className='bg-indigo-600 text-white rounded-md px-4 py-2 mt-4 hover:bg-indigo-700 transition duration-300'>Code</Button>
+            </a>
+          </CardFooter>
+        </Card>
         {/* Card 1 */}
         <Card className='bg-gray-700 max-w-sm shadow-lg transform transition-all duration-500 h-[360px] select-none hover:shadow-xl relative overflow-hidden group p-1 fade-in'>
           <CardContent className="relative h-64">
@@ -106,7 +127,7 @@ const Projects = () => {
           </h2>
 
           <CardFooter className="flex justify-center slide-up mt-4">
-            <a target="_blank" href="https://github.com/praveengamini/MeetingExtension.git" target="_blank" rel="noopener noreferrer">
+            <a target="_blank" href="https://github.com/praveengamini/MeetingExtension.git"  rel="noopener noreferrer">
               <Button className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-md px-4 py-2 transition duration-300">
                 Code
               </Button>
