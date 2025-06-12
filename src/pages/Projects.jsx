@@ -10,9 +10,11 @@ import ChatPdf from '../assets/images/ChatPdf.png';
 import useScrollToTop from '@/components/useScrollTop';
 import meetingExtensionImg from '../assets/images/meetingExtensionImg.png'
 import portfolioproject from '../assets/images/portfolioproject.png'
+
 const Projects = () => {
   useScrollToTop();
   const [activeCategory, setActiveCategory] = useState('All');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const projects = [
     {
@@ -106,6 +108,13 @@ const Projects = () => {
     ? projects 
     : projects.filter(project => project.categories.includes(activeCategory));
 
+  const activeTabData = categories.find(cat => cat.name === activeCategory);
+
+  const handleCategorySelect = (categoryName) => {
+    setActiveCategory(categoryName);
+    setIsDropdownOpen(false);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white p-8">
       <style jsx>{`
@@ -150,9 +159,10 @@ const Projects = () => {
         }
       `}</style>
       
-      {/* Category Tabs */}
+      {/* Category Navigation */}
       <div className="mb-8">
-        <div className="flex flex-wrap justify-center gap-2 mb-6">
+        {/* Desktop Tabs - Hidden on mobile */}
+        <div className="hidden md:flex flex-wrap justify-center gap-2 mb-6">
           {categories.map((category) => (
             <button
               key={category.name}
@@ -170,6 +180,55 @@ const Projects = () => {
               </span>
             </button>
           ))}
+        </div>
+
+        {/* Mobile Dropdown - Visible only on mobile */}
+        <div className="md:hidden relative mb-6">
+          <button
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            className="w-full bg-gray-700 text-white px-4 py-3 rounded-lg flex items-center justify-between hover:bg-gray-600 transition-all duration-300"
+          >
+            <div className="flex items-center gap-2">
+              <span>{activeTabData?.icon}</span>
+              <span className="font-medium">{activeTabData?.name}</span>
+              <span className="text-xs bg-gray-600 rounded-full px-2 py-1">
+                {activeTabData?.count}
+              </span>
+            </div>
+            <svg
+              className={`w-5 h-5 transition-transform duration-300 ${
+                isDropdownOpen ? 'rotate-180' : ''
+              }`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          {/* Dropdown Menu */}
+          {isDropdownOpen && (
+            <div className="absolute top-full left-0 right-0 mt-2 bg-gray-700 rounded-lg shadow-xl z-50 overflow-hidden">
+              {categories.map((category) => (
+                <button
+                  key={category.name}
+                  onClick={() => handleCategorySelect(category.name)}
+                  className={`w-full px-4 py-3 text-left hover:bg-gray-600 transition-all duration-200 flex items-center gap-2 ${
+                    activeCategory === category.name
+                      ? 'bg-indigo-600 text-white'
+                      : 'text-gray-300'
+                  }`}
+                >
+                  <span>{category.icon}</span>
+                  <span className="font-medium">{category.name}</span>
+                  <span className="text-xs bg-gray-600 rounded-full px-2 py-1 ml-auto">
+                    {category.count}
+                  </span>
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
