@@ -209,7 +209,7 @@ const Projects = () => {
 
           {/* Dropdown Menu */}
           {isDropdownOpen && (
-            <div className="absolute top-full left-0 right-0 mt-2 bg-gray-700 rounded-lg shadow-xl z-50 overflow-hidden">
+            <div className="absolute top-full left-0 right-0 mt-2 bg-gray-700 rounded-lg shadow-xl z-30 overflow-hidden">
               {categories.map((category) => (
                 <button
                   key={category.name}
