@@ -23,7 +23,7 @@ const About = () => {
     setName(e.target.value);
   };
   useEffect(()=>{
-        console.log();
+        console.log(import.meta.env.VITE_PUBLIC_API_KEY);
   },[])
   const handleFeedbackChange = (e) => {
     setFeedback(e.target.value);
