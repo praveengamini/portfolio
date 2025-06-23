@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 import { FaBookOpen, FaUser, FaTrophy, FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import { GrCertificate } from "react-icons/gr";
@@ -22,7 +22,9 @@ const About = () => {
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
-
+  useEffect(()=>{
+        console.log();
+  },[])
   const handleFeedbackChange = (e) => {
     setFeedback(e.target.value);
   };
@@ -35,12 +37,13 @@ const About = () => {
       message: feedback,
     };
 
+    
     try {
       await emailjs.send(
-        "service_9z7vxc8",
-        "template_ahvjdbe",
-        emailData,
-        "CrWfBmyGuGMK6qKnv"
+         import.meta.env.VITE_SERVICE_ID,
+         import.meta.env.VITE_TEMPLATE_ID,
+         emailData,
+         import.meta.env.VITE_PUBLIC_API_KEY
       );
       setSubmitted(true);
       setName("");
