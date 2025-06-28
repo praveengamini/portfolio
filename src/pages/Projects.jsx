@@ -24,7 +24,8 @@ const Projects = () => {
       image: ChatPdf,
       description: 'ChatPDF is a MERN application integrated with langchain used for interacting with PDFs. Upload any PDF and start having conversations with your content using AI.',
       codeLink: 'https://github.com/praveengamini/ChatPdf',
-      hasWebsite: false
+      websiteLink: 'https://chatpdf-frontend.onrender.com',
+      hasWebsite: true
     },
     {
       id: 2,
@@ -159,9 +160,7 @@ const Projects = () => {
         }
       `}</style>
       
-      {/* Category Navigation */}
       <div className="mb-8">
-        {/* Desktop Tabs - Hidden on mobile */}
         <div className="hidden md:flex flex-wrap justify-center gap-2 mb-6">
           {categories.map((category) => (
             <button
@@ -182,7 +181,6 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* Mobile Dropdown - Visible only on mobile */}
         <div className="md:hidden relative mb-6">
           <button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -207,7 +205,6 @@ const Projects = () => {
             </svg>
           </button>
 
-          {/* Dropdown Menu */}
           {isDropdownOpen && (
             <div className="absolute top-full left-0 right-0 mt-2 bg-gray-700 rounded-lg shadow-xl z-30 overflow-hidden">
               {categories.map((category) => (
