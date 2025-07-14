@@ -47,12 +47,13 @@ const Projects = () => {
     },
     {
       id: 4,
-      title: 'Smart-Fit',
+      title: 'Body-Metric',
       categories: ['AI/ML'],
       image: measurements,
       description: 'A full web that uses computer vision to measure body measurements and provide accurate fit recommendations.',
-      codeLink: 'https://github.com/praveengamini/SmarFitting',
-      hasWebsite: false
+      codeLink: 'https://github.com/praveengamini/Body-Metric',
+      websiteLink: 'https://body-metric-zfey-2a8j8azsp-praveengaminis-projects.vercel.app/',
+      hasWebsite: true
     },
     {
       id: 5,
