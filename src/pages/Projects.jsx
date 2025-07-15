@@ -52,7 +52,7 @@ const Projects = () => {
       image: measurements,
       description: 'A full web that uses computer vision to measure body measurements and provide accurate fit recommendations.',
       codeLink: 'https://github.com/praveengamini/Body-Metric',
-      websiteLink: 'https://body-metric-zfey-2a8j8azsp-praveengaminis-projects.vercel.app/',
+      websiteLink: 'https://body-metric-zfey.vercel.app/',
       hasWebsite: true
     },
     {
