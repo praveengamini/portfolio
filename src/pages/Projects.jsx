@@ -10,13 +10,23 @@ import ChatPdf from '../assets/images/ChatPdf.png';
 import useScrollToTop from '@/components/useScrollTop';
 import meetingExtensionImg from '../assets/images/meetingExtensionImg.png'
 import portfolioproject from '../assets/images/portfolioproject.png'
-
+import AiTaskFlowImage from '../assets/images/AiTaskFlowImage.png'
 const Projects = () => {
   useScrollToTop();
   const [activeCategory, setActiveCategory] = useState('All');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const projects = [
+     {
+      id: 0,
+      title: 'AI-TaskFlow',
+      categories: ['Full Stack', 'AI/ML'],
+      image: AiTaskFlowImage,
+      description: 'ChatPDF is a MERN application integrated with langchain used for interacting with PDFs. Upload any PDF and start having conversations with your content using AI.',
+      codeLink: 'https://github.com/praveengamini/Ai-TaskFlow',
+      websiteLink: 'https://ai-taskflow-frontend.onrender.com/',
+      hasWebsite: true
+    },
     {
       id: 1,
       title: 'ChatPdf',
