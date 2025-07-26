@@ -22,7 +22,7 @@ const Projects = () => {
       title: 'AI-TaskFlow',
       categories: ['Full Stack', 'AI/ML'],
       image: AiTaskFlowImage,
-      description: 'ChatPDF is a MERN application integrated with langchain used for interacting with PDFs. Upload any PDF and start having conversations with your content using AI.',
+      description: 'An AI-powered MERN web application that generates personalized weekly and daily task plans based on user-defined goals and timelines. It helps users stay organized and achieve their objectives efficiently through intelligent task flow management.',
       codeLink: 'https://github.com/praveengamini/Ai-TaskFlow',
       websiteLink: 'https://ai-taskflow-frontend.onrender.com/',
       hasWebsite: true
