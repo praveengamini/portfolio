@@ -147,7 +147,7 @@ const About = () => {
               <h3 className="text-2xl font-semibold slide-down">Education</h3>
               <div className="text-gray-300 mt-2 slide-up">
                 <ul className="list-disc pl-6">
-                  <li>MVGR College of Engineering, 2022-2026. CGPA: 8.83 (for 5 semesters)</li>
+                  <li>MVGR College of Engineering, 2022-2026. CGPA: 8.70 (for 6 semesters)</li>
                   <li>SriViswa Jr. College, Intermediate: MPC, 2022. Percentage: 97.5%</li>
                   <li>Ravindra Bharathi School, 2020</li>
                 </ul>
