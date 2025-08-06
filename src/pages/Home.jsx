@@ -47,7 +47,7 @@ const Home = () => {
   };
 
   const handleDownloadResume = () => {
-    const resumeUrl = 'https://drive.google.com/file/d/1Cd0zem19TWfhw4F-qTazoqKxVzMzg6WZ/view?usp=sharing';
+    const resumeUrl = 'https://drive.google.com/file/d/1i7ADXekHCqYLEaJNNtuXH6b4q8bBPX24/view';
     const link = document.createElement('a');
     link.href = resumeUrl;
     link.target = '_blank';
