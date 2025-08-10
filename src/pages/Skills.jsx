@@ -20,13 +20,20 @@ import { Tilt } from 'react-tilt';
 import { motion } from 'framer-motion';
 import useScrollToTop from '@/components/useScrollTop';
 import { SiLangchain } from "react-icons/si";
+
 const Skills = () => {
   useScrollToTop();
-  const [showSkills, setShowSkills] = useState(false);
-  const [showWebTech, setShowWebTech] = useState(false);
-  const [showAI, setShowAI] = useState(false);
-  const [showFutureLearnings, setShowFutureLearnings] = useState(false);
-  const [showSkillLevels, setShowSkillLevels] = useState(false);
+  const [activeSection, setActiveSection] = useState(null);
+
+  const toggleSection = (section) => {
+    setActiveSection(activeSection === section ? null : section);
+  };
+
+  const showSkillLevels = activeSection === 'skillLevels';
+  const showSkills = activeSection === 'skills';
+  const showWebTech = activeSection === 'webTech';
+  const showAI = activeSection === 'ai';
+  const showFutureLearnings = activeSection === 'futureLearnings';
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white p-4 md:p-8 flex flex-col gap-4 md:gap-6 overflow-y-auto">
@@ -36,7 +43,7 @@ const Skills = () => {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.1, delay: 0.2 }}
         className="flex bg-gray-700 hover:bg-gray-600 transition-all rounded-lg duration-500 w-full h-12 md:h-14 justify-center items-center cursor-pointer"
-        onClick={() => setShowSkillLevels(!showSkillLevels)}
+        onClick={() => toggleSection('skillLevels')}
       >
         <div className="text-xl md:text-3xl select-none flex gap-2 md:gap-4 items-center">
           <GiMuscleUp className="size-6 md:size-10 hover:scale-110 transition-all duration-500 text-orange-400" />
@@ -53,7 +60,7 @@ const Skills = () => {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.1, delay: 0.2 }}
         className="flex bg-gray-700 hover:bg-gray-600 transition-all duration-500 rounded-lg w-full h-12 md:h-14 justify-center items-center cursor-pointer"
-        onClick={() => setShowSkills(!showSkills)}
+        onClick={() => toggleSection('skills')}
       >
         <div className="text-xl md:text-3xl select-none flex gap-2 md:gap-4 items-center">
           <FaKeyboard className="size-6 md:size-10 hover:scale-110 transition-all duration-500 text-yellow-400" />
@@ -107,7 +114,7 @@ const Skills = () => {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.1, delay: 0.2 }}
         className="flex bg-gray-700 hover:bg-gray-600 transition-all duration-500 rounded-lg w-full h-12 md:h-14 justify-center items-center cursor-pointer"
-        onClick={() => setShowWebTech(!showWebTech)}
+        onClick={() => toggleSection('webTech')}
       >
         <div className="text-xl md:text-3xl select-none flex gap-2 md:gap-4 items-center">
           <TbWorld className="size-6 md:size-10 hover:scale-110 transition-all duration-500 text-blue-400" />
@@ -242,7 +249,7 @@ const Skills = () => {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.1, delay: 0.2 }}
         className="flex bg-gray-700 hover:bg-gray-600 transition-all duration-500 rounded-lg w-full h-12 md:h-14 justify-center items-center cursor-pointer"
-        onClick={() => setShowAI(!showAI)}
+        onClick={() => toggleSection('ai')}
       >
         <div className="text-xl md:text-3xl select-none flex gap-2 md:gap-4 items-center">
           <LuBrainCircuit className="size-6 md:size-10 hover:scale-110 transition-all duration-500 text-amber-400" />
@@ -296,7 +303,7 @@ const Skills = () => {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.1, delay: 0.2 }}
         className="flex bg-gray-700 hover:bg-gray-600 transition-all duration-500 rounded-lg w-full h-12 md:h-14 justify-center items-center cursor-pointer"
-        onClick={() => setShowFutureLearnings(!showFutureLearnings)}
+        onClick={() => toggleSection('futureLearnings')}
       >
         <div className="text-xl md:text-3xl select-none flex gap-2 md:gap-4 items-center">
           <SiFuturelearn className="size-6 md:size-10 hover:scale-110 transition-all duration-500 text-green-400" />
