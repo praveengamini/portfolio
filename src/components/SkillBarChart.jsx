@@ -102,6 +102,7 @@ const ResponsiveSkillsChart = () => {
         labels: ['Programming Languages', 'Frontend Technologies', 'Backend & Database', 'AI & Machine Learning'],
         datasets: [
             {
+                data: [90, 83, 82, 79], 
                 backgroundColor: ['#FF6B6B', '#4ECDC4', '#9B59B6', '#FFE66D'],
                 borderColor: '#ffffff',
                 borderWidth: 3,
