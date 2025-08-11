@@ -160,25 +160,7 @@ const SkillBarChart = () => {
                 <Line data={chartData} options={chartOptions} />
             </div>
             
-            {/* Performance indicators */}
-            <div className="mt-4 flex justify-center">
-                <div className="flex items-center gap-6 text-sm bg-gray-800/50 px-6 py-3 rounded-full border border-gray-600/30">
-                    <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                        <span className="text-gray-300">Peak: 95%</span>
-                    </div>
-                    <div className="w-px h-4 bg-gray-600"></div>
-                    <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                        <span className="text-gray-300">Avg: 87%</span>
-                    </div>
-                    <div className="w-px h-4 bg-gray-600"></div>
-                    <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
-                        <span className="text-gray-300">Growth: +15%</span>
-                    </div>
-                </div>
-            </div>
+        
         </div>
     );
 };
