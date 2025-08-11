@@ -18,7 +18,7 @@ const ResponsiveSkillsChart = () => {
 
     useEffect(() => {
         const checkScreenSize = () => {
-            setIsMobile(window.innerWidth <= 1024); // lg breakpoint
+            setIsMobile(window.innerWidth <= 1024);
         };
 
         checkScreenSize();
@@ -27,16 +27,11 @@ const ResponsiveSkillsChart = () => {
         return () => window.removeEventListener('resize', checkScreenSize);
     }, []);
 
-    // Line chart data for desktop
     const lineChartData = {
         labels: [
-            // Programming Languages
             'C Language', 'Python', 'Java', 'JavaScript',
-            // Frontend Technologies
             'HTML5', 'CSS3', 'Bootstrap', 'Tailwind CSS', 'jQuery', 'React', 'Redux',
-            // Backend & Database
             'Node.js', 'Express', 'MongoDB', 'MySQL', 'Git & GitHub', 'Postman',
-            // AI & ML
             'Machine Learning', 'LangChain', 'TensorFlow', 'OpenCV'
         ],
         datasets: [
@@ -103,30 +98,14 @@ const ResponsiveSkillsChart = () => {
         ]
     };
 
-    // Pie chart data for mobile/tablet - showing all individual skills
     const pieChartData = {
-        labels: [
-            'C Language', 'Python', 'Java', 'JavaScript',
-            'HTML5', 'CSS3', 'Bootstrap', 'Tailwind CSS', 'jQuery', 'React', 'Redux',
-            'Node.js', 'Express', 'MongoDB', 'MySQL', 'Git & GitHub', 'Postman',
-            'Machine Learning', 'LangChain', 'TensorFlow', 'OpenCV'
-        ],
+        labels: ['Programming Languages', 'Frontend Technologies', 'Backend & Database', 'AI & Machine Learning'],
         datasets: [
             {
-                data: [90, 90, 90, 90, 90, 90, 70, 90, 80, 90, 70, 90, 90, 70, 70, 90, 90, 70, 85, 80, 80],
-                backgroundColor: [
-                    // Programming Languages - Red shades
-                    '#FF6B6B', '#FF5252', '#FF4444', '#FF3333',
-                    // Frontend Technologies - Teal shades
-                    '#4ECDC4', '#26A69A', '#009688', '#00796B', '#004D40', '#00BCD4', '#0097A7',
-                    // Backend & Database - Purple shades
-                    '#9B59B6', '#8E44AD', '#7B1FA2', '#6A1B9A', '#4A148C', '#673AB7',
-                    // AI & ML - Yellow/Orange shades
-                    '#FFE66D', '#FFC107', '#FF9800', '#FF5722'
-                ],
+                backgroundColor: ['#FF6B6B', '#4ECDC4', '#9B59B6', '#FFE66D'],
                 borderColor: '#ffffff',
-                borderWidth: 2,
-                hoverBorderWidth: 3,
+                borderWidth: 3,
+                hoverBorderWidth: 4,
                 hoverBorderColor: '#ffffff'
             }
         ]
@@ -269,7 +248,7 @@ const ResponsiveSkillsChart = () => {
             },
             title: {
                 display: true,
-                text: 'Individual Skills Proficiency',
+                text: 'Skills Overview by Category',
                 color: '#ffffff',
                 font: {
                     size: 16,
@@ -287,13 +266,27 @@ const ResponsiveSkillsChart = () => {
                 callbacks: {
                     label: (context) => {
                         const value = context.parsed;
-                        let level = '';
-                        if (value >= 90) level = 'Expert';
-                        else if (value >= 80) level = 'Advanced';
-                        else if (value >= 70) level = 'Intermediate';
-                        else level = 'Beginner';
+                        const categorySkills = {
+                            'Programming Languages': ['C Language (90%)', 'Python (90%)', 'Java (90%)', 'JavaScript (90%)'],
+                            'Frontend Technologies': ['HTML5 (90%)', 'CSS3 (90%)', 'React (90%)', 'Tailwind CSS (90%)', 'jQuery (80%)', 'Bootstrap (70%)', 'Redux (70%)'],
+                            'Backend & Database': ['Node.js (90%)', 'Express (90%)', 'Git & GitHub (90%)', 'Postman (90%)', 'MongoDB (70%)', 'MySQL (70%)'],
+                            'AI & Machine Learning': ['Machine Learning (70%)', 'LangChain (85%)', 'TensorFlow (80%)', 'OpenCV (80%)']
+                        };
                         
-                        return [`${context.label}: ${value}%`, `Level: ${level}`];
+                        let level = '';
+                        if (value >= 90) level = 'Expert Level';
+                        else if (value >= 80) level = 'Advanced Level';
+                        else if (value >= 70) level = 'Intermediate Level';
+                        else level = 'Beginner Level';
+                        
+                        const skills = categorySkills[context.label] || [];
+                        return [
+                            `${context.label}: ${value}%`,
+                            `Status: ${level}`,
+                            '',
+                            'Individual Skills:',
+                            ...skills
+                        ];
                     }
                 }
             }
@@ -307,14 +300,12 @@ const ResponsiveSkillsChart = () => {
     return (
         <div className="bg-gradient-to-br from-gray-800 via-gray-900 to-black p-4 lg:p-6 rounded-xl shadow-2xl border border-gray-700">
             {isMobile ? (
-                // Mobile/Tablet View - Pie Chart
                 <>
                     <div className="h-80 w-full relative mb-4">
                         <Pie data={pieChartData} options={pieChartOptions} />
                     </div>
                     
-                    {/* Mobile Category Details */}
-                    <div className="grid grid-cols-1 gap-3">
+                    <div className="grid grid-cols-1 gap-3  ">
                         <div className="bg-gray-800 p-3 rounded-lg border border-gray-600">
                             <h3 className="text-red-400 font-bold mb-2 flex items-center text-sm">
                                 <div className="w-3 h-3 bg-red-400 rounded-full mr-2 flex-shrink-0"></div>
@@ -349,13 +340,11 @@ const ResponsiveSkillsChart = () => {
                     </div>
                 </>
             ) : (
-                // Desktop View - Line Chart
                 <>
                     <div className="h-72 w-full relative">
                         <Line data={lineChartData} options={lineChartOptions} />
                     </div>
                     
-                    {/* Desktop Category Legend */}
                     <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                         <div className="bg-gray-800 p-3 rounded-lg border border-gray-600">
                             <h3 className="text-red-400 font-bold mb-2 flex items-center text-sm">
