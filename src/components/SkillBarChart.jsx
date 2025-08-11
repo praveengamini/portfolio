@@ -1,11 +1,13 @@
 import React from 'react';
-import { Chart as ChartJS, ArcElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
-import { Pie } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend } from 'chart.js';
+import { Line } from 'react-chartjs-2';
 
 ChartJS.register(
-    ArcElement,
     CategoryScale,
     LinearScale,
+    LineElement,
+    PointElement,
+    Title,
     Tooltip,
     Legend
 );
@@ -13,67 +15,168 @@ ChartJS.register(
 const SkillBarChart = () => {
     const chartData = {
         labels: [
-            'MERN Full-Stack Web Development (Advanced)', 
-            'Data Structures and Algorithms (Intermediate)', 
-            'C (Advanced)', 
-            'Python (Advanced)', 
-            'Java (Advanced)', 
-            'JavaScript (Advanced)'
+            'C Programming',
+            'Python', 
+            'Java',
+            'JavaScript',
+            'DSA',
+            'MERN Stack'
         ],
         datasets: [{
             label: 'Skill Level',
-            data: [90, 70, 90, 95, 85, 90],
-            backgroundColor: [
-                '#FF5733', 
-                '#33FF57', 
-                '#3357FF', 
-                '#8E44AD', 
-                '#1F77B4', 
-                '#FF69B4'
-            ],
-            borderColor: [
-                '#FF5733', 
-                '#33FF57',
-                '#3357FF',
-                '#8E44AD',
-                '#1F77B4',
-                '#FF69B4'
-            ],
-            borderWidth: 1
+            data: [90, 95, 85, 90, 70, 90],
+            borderColor: '#00D4FF',
+            backgroundColor: 'rgba(0, 212, 255, 0.1)',
+            pointBackgroundColor: '#00D4FF',
+            pointBorderColor: '#ffffff',
+            pointBorderWidth: 2,
+            pointRadius: 6,
+            pointHoverRadius: 8,
+            fill: true,
+            tension: 0.4,
+            borderWidth: 3
         }]
     };
 
     const chartOptions = {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
-            tooltip: {
-                callbacks: {
-                    label: (tooltipItem) => {
-                        const { dataset, dataIndex } = tooltipItem;
-                        return `${dataset.label}: ${dataset.data[dataIndex]}%`;
-                    },
-                },
-            },
             legend: {
                 position: 'top',
+                labels: {
+                    color: '#ffffff',
+                    font: {
+                        size: 14,
+                        weight: 'bold'
+                    },
+                    usePointStyle: true,
+                    pointStyle: 'circle'
+                }
             },
-            datalabels: {
+            title: {
                 display: true,
-                formatter: (value) => `${value}%`,
-                color: 'white',
+                text: 'Skills Progression Graph',
+                color: '#ffffff',
                 font: {
-                    weight: 'bold',
-                    size: 14,
+                    size: 18,
+                    weight: 'bold'
                 },
+                padding: 20
             },
+            tooltip: {
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                titleColor: '#00D4FF',
+                bodyColor: '#ffffff',
+                borderColor: '#00D4FF',
+                borderWidth: 1,
+                cornerRadius: 8,
+                displayColors: false,
+                callbacks: {
+                    label: (context) => {
+                        const value = context.parsed.y;
+                        let level = '';
+                        if (value >= 90) level = 'Expert Level';
+                        else if (value >= 80) level = 'Advanced Level';
+                        else if (value >= 70) level = 'Intermediate Level';
+                        else level = 'Beginner Level';
+                        
+                        return [`Proficiency: ${value}%`, `Status: ${level}`];
+                    }
+                }
+            }
         },
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 100,
+                grid: {
+                    color: 'rgba(255, 255, 255, 0.1)',
+                    lineWidth: 1
+                },
+                ticks: {
+                    color: '#ffffff',
+                    font: {
+                        size: 12
+                    },
+                    stepSize: 20,
+                    callback: (value) => `${value}%`
+                },
+                title: {
+                    display: true,
+                    text: 'Proficiency Level (%)',
+                    color: '#ffffff',
+                    font: {
+                        size: 14,
+                        weight: 'bold'
+                    }
+                }
+            },
+            x: {
+                grid: {
+                    color: 'rgba(255, 255, 255, 0.05)',
+                    lineWidth: 1
+                },
+                ticks: {
+                    color: '#ffffff',
+                    font: {
+                        size: 11,
+                        weight: '500'
+                    },
+                    maxRotation: 0,
+                    minRotation: 0
+                },
+                title: {
+                    display: true,
+                    text: 'Technologies',
+                    color: '#ffffff',
+                    font: {
+                        size: 14,
+                        weight: 'bold'
+                    }
+                }
+            }
+        },
+        animation: {
+            duration: 2500,
+            easing: 'easeInOutQuart'
+        },
+        interaction: {
+            intersect: false,
+            mode: 'index'
+        },
+        elements: {
+            point: {
+                hoverBackgroundColor: '#00D4FF',
+                hoverBorderColor: '#ffffff',
+                hoverBorderWidth: 3
+            }
+        }
     };
 
     return (
-        <div className="flex justify-center  items-center p-6 rounded-lg  max-w-xl mx-auto">
-            <div className="w-full">
-                <div className="flex justify-center">
-                    <Pie data={chartData} options={chartOptions} />
+        <div className="bg-gradient-to-br from-gray-800 via-gray-900 to-black p-6 rounded-xl shadow-2xl border border-gray-700">
+            <div className="h-72 w-full relative">
+                <Line data={chartData} options={chartOptions} />
+            </div>
+            
+            {/* Performance indicators */}
+            <div className="mt-4 flex justify-center">
+                <div className="flex items-center gap-6 text-sm bg-gray-800/50 px-6 py-3 rounded-full border border-gray-600/30">
+                    <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                        <span className="text-gray-300">Peak: 95%</span>
+                    </div>
+                    <div className="w-px h-4 bg-gray-600"></div>
+                    <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                        <span className="text-gray-300">Avg: 87%</span>
+                    </div>
+                    <div className="w-px h-4 bg-gray-600"></div>
+                    <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
+                        <span className="text-gray-300">Growth: +15%</span>
+                    </div>
                 </div>
             </div>
         </div>
