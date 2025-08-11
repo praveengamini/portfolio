@@ -1,6 +1,6 @@
-import React from 'react';
-import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend } from 'chart.js';
-import { Line } from 'react-chartjs-2';
+import React, { useState, useEffect } from 'react';
+import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
+import { Line, Pie } from 'react-chartjs-2';
 
 ChartJS.register(
     CategoryScale,
@@ -9,11 +9,26 @@ ChartJS.register(
     PointElement,
     Title,
     Tooltip,
-    Legend
+    Legend,
+    ArcElement
 );
 
-const CategorizedSkillsChart = () => {
-    const chartData = {
+const ResponsiveSkillsChart = () => {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkScreenSize = () => {
+            setIsMobile(window.innerWidth <= 1024); // lg breakpoint
+        };
+
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+
+        return () => window.removeEventListener('resize', checkScreenSize);
+    }, []);
+
+    // Line chart data for desktop
+    const lineChartData = {
         labels: [
             // Programming Languages
             'C Language', 'Python', 'Java', 'JavaScript',
@@ -88,7 +103,36 @@ const CategorizedSkillsChart = () => {
         ]
     };
 
-    const chartOptions = {
+    // Pie chart data for mobile/tablet - showing all individual skills
+    const pieChartData = {
+        labels: [
+            'C Language', 'Python', 'Java', 'JavaScript',
+            'HTML5', 'CSS3', 'Bootstrap', 'Tailwind CSS', 'jQuery', 'React', 'Redux',
+            'Node.js', 'Express', 'MongoDB', 'MySQL', 'Git & GitHub', 'Postman',
+            'Machine Learning', 'LangChain', 'TensorFlow', 'OpenCV'
+        ],
+        datasets: [
+            {
+                data: [90, 90, 90, 90, 90, 90, 70, 90, 80, 90, 70, 90, 90, 70, 70, 90, 90, 70, 85, 80, 80],
+                backgroundColor: [
+                    // Programming Languages - Red shades
+                    '#FF6B6B', '#FF5252', '#FF4444', '#FF3333',
+                    // Frontend Technologies - Teal shades
+                    '#4ECDC4', '#26A69A', '#009688', '#00796B', '#004D40', '#00BCD4', '#0097A7',
+                    // Backend & Database - Purple shades
+                    '#9B59B6', '#8E44AD', '#7B1FA2', '#6A1B9A', '#4A148C', '#673AB7',
+                    // AI & ML - Yellow/Orange shades
+                    '#FFE66D', '#FFC107', '#FF9800', '#FF5722'
+                ],
+                borderColor: '#ffffff',
+                borderWidth: 2,
+                hoverBorderWidth: 3,
+                hoverBorderColor: '#ffffff'
+            }
+        ]
+    };
+
+    const lineChartOptions = {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
@@ -172,10 +216,10 @@ const CategorizedSkillsChart = () => {
                 ticks: {
                     color: '#ffffff',
                     font: {
-                        size: 10,
+                        size: 11,
                         weight: '500'
                     },
-                    maxRotation: 45,
+                    maxRotation: 0,
                     minRotation: 0
                 },
                 title: {
@@ -206,48 +250,149 @@ const CategorizedSkillsChart = () => {
         }
     };
 
+    const pieChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    color: '#ffffff',
+                    font: {
+                        size: 12,
+                        weight: 'bold'
+                    },
+                    usePointStyle: true,
+                    pointStyle: 'circle',
+                    padding: 15
+                }
+            },
+            title: {
+                display: true,
+                text: 'Individual Skills Proficiency',
+                color: '#ffffff',
+                font: {
+                    size: 16,
+                    weight: 'bold'
+                },
+                padding: 20
+            },
+            tooltip: {
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                titleColor: '#ffffff',
+                bodyColor: '#ffffff',
+                borderColor: '#ffffff',
+                borderWidth: 1,
+                cornerRadius: 8,
+                callbacks: {
+                    label: (context) => {
+                        const value = context.parsed;
+                        let level = '';
+                        if (value >= 90) level = 'Expert';
+                        else if (value >= 80) level = 'Advanced';
+                        else if (value >= 70) level = 'Intermediate';
+                        else level = 'Beginner';
+                        
+                        return [`${context.label}: ${value}%`, `Level: ${level}`];
+                    }
+                }
+            }
+        },
+        animation: {
+            duration: 2000,
+            easing: 'easeInOutQuart'
+        }
+    };
+
     return (
-        <div className="bg-gradient-to-br from-gray-800 via-gray-900 to-black p-6 rounded-xl shadow-2xl border border-gray-700">
-            <div className="h-80 w-full relative">
-                <Line data={chartData} options={chartOptions} />
-            </div>
-            
-            {/* Category Legend */}
-            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="bg-gray-800 p-4 rounded-lg border border-gray-600">
-                    <h3 className="text-red-400 font-bold mb-2 flex items-center">
-                        <div className="w-3 h-3 bg-red-400 rounded-full mr-2"></div>
-                        Programming Languages
-                    </h3>
-                    <p className="text-gray-300 text-sm">C, Python, Java, JavaScript</p>
-                </div>
-                
-                <div className="bg-gray-800 p-4 rounded-lg border border-gray-600">
-                    <h3 className="text-teal-400 font-bold mb-2 flex items-center">
-                        <div className="w-3 h-3 bg-teal-400 rounded-full mr-2"></div>
-                        Frontend Technologies
-                    </h3>
-                    <p className="text-gray-300 text-sm">HTML5, CSS3, React, jQuery & Frameworks</p>
-                </div>
-                
-                <div className="bg-gray-800 p-4 rounded-lg border border-gray-600">
-                    <h3 className="text-purple-400 font-bold mb-2 flex items-center">
-                        <div className="w-3 h-3 bg-purple-400 rounded-full mr-2"></div>
-                        Backend & Database
-                    </h3>
-                    <p className="text-gray-300 text-sm">Node.js, Express, MongoDB, MySQL & Tools</p>
-                </div>
-                
-                <div className="bg-gray-800 p-4 rounded-lg border border-gray-600">
-                    <h3 className="text-yellow-400 font-bold mb-2 flex items-center">
-                        <div className="w-3 h-3 bg-yellow-400 rounded-full mr-2"></div>
-                        AI & Machine Learning
-                    </h3>
-                    <p className="text-gray-300 text-sm">ML, LangChain, TensorFlow, OpenCV</p>
-                </div>
-            </div>
+        <div className="bg-gradient-to-br from-gray-800 via-gray-900 to-black p-4 lg:p-6 rounded-xl shadow-2xl border border-gray-700">
+            {isMobile ? (
+                // Mobile/Tablet View - Pie Chart
+                <>
+                    <div className="h-80 w-full relative mb-4">
+                        <Pie data={pieChartData} options={pieChartOptions} />
+                    </div>
+                    
+                    {/* Mobile Category Details */}
+                    <div className="grid grid-cols-1 gap-3">
+                        <div className="bg-gray-800 p-3 rounded-lg border border-gray-600">
+                            <h3 className="text-red-400 font-bold mb-2 flex items-center text-sm">
+                                <div className="w-3 h-3 bg-red-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Programming Languages (90%)
+                            </h3>
+                            <p className="text-gray-300 text-xs">C, Python, Java, JavaScript</p>
+                        </div>
+                        
+                        <div className="bg-gray-800 p-3 rounded-lg border border-gray-600">
+                            <h3 className="text-teal-400 font-bold mb-2 flex items-center text-sm">
+                                <div className="w-3 h-3 bg-teal-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Frontend Technologies (83%)
+                            </h3>
+                            <p className="text-gray-300 text-xs">HTML5, CSS3, React, jQuery & Frameworks</p>
+                        </div>
+                        
+                        <div className="bg-gray-800 p-3 rounded-lg border border-gray-600">
+                            <h3 className="text-purple-400 font-bold mb-2 flex items-center text-sm">
+                                <div className="w-3 h-3 bg-purple-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Backend & Database (82%)
+                            </h3>
+                            <p className="text-gray-300 text-xs">Node.js, Express, MongoDB, MySQL & Tools</p>
+                        </div>
+                        
+                        <div className="bg-gray-800 p-3 rounded-lg border border-gray-600">
+                            <h3 className="text-yellow-400 font-bold mb-2 flex items-center text-sm">
+                                <div className="w-3 h-3 bg-yellow-400 rounded-full mr-2 flex-shrink-0"></div>
+                                AI & Machine Learning (79%)
+                            </h3>
+                            <p className="text-gray-300 text-xs">ML, LangChain, TensorFlow, OpenCV</p>
+                        </div>
+                    </div>
+                </>
+            ) : (
+                // Desktop View - Line Chart
+                <>
+                    <div className="h-72 w-full relative">
+                        <Line data={lineChartData} options={lineChartOptions} />
+                    </div>
+                    
+                    {/* Desktop Category Legend */}
+                    <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                        <div className="bg-gray-800 p-3 rounded-lg border border-gray-600">
+                            <h3 className="text-red-400 font-bold mb-2 flex items-center text-sm">
+                                <div className="w-3 h-3 bg-red-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Programming Languages
+                            </h3>
+                            <p className="text-gray-300 text-xs">C, Python, Java, JavaScript</p>
+                        </div>
+                        
+                        <div className="bg-gray-800 p-3 rounded-lg border border-gray-600">
+                            <h3 className="text-teal-400 font-bold mb-2 flex items-center text-sm">
+                                <div className="w-3 h-3 bg-teal-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Frontend Technologies
+                            </h3>
+                            <p className="text-gray-300 text-xs">HTML5, CSS3, React, jQuery & Frameworks</p>
+                        </div>
+                        
+                        <div className="bg-gray-800 p-3 rounded-lg border border-gray-600">
+                            <h3 className="text-purple-400 font-bold mb-2 flex items-center text-sm">
+                                <div className="w-3 h-3 bg-purple-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Backend & Database
+                            </h3>
+                            <p className="text-gray-300 text-xs">Node.js, Express, MongoDB, MySQL & Tools</p>
+                        </div>
+                        
+                        <div className="bg-gray-800 p-3 rounded-lg border border-gray-600">
+                            <h3 className="text-yellow-400 font-bold mb-2 flex items-center text-sm">
+                                <div className="w-3 h-3 bg-yellow-400 rounded-full mr-2 flex-shrink-0"></div>
+                                AI & Machine Learning
+                            </h3>
+                            <p className="text-gray-300 text-xs">ML, LangChain, TensorFlow, OpenCV</p>
+                        </div>
+                    </div>
+                </>
+            )}
         </div>
     );
 };
 
-export default CategorizedSkillsChart;
+export default ResponsiveSkillsChart;
