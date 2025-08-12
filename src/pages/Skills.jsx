@@ -108,7 +108,6 @@ const Skills = () => {
         </div>
       </div>
 
-      {/* Web Technologies Section */}
       <motion.div
       initial={{ opacity: 0, x: -1000 }}
       animate={{ opacity: 1, x: 0 }}
@@ -243,7 +242,6 @@ const Skills = () => {
         </div>
       </div>
 
-      {/* AI & Machine Learning Section */}
       <motion.div
       initial={{ opacity: 0, x: 1000 }}
       animate={{ opacity: 1, x: 0 }}
@@ -297,7 +295,6 @@ const Skills = () => {
         </div>
       </div>
 
-      {/* Future Learnings Section */}
       <motion.div
       initial={{ opacity: 0, x: -1000 }}
       animate={{ opacity: 1, x: 0 }}
