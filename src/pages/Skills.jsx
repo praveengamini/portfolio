@@ -49,9 +49,15 @@ const Skills = () => {
         </div>
         {showSkillLevels ? <FaAngleUp className="size-6 md:size-12" /> : <FaAngleDown className="size-6 md:size-12" />}
       </motion.div>
-      <div className={`overflow-hidden transition-all duration-1000 ${showSkillLevels ? 'max-h-[570px]' : 'max-h-0'}`}>
-        <SkillBarChart />
-      </div>
+        <div
+          className={`
+            transition-all duration-1000
+            ${showSkillLevels ? 'max-h-[570px]' : 'max-h-0'}
+            overflow-hidden max-sm:overflow-y-scroll
+          `}
+        >
+          <SkillBarChart />
+        </div>
 
       <motion.div
       initial={{ opacity: 0, x: 1000 }}
