@@ -161,7 +161,6 @@ const About = () => {
                 <li>Udemy: Web Development - MERN Stack</li>
                 <li>NPTEL (elite): Programming in C</li>
                 <li>NPTEL (elite): Cloud Computing</li>
-                <li>Workshop: AI Tools and Techniques @be10x</li>
                 <li>Udemy: Machine Learning and Data Science with Python</li>
               </ul>
             </div>
