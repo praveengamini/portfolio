@@ -207,6 +207,14 @@ const Skills = () => {
               <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">Express<span className='font-bold ml-1'>(A)</span> </CardFooter>
             </Card>
           </Tilt>
+          <Tilt options={{ max: 25, speed: 400 }}>
+            <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6">
+              <CardContent className="flex justify-center">
+                <svg className="text-gray-300 text-3xl md:text-5xl"  xmlns="http://www.w3.org/2000/svg" width={54} height={50} fill={"currentColor"} viewBox="0 0 24 24">{/* Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free */}<path d="m12,2.06c-5.52,0-10,4.46-10,9.97h0c0,5.5,4.48,9.97,10,9.97h0c5.52,0,10-4.46,10-9.97h0c0-5.51-4.48-9.97-10-9.97h0Zm-.69,4.51h6.29l-6.32,4.44h4.32l-9.2,6.47,2-4.44.91-2.03,2-4.44Z"></path></svg>
+              </CardContent>
+              <CardFooter className="flex justify-center text-sm md:text-base text-gray-300">FastApi<span className='font-bold ml-1'>(M)</span> </CardFooter>
+            </Card>
+          </Tilt>
 
           <Tilt options={{ max: 25, speed: 400 }}>
             <Card className="bg-gray-700 border-gray-600 shadow-lg w-40 md:w-52 p-3 md:p-5 m-2 md:m-6">
