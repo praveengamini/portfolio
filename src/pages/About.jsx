@@ -138,6 +138,7 @@ const About = () => {
               <h3 className="text-2xl font-semibold slide-down">Achievements</h3>
               <ul className="list-disc pl-6">
               <li className="text-gray-300 mt-2 slide-up">Winner-2 at National Level Hackathon at AITEM College</li>
+              <li className="text-gray-300 mt-2 slide-up">Winner among 175+ teams at Sankalp 2025, MVGR College of Engineering</li>
               <li className="text-gray-300 mt-2 slide-up">participated in Finals of NLP Challenge, Organized by IIT Kharagpur</li>
               </ul>
             </div>
