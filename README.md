@@ -1,8 +1,11 @@
-# React + Vite
+# praveengamini.netlify.app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal site. React + Vite + Tailwind, deployed on Netlify.
 
-Currently, two official plugins are available:
+```bash
+npm install
+npm run dev     # http://localhost:3000
+npm run build   # output in dist/
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Content lives in `src/data/` — edit `content.js` (bio, experience, skills, education) and `projects.js` to update the site.

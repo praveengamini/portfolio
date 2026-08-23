@@ -1,17 +1,38 @@
-import React from 'react'
-import { FaGithub } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-import { CiMail } from "react-icons/ci";
-const Footer = () => {
-  return (
-    <footer className='flex justify-center gap-11 mb-24 max-md:mb-7 mt-4'>
-        <a href="https://github.com/praveengamini" target='_blank' ><FaGithub  className=' size-10 hover:scale-125 transition-transform duration-300'/></a>
-        <a href="https://www.linkedin.com/in/praveen-gamini-3bb729273?lipi=urn%3Ali%3Apage%3Ad_flagship3_messaging_conversation_detail%3BnYohxNHoTtS%2BkIDsFIOXTw%3D%3D" target='_blank'> <FaLinkedin className='size-10 text-blue-800 hover:scale-125 transition-transform duration-300' /> </a>
-        <a href="https://www.instagram.com/praveengamini/" target='_blank'><FaInstagram className=' text-pink-800 size-10 hover:scale-125 transition-transform duration-300' /></a>
-        <a href="https://mail.google.com/mail/?view=cm&to=praveengamini009@gmail.com" target='_blank'><CiMail className='text-orange-500 size-10 hover:scale-125 transition-transform duration-300'/> </a>
-    </footer>
-  )
-}
+import { FaGithub, FaLinkedinIn, FaEnvelope, FaFileLines } from 'react-icons/fa6';
+import { profile } from '../data/content';
 
-export default Footer
+const Footer = () => (
+  <footer className="border-t border-line bg-card/50">
+    <div className="container-narrow flex flex-col gap-5 py-10 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <p className="font-semibold text-fg">Praveen Gamini</p>
+        <p className="mt-1 text-sm text-muted">Software Engineer · Bangalore</p>
+      </div>
+      <div className="flex gap-2">
+        <a href={profile.mailUrl} target="_blank" rel="noreferrer" className="icon-btn" aria-label="Email">
+          <FaEnvelope size={15} />
+        </a>
+        <a href={profile.github} target="_blank" rel="noreferrer" className="icon-btn" aria-label="GitHub">
+          <FaGithub size={16} />
+        </a>
+        <a
+          href={profile.linkedin}
+          target="_blank"
+          rel="noreferrer"
+          className="icon-btn"
+          aria-label="LinkedIn"
+        >
+          <FaLinkedinIn size={15} />
+        </a>
+        <a href={profile.resume} target="_blank" rel="noreferrer" className="icon-btn" aria-label="Resume">
+          <FaFileLines size={14} />
+        </a>
+      </div>
+    </div>
+    <div className="container-narrow border-t border-line py-4 text-xs text-muted">
+      © {new Date().getFullYear()} Praveen Gamini · Built with React, Vite &amp; Tailwind
+    </div>
+  </footer>
+);
+
+export default Footer;

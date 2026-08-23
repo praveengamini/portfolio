@@ -1,25 +1,33 @@
-import React from 'react'
-import Nav from './components/Nav'
-import './index.css'
-import {Routes,Route} from 'react-router-dom'
-import Home from './pages/Home'
-import About from './pages/About'
-import Skills from './pages/Skills'
-import Projects from './pages/Projects'
-const App = () => {
-  return (
-    <div>
-      <Nav />
-      <div className='h-14 max-sm:h-[4.5rem]'></div>
-       <Routes>
-        <Route path='/' element={<Home/>} />
-        <Route path='about' element={<About/>}/>
-        <Route path='skills' element={<Skills/>} />
-        <Route path='projects' element={<Projects/>} />
-       </Routes>
-    </div>
-    
-  )
-}
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Nav from './components/Nav';
+import Footer from './components/Footer';
+import useScrollToTop from './components/useScrollTop';
+import Home from './pages/Home';
+import About from './pages/About';
+import Projects from './pages/Projects';
+import Contact from './pages/Contact';
+import NotFound from './pages/NotFound';
 
-export default App
+const App = () => {
+  useScrollToTop();
+
+  return (
+    <div className="flex min-h-screen flex-col font-sans">
+      <Nav />
+      <main className="flex-1">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          {/* Old route kept as a redirect so existing links don't break. */}
+          <Route path="/skills" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+export default App;

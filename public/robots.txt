@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://praveengamini.netlify.app/sitemap.xml

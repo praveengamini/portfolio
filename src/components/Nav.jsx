@@ -1,206 +1,222 @@
-import React, { useEffect } from 'react';
-import { GiHamburgerMenu } from "react-icons/gi";
-import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import {
+  FaBars,
+  FaXmark,
+  FaSun,
+  FaMoon,
+  FaGithub,
+  FaLinkedinIn,
+  FaEnvelope,
+  FaFileLines,
+} from 'react-icons/fa6';
+import { profile } from '../data/content';
+import useTheme from './useTheme';
+
+const links = [
+  { to: '/', label: 'Home', end: true },
+  { to: '/projects', label: 'Projects' },
+  { to: '/about', label: 'About' },
+  { to: '/contact', label: 'Contact' },
+];
+
+const desktopLink = ({ isActive }) =>
+  [
+    'relative py-1 text-sm transition-colors',
+    'after:absolute after:-bottom-0.5 after:left-0 after:h-[2px] after:rounded-full after:bg-accent after:transition-all',
+    isActive ? 'text-fg after:w-full' : 'text-muted hover:text-fg after:w-0',
+  ].join(' ');
+
+const ThemeButton = ({ theme, toggle }) => (
+  <button
+    type="button"
+    onClick={toggle}
+    className="icon-btn"
+    aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+    title={theme === 'dark' ? 'Light theme' : 'Dark theme'}
+  >
+    {theme === 'dark' ? <FaSun size={15} /> : <FaMoon size={15} />}
+  </button>
+);
 
 const Nav = () => {
-    const [openMenu, setOpenMenu] = useState(false);
-    const [arr0, setArr0] = useState(false);
-    const [arr1, setArr1] = useState(false);
-    const [arr2, setArr2] = useState(false);
-    const [arr3, setArr3] = useState(false);
+  const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
+  const { theme, toggle } = useTheme();
 
-    const location = useLocation();
-    console.log(location.pathname);
+  useEffect(() => setOpen(false), [pathname]);
 
-    useEffect(() => {
-        if (location.pathname === '/skills') {
-            setArr0(false);
-            setArr1(true);
-            setArr2(false);
-            setArr3(false);
-        } else if (location.pathname === '/') {
-            setArr0(true);
-            setArr1(false);
-            setArr2(false);
-            setArr3(false);
-        } else if (location.pathname === '/projects') {
-            setArr0(false);
-            setArr1(false);
-            setArr2(true);
-            setArr3(false);
-        } else if (location.pathname === '/about') {
-            setArr0(false);
-            setArr1(false);
-            setArr2(false);
-            setArr3(true);
-        }
-    }, [location.pathname]);
+  useEffect(() => {
+    if (!open) return undefined;
+    const onKey = (e) => e.key === 'Escape' && setOpen(false);
+    document.addEventListener('keydown', onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
 
-    useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth > 768) {
-                setOpenMenu(false);
-            }
-        };
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    const onChange = (e) => e.matches && setOpen(false);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
 
-    useEffect(() => {
-        function handleUnderlining(event) {
-            if (event.target.id === 'home') {
-                setArr0(true);
-                setArr1(false);
-                setArr2(false);
-                setArr3(false);
-            } else if (event.target.id === 'skills') {
-                setArr0(false);
-                setArr1(true);
-                setArr2(false);
-                setArr3(false);
-            } else if (event.target.id === 'projects') {
-                setArr0(false);
-                setArr1(false);
-                setArr2(true);
-                setArr3(false);
-            } else if (event.target.id === 'about') {
-                setArr0(false);
-                setArr1(false);
-                setArr2(false);
-                setArr3(true);
-            }
-        }
-        document.addEventListener('click', handleUnderlining);
-        return () => document.removeEventListener('click', handleUnderlining);
-    }, []);
+  return (
+    <header className="sticky top-0 z-40 border-b border-line bg-bg/85 backdrop-blur">
+      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
+        <Link to="/" className="flex items-center gap-2.5 font-semibold tracking-tight text-fg">
+          <span className="grid h-8 w-8 place-items-center rounded-lg bg-accent font-mono text-sm font-bold text-bg">
+            PG
+          </span>
+          <span>Praveen Gamini</span>
+        </Link>
 
-    return (
-        <div className="flex items-center justify-between px-6 py-4 bg-gray-800 text-white z-50 fixed w-full">
-            <div className="relative text-2xl group">
-                <span className="transition-all duration-1000 select-none">Praveen Gamini</span>
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-orange-600 scale-x-0 group-hover:scale-x-100 transition-all duration-1000"></div>
-            </div>
+        <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
+          {links.map((l) => (
+            <NavLink key={l.to} to={l.to} end={l.end} className={desktopLink}>
+              {l.label}
+            </NavLink>
+          ))}
+        </nav>
 
-            <div>
-                <button
-                    className="md:hidden p-2"
-                    id="menuToggle"
-                    onClick={() => setOpenMenu(!openMenu)}
-                >
-                    {!openMenu ? (
-                        <GiHamburgerMenu className="text-3xl" />
-                    ) : (
-                        <div className="text-4xl text-white">X</div> 
-                    )}
-                </button>
-                <div
-                    className={`flex-col text-2xl z-10 space-y-10 fixed right-0 top-0 h-full w-64 bg-black/50 backdrop-blur-md backdrop-opacity-95 text-white transform ${
-                        openMenu ? 'translate-x-0' : 'translate-x-full'
-                    } transition-transform duration-300 ease-in-out text-center`}
-                >
-                    <button
-                        className="md:hidden p-2 mr-[-13.5rem]"
-                        id="menuToggle"
-                        onClick={() => setOpenMenu(!openMenu)}
-                    >
-                        {!openMenu ? (
-                            <GiHamburgerMenu className="text-3xl" />
-                        ) : (
-                            <div className="text-4xl text-white">X</div> 
-                        )}
-                    </button>
-                    <Link to="/">
-                        <div
-                            className={`hover:text-gray-300 hover:underline cursor-pointer ${
-                                arr0 ? 'text-orange-500' : ''
-                            } mt-28`}
-                            id="home"
-                            onClick={() => setOpenMenu(false)}
-                        >
-                            Home
-                        </div>
-                    </Link>
-                    <Link to="/skills">
-                        <div
-                            className={`hover:text-gray-300 hover:underline cursor-pointer ${
-                                arr1 ? 'text-orange-500' : ''
-                            } mt-10`}
-                            id="skills"
-                            onClick={() => setOpenMenu(false)}
-                        >
-                            Skills
-                        </div>
-                    </Link>
-                    <Link to="/projects">
-                        <div
-                            className={`hover:text-gray-300 hover:underline cursor-pointer ${
-                                arr2 ? 'text-orange-500' : ''
-                            } mt-10`}
-                            id="projects"
-                            onClick={() => setOpenMenu(false)}
-                        >
-                            Projects
-                        </div>
-                    </Link>
-                    <Link to="/about">
-                        <div
-                            className={`hover:text-gray-300 hover:underline cursor-pointer ${
-                                arr3 ? 'text-orange-500' : ''
-                            } mt-10`}
-                            id="about"
-                            onClick={() => setOpenMenu(false)}
-                        >
-                            About
-                        </div>
-                    </Link>
-                </div>
-            </div>
-
-            <div className="hidden md:flex space-x-52 mr-16 text-xl">
-                <Link to="/">
-                    <div
-                        className={`hover:text-gray-300 hover:underline cursor-pointer hover:-translate-y-1 transition-all duration-200 ${
-                            arr0 ? 'text-orange-500' : ''
-                        }`}
-                        id="home"
-                    >
-                        Home
-                    </div>
-                </Link>
-                <Link to="/skills">
-                    <div
-                        className={`hover:text-gray-300 hover:underline cursor-pointer hover:-translate-y-1 transition-all duration-200 ${
-                            arr1 ? 'text-orange-500' : ''
-                        }`}
-                        id="skills"
-                    >
-                        Skills
-                    </div>
-                </Link>
-                <Link to="/projects">
-                    <div
-                        className={`hover:text-gray-300 hover:underline cursor-pointer hover:-translate-y-1 transition-all duration-200 ${
-                            arr2 ? 'text-orange-500' : ''
-                        }`}
-                        id="projects"
-                    >
-                        Projects
-                    </div>
-                </Link>
-                <Link to="/about">
-                    <div
-                        className={`hover:text-gray-300 hover:underline cursor-pointer hover:-translate-y-1 transition-all duration-200 ${
-                            arr3 ? 'text-orange-500' : ''
-                        }`}
-                        id="about"
-                    >
-                        About
-                    </div>
-                </Link>
-            </div>
+        <div className="hidden items-center gap-2 md:flex">
+          <a href={profile.github} target="_blank" rel="noreferrer" className="icon-btn" aria-label="GitHub">
+            <FaGithub size={16} />
+          </a>
+          <a
+            href={profile.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            className="icon-btn"
+            aria-label="LinkedIn"
+          >
+            <FaLinkedinIn size={15} />
+          </a>
+          <ThemeButton theme={theme} toggle={toggle} />
+          <a href={profile.resume} target="_blank" rel="noreferrer" className="btn-primary ml-2 !py-2">
+            <FaFileLines size={13} /> Resume
+          </a>
         </div>
-    );
+
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeButton theme={theme} toggle={toggle} />
+          <button
+            type="button"
+            className="icon-btn"
+            aria-label="Open menu"
+            aria-expanded={open}
+            aria-controls="mobile-drawer"
+            onClick={() => setOpen(true)}
+          >
+            <FaBars size={16} />
+          </button>
+        </div>
+      </div>
+
+      {createPortal(
+        <>
+          {/* Backdrop */}
+          <div
+            aria-hidden
+            onClick={() => setOpen(false)}
+            className={[
+              'fixed inset-0 z-[60] bg-black/60 transition-[opacity,visibility] duration-300 md:hidden',
+              open ? 'visible opacity-100' : 'invisible pointer-events-none opacity-0',
+            ].join(' ')}
+          />
+
+          {/* Side drawer */}
+          <aside
+            id="mobile-drawer"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menu"
+            className={[
+              'fixed inset-y-0 right-0 z-[70] flex w-72 max-w-[85vw] flex-col border-l border-line bg-card shadow-2xl',
+              'transition-[transform,visibility] duration-300 ease-out md:hidden',
+              open ? 'visible translate-x-0' : 'invisible translate-x-full',
+            ].join(' ')}
+          >
+            <div className="flex h-16 items-center justify-between border-b border-line px-5">
+              <span className="font-semibold">Menu</span>
+              <button
+                type="button"
+                className="icon-btn"
+                aria-label="Close menu"
+                onClick={() => setOpen(false)}
+              >
+                <FaXmark size={16} />
+              </button>
+            </div>
+
+            <nav aria-label="Primary" className="flex flex-col px-3 py-3">
+              {links.map((l) => (
+                <NavLink
+                  key={l.to}
+                  to={l.to}
+                  end={l.end}
+                  className={({ isActive }) =>
+                    [
+                      'rounded-lg px-3 py-3 text-base transition-colors',
+                      isActive
+                        ? 'bg-accent/10 font-medium text-accent'
+                        : 'text-muted hover:bg-line/60 hover:text-fg',
+                    ].join(' ')
+                  }
+                >
+                  {l.label}
+                </NavLink>
+              ))}
+              <a
+                href={profile.resume}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 rounded-lg px-3 py-3 text-base text-muted hover:bg-line/60 hover:text-fg"
+              >
+                <FaFileLines size={14} /> Resume
+              </a>
+            </nav>
+
+            <div className="mt-auto flex items-center gap-2 border-t border-line px-5 py-4">
+              <a
+                href={profile.github}
+                target="_blank"
+                rel="noreferrer"
+                className="icon-btn"
+                aria-label="GitHub"
+              >
+                <FaGithub size={16} />
+              </a>
+              <a
+                href={profile.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="icon-btn"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedinIn size={15} />
+              </a>
+              <a
+                href={profile.mailUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="icon-btn"
+                aria-label="Email"
+              >
+                <FaEnvelope size={15} />
+              </a>
+            </div>
+          </aside>
+        </>,
+        document.body
+      )}
+    </header>
+  );
 };
 
 export default Nav;

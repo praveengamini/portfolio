@@ -1,249 +1,131 @@
-import React, { useEffect, useState } from 'react';
-import { IoIosArrowDroprightCircle } from "react-icons/io";
-import { FaBookOpen, FaUser, FaTrophy, FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
-import { GrCertificate } from "react-icons/gr";
-import { IoLanguage } from "react-icons/io5";
-import { PiMaskHappyLight } from "react-icons/pi";
-import { RiFeedbackLine } from "react-icons/ri";
-import { CiMail } from "react-icons/ci";
-import emailjs from 'emailjs-com';
-import Copyright from '../components/Copyright';
-import { ToastContainer } from 'react-toastify';
-import { toast } from 'react-toastify';
-import useScrollToTop from '@/components/useScrollTop';
+import {
+  FaGraduationCap,
+  FaTrophy,
+  FaCertificate,
+  FaEnvelope,
+  FaGithub,
+  FaLinkedinIn,
+  FaLocationDot,
+} from 'react-icons/fa6';
+import profileImg from '../assets/images/praveen-profile.png';
+import { profile, education, achievements, certifications } from '../data/content';
 
-const About = () => {
-  const [name, setName] = useState("");
-  const [feedback, setFeedback] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [isFooterOpen, setIsFooterOpen] = useState(false); 
-  const [loading, setLoading] = useState(false); 
-  useScrollToTop();
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
+const About = () => (
+  <>
+    <section className="container-narrow pt-14 sm:pt-20">
+      <div className="grid gap-10 md:grid-cols-[auto_1fr] md:gap-14">
+        <div className="md:sticky md:top-24 md:self-start">
+          <img
+            src={profileImg}
+            alt="Praveen Gamini"
+            width={1200}
+            height={1600}
+            className="aspect-[4/5] w-full max-w-[16rem] rounded-2xl border border-line object-cover shadow-card md:w-64"
+          />
+          <div className="mt-4 space-y-2 text-sm text-muted">
+            <p className="flex items-center gap-2">
+              <FaLocationDot size={12} className="text-accent" /> {profile.location}
+            </p>
+            <a
+              className="flex items-center gap-2 hover:text-fg"
+              href={profile.mailUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FaEnvelope size={12} className="text-accent" /> {profile.email}
+            </a>
+            <a
+              className="flex items-center gap-2 hover:text-fg"
+              href={profile.github}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FaGithub size={12} className="text-accent" /> github.com/praveengamini
+            </a>
+            <a
+              className="flex items-center gap-2 hover:text-fg"
+              href={profile.linkedin}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FaLinkedinIn size={12} className="text-accent" /> LinkedIn
+            </a>
+          </div>
+        </div>
 
-  const handleFeedbackChange = (e) => {
-    setFeedback(e.target.value);
-  };
+        <div>
+          <p className="eyebrow">About me</p>
+          <h1 className="mt-1 text-3xl font-bold tracking-tight text-fg sm:text-4xl">
+            Engineer who likes systems that are simple to run.
+          </h1>
+          <div className="mt-6 max-w-2xl space-y-4 text-base leading-relaxed text-fg/80">
+            <p>
+              I&apos;m a software engineer based in {profile.location}. I graduated in Computer Science from
+              MVGR College of Engineering in 2026 and now work at {profile.company}, building and running an
+              HR product on Python, React and GCP.
+            </p>
+            <p>
+              Most of my recent work has been on the backend and AI side — ingestion pipelines, RAG services,
+              LLM tool-calling, and the infrastructure to keep them running in production. I care about
+              systems that are simple to operate and easy for the next person to understand.
+            </p>
+            <p>
+              Outside work I build side projects, most of them on this site, and I&apos;m usually happy to
+              talk about backend architecture, LLM tooling, or what I&apos;m currently learning.
+            </p>
+          </div>
 
-  const handleFeedbackSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true); 
-    const emailData = {
-      name: name,
-      message: feedback,
-    };
-
-    
-    try {
-      await emailjs.send(
-         import.meta.env.VITE_SERVICE_ID,
-         import.meta.env.VITE_TEMPLATE_ID,
-         emailData,
-         import.meta.env.VITE_PUBLIC_API_KEY
-      );
-      setSubmitted(true);
-      setName("");
-      setFeedback("");
-      toast.success("Feedback sent successfully!"); 
-    } catch (error) {
-      console.error("Error sending feedback:", error);
-      toast.error("Failed to send feedback. Please try again."); 
-    } finally {
-      setLoading(false);
-    }
-  };
-  const toggleFooter = () => {
-    setIsFooterOpen(!isFooterOpen);
-  };
-
-  return (
-    <div className='flex flex-col'>
-<style jsx>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: scale(0.9);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-        @keyframes slideDown {
-          from {
-            opacity: 0;
-            transform: translateY(-30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        @keyframes slideUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .fade-in {
-          animation: fadeIn 0.6s ease-out forwards;
-        }
-        .slide-down {
-          animation: slideDown 0.6s ease-out forwards;
-        }
-        .slide-up {
-          animation: slideUp 0.6s ease-out forwards;
-        }
-      `}</style>
-
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white flex">
-      <div className="fixed bottom-4 right-4 md:hidden z-50">
-        <button
-          onClick={toggleFooter}
-          className="p-3 bg-blue-500 rounded-full shadow-lg hover:bg-blue-600 transition-all"
-        >
-          <IoIosArrowDroprightCircle className="text-white text-2xl" />
-        </button>
-      </div>
-
-         <div
-        className={`fixed left-0 top-1/2 z-10 transform -translate-y-1/2 flex flex-col gap-6 p-4 bg-gray-700/50 backdrop-blur-md rounded-r-lg shadow-lg transition-all duration-300 ${
-          isFooterOpen ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0`}
-      >
-        <a href="https://github.com/praveengamini" target="_blank" rel="noopener noreferrer">
-          <FaGithub className="size-8 hover:scale-125 transition-transform duration-300 text-white" />
-        </a>
-        <a href="https://www.linkedin.com/in/praveen-gamini-3bb729273" target="_blank" rel="noopener noreferrer">
-          <FaLinkedin className="size-8 text-blue-800 hover:scale-125 transition-transform duration-300" />
-        </a>
-        <a href="https://www.instagram.com/praveengamini/" target="_blank" rel="noopener noreferrer">
-          <FaInstagram className="size-8 text-pink-800 hover:scale-125 transition-transform duration-300" />
-        </a>
-        <a href="https://mail.google.com/mail/?view=cm&to=praveengamini009@gmail.com" target="_blank" rel="noopener noreferrer">
-          <CiMail className="size-8 text-orange-500 hover:scale-125 transition-transform duration-300" />
-        </a>
-      </div>
-
-        <div className="flex-1 flex flex-col items-center py-5 px-6">
-          <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all fade-in">
-              <FaTrophy className="text-yellow-400 text-4xl mb-3 slide-down" />
-              <h3 className="text-2xl font-semibold slide-down">Achievements</h3>
-              <ul className="list-disc pl-6">
-              <li className="text-gray-300 mt-2 slide-up">Winner-2 at National Level Hackathon at AITEM College</li>
-              <li className="text-gray-300 mt-2 slide-up">Winner among 175+ teams at Sankalp 2025, MVGR College of Engineering</li>
-              <li className="text-gray-300 mt-2 slide-up">participated in Finals of NLP Challenge, Organized by IIT Kharagpur</li>
-              </ul>
-            </div>
-
-            <div className="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all fade-in">
-              <FaBookOpen className="text-blue-400 text-4xl mb-3 slide-down" />
-              <h3 className="text-2xl font-semibold slide-down">Education</h3>
-              <div className="text-gray-300 mt-2 slide-up">
-                <ul className="list-disc pl-6">
-                  <li>MVGR College of Engineering, 2022-2026. CGPA: 8.70 (for 6 semesters)</li>
-                  <li>SriViswa Jr. College, Intermediate: MPC, 2022. Percentage: 97.5%</li>
-                  <li>Ravindra Bharathi School, 2020</li>
-                </ul>
+          <div className="mt-10 space-y-10">
+            <div>
+              <h2 className="flex items-center gap-2.5 text-xl font-semibold text-fg">
+                <FaGraduationCap className="text-accent" size={18} /> Education
+              </h2>
+              <div className="card mt-4 p-5">
+                <div className="flex flex-wrap items-baseline justify-between gap-2">
+                  <h3 className="font-semibold text-fg">{education.degree}</h3>
+                  <span className="font-mono text-xs text-muted">{education.period}</span>
+                </div>
+                <p className="mt-1 text-sm text-muted">
+                  {education.school}, {education.place}
+                </p>
+                <p className="mt-2 inline-block rounded-md bg-accent/10 px-2 py-0.5 font-mono text-xs font-medium text-accent">
+                  CGPA {education.cgpa}
+                </p>
               </div>
             </div>
 
-            <div className="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all fade-in">
-              <GrCertificate className="text-green-400 text-4xl mb-3 slide-down" />
-              <h3 className="text-2xl font-semibold slide-down">Certifications</h3>
-              <ul className="list-disc pl-6 text-gray-300 mt-2 slide-up">
-                <li>Udemy: Web Development - MERN Stack</li>
-                <li>NPTEL (elite): Programming in C</li>
-                <li>NPTEL (elite): Cloud Computing</li>
-                <li>Udemy: Machine Learning and Data Science with Python</li>
+            <div>
+              <h2 className="flex items-center gap-2.5 text-xl font-semibold text-fg">
+                <FaTrophy className="text-accent" size={18} /> Achievements
+              </h2>
+              <ul className="mt-4 space-y-3">
+                {achievements.map((a) => (
+                  <li key={a.title} className="card p-5">
+                    <p className="font-medium text-fg">{a.title}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-muted">{a.detail}</p>
+                  </li>
+                ))}
               </ul>
             </div>
 
-            <div className="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all fade-in">
-              <IoLanguage className="text-purple-400 text-4xl mb-3 slide-down" />
-              <h3 className="text-2xl font-semibold slide-down">Languages</h3>
-              <ul className="list-disc pl-6 text-gray-300 mt-2 slide-up">
-                <li>English (full proficiency)</li>
-                <li>Telugu (native)</li>
-                <li>Hindi (limited work proficiency)</li>
+            <div>
+              <h2 className="flex items-center gap-2.5 text-xl font-semibold text-fg">
+                <FaCertificate className="text-accent" size={18} /> Certifications
+              </h2>
+              <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                {certifications.map((c) => (
+                  <li key={c} className="card px-4 py-3 text-sm text-fg/90">
+                    {c}
+                  </li>
+                ))}
               </ul>
             </div>
-
-            <div className="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all fade-in">
-              <PiMaskHappyLight className="text-yellow-400 text-4xl mb-3 slide-down" />
-              <h3 className="text-2xl font-semibold slide-down">Hobbies</h3>
-              <ul className="list-disc pl-6 text-gray-300 mt-2 slide-up">
-                <li>Watching Movies</li>
-                <li>Singing</li>
-                <li>Exploring Quantum Mechanics</li>
-              </ul>
-            </div>
-
-            <div className="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all fade-in">
-              <FaUser className="text-red-400 text-4xl mb-3 slide-down" />
-              <h3 className="text-2xl font-semibold slide-down">Personal Info</h3>
-              <p className="text-gray-300 mt-2 slide-up">Born on 28th January 2004. Currently living in Kailasapatnam, Kotauratla, Visakhapatnam.</p>
-            </div>
-          </div>
-
-          <div className="mt-10 bg-gray-700 p-6 rounded-lg shadow-lg w-full max-w-2xl fade-in">
-            <h3 className="text-2xl font-semibold mb-4 flex items-center slide-down">
-              Feedback <RiFeedbackLine className="text-amber-400 ml-2" />
-            </h3>
-            <form onSubmit={handleFeedbackSubmit} className="slide-up">
-              <input
-                type="text"
-                value={name}
-                onChange={handleNameChange}
-                placeholder="Your Name"
-                className="w-full p-3 border-none rounded-md bg-gray-800 text-white focus:ring-2 focus:ring-blue-500 mb-3"
-                required
-              />
-              <textarea
-                value={feedback}
-                onChange={handleFeedbackChange}
-                placeholder="Leave your feedback..."
-                className="w-full p-3 border-none rounded-md bg-gray-800 text-white focus:ring-2 focus:ring-blue-500 mb-3"
-                rows="4"
-                required
-              />
-              <button
-                type="submit"
-                className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition-all disabled:bg-blue-300 disabled:cursor-not-allowed"
-                disabled={loading}
-              >
-                {loading ? "Sending..." : "Submit Feedback"}
-              </button>
-            </form>
-            {submitted && (
-              <p className="mt-3 text-green-400 text-sm slide-up">Thank you for your feedback!</p>
-            )}
           </div>
         </div>
       </div>
-
-      <ToastContainer
-        position="bottom-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-
-      <Copyright />
-    </div>
-  );
-};
+    </section>
+    <div className="h-16" />
+  </>
+);
 
 export default About;
