@@ -3,87 +3,714 @@
 @tailwind utilities;
 
 @layer base {
+  /* ---------------------------------------------------------------------
+   * Design tokens (spec 2.2). Every colour is an RGB triplet so Tailwind
+   * can apply an alpha channel: rgb(var(--green) / <alpha-value>).
+   * ------------------------------------------------------------------- */
   :root {
-    --bg: 250 250 249;
-    --card: 255 255 255;
-    --fg: 24 24 27;
-    --muted: 107 107 112;
-    --line: 228 228 231;
-    --accent: 194 65 12; /* orange-700 */
     color-scheme: light;
+
+    /* Neutrals */
+    --bg: 255 255 255;
+    --subtle: 247 247 247;
+    --line: 229 229 229;
+    --line-strong: 206 206 206;
+    --faint: 175 175 175;
+    --muted: 111 111 111;
+    --fg: 75 75 75;
+    --on-fill: 255 255 255;
+    --focus: 21 112 174;
+
+    /* Green */
+    --green: 88 204 2;
+    --green-lip: 88 167 0;
+    --green-tint: 215 255 184;
+    --green-edge: 165 237 110;
+    --green-ink: 58 125 0;
+
+    /* Blue */
+    --blue: 28 176 246;
+    --blue-lip: 24 153 214;
+    --blue-tint: 221 244 255;
+    --blue-edge: 132 216 255;
+    --blue-ink: 21 112 174;
+
+    /* Red */
+    --red: 255 75 75;
+    --red-lip: 234 43 43;
+    --red-tint: 255 223 224;
+    --red-edge: 255 178 178;
+    --red-ink: 194 27 27;
+
+    /* Gold */
+    --gold: 255 200 0;
+    --gold-lip: 231 166 1;
+    --gold-tint: 255 245 211;
+    --gold-edge: 255 225 115;
+    --gold-ink: 138 90 0;
+
+    /* Orange */
+    --orange: 255 150 0;
+    --orange-lip: 205 121 0;
+    --orange-tint: 255 240 217;
+    --orange-edge: 255 203 133;
+    --orange-ink: 158 90 0;
+
+    /* Purple */
+    --purple: 206 130 255;
+    --purple-lip: 165 104 204;
+    --purple-tint: 244 230 255;
+    --purple-edge: 227 194 255;
+    --purple-ink: 142 68 201;
+
+    /* Pink */
+    --pink: 255 134 208;
+    --pink-lip: 229 98 179;
+    --pink-tint: 255 227 244;
+    --pink-edge: 255 180 230;
+    --pink-ink: 168 46 112;
+
+    /* Locked */
+    --locked: 229 229 229;
+    --locked-lip: 206 206 206;
+    --locked-icon: 175 175 175;
+
+    /* Unit defaults — overridden by .unit-* (spec 2.3) */
+    --unit: 88 204 2;
+    --unit-lip: 88 167 0;
+    --unit-tint: var(--green-tint);
+    --unit-ink: var(--green-ink);
   }
 
   .dark {
-    --bg: 12 12 14;
-    --card: 20 20 24;
-    --fg: 236 236 238;
-    --muted: 150 150 160;
-    --line: 39 39 46;
-    --accent: 251 191 36; /* amber-400 */
     color-scheme: dark;
+
+    --bg: 19 31 36;
+    --subtle: 32 47 54;
+    --line: 55 70 79;
+    --line-strong: 82 101 109;
+    --faint: 82 101 109;
+    --muted: 154 176 186;
+    --fg: 241 247 251;
+    --on-fill: 19 31 36;
+    --focus: 73 192 248;
+
+    --green: 147 211 51;
+    --green-lip: 121 185 51;
+    --green-tint: 32 47 54;
+    --green-edge: 95 132 40;
+    --green-ink: 147 211 51;
+
+    --blue: 73 192 248;
+    --blue-lip: 24 153 214;
+    --blue-tint: 32 47 54;
+    --blue-edge: 63 133 167;
+    --blue-ink: 73 192 248;
+
+    --red: 238 85 85;
+    --red-lip: 216 72 72;
+    --red-tint: 32 47 54;
+    --red-edge: 148 81 81;
+    --red-ink: 255 120 120;
+
+    --gold: 255 199 0;
+    --gold-lip: 231 166 1;
+    --gold-tint: 32 47 54;
+    --gold-edge: 122 100 32;
+    --gold-ink: 255 199 0;
+
+    --orange: 255 171 51;
+    --orange-lip: 215 148 51;
+    --orange-tint: 32 47 54;
+    --orange-edge: 122 84 36;
+    --orange-ink: 255 171 51;
+
+    --purple: 206 130 255;
+    --purple-lip: 165 104 204;
+    --purple-tint: 32 47 54;
+    --purple-edge: 110 75 138;
+    --purple-ink: 206 130 255;
+
+    --pink: 255 134 208;
+    --pink-lip: 229 98 179;
+    --pink-tint: 32 47 54;
+    --pink-edge: 127 74 106;
+    --pink-ink: 255 134 208;
+
+    --locked: 55 70 79;
+    --locked-lip: 44 56 63;
+    --locked-icon: 82 101 109;
   }
+
+  /* ---------------------------------------------------------------------
+   * Unit ("always-light") tones — spec 2.3. Face and lip keep their light
+   * hex in both themes; tint and ink follow the theme.
+   * ------------------------------------------------------------------- */
+  .unit-green {
+    --unit: 88 204 2;
+    --unit-lip: 88 167 0;
+    --unit-tint: var(--green-tint);
+    --unit-ink: var(--green-ink);
+  }
+
+  .unit-purple {
+    --unit: 206 130 255;
+    --unit-lip: 165 104 204;
+    --unit-tint: var(--purple-tint);
+    --unit-ink: var(--purple-ink);
+  }
+
+  .unit-blue {
+    --unit: 28 176 246;
+    --unit-lip: 24 153 214;
+    --unit-tint: var(--blue-tint);
+    --unit-ink: var(--blue-ink);
+  }
+
+  /* ---------------------------------------------------------------------
+   * Layout variables (spec 3.1). Declared in CSS as well as by
+   * useLayoutMode, so the first paint is already correct.
+   * ------------------------------------------------------------------- */
+  :root {
+    --nav-w: 0px;
+    --topbar-h: 56px;
+    --tabbar-h: calc(64px + env(safe-area-inset-bottom));
+    --sticky-top: 56px;
+    --banner-gap: 0px;
+
+    /* The shell owns page width, and no page may set its own. The content
+       column fills the space right of the nav minus one gutter per side, and
+       only caps at --content-max. */
+    --content-max: 1440px;
+    --gutter: 16px;
+  }
+
+  @media (min-width: 640px) {
+    :root {
+      --gutter: 24px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    :root {
+      --nav-w: 88px;
+      --topbar-h: 64px;
+      --tabbar-h: 0px;
+      --sticky-top: 72px;
+      --banner-gap: 8px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    :root {
+      --nav-w: 88px;
+      --topbar-h: 0px;
+      --tabbar-h: 0px;
+      /* No top chrome at this width, so a sticky element meets the viewport
+         edge. The old 16px was a decorative gap, and content scrolling through
+         it read as unfinished. */
+      --sticky-top: 0px;
+      --banner-gap: 16px;
+      --gutter: 32px;
+    }
+  }
+
+  /* The labelled 256px rail opens at 1280 — the same number as BREAKPOINTS.wide
+     in useLayoutMode, which writes --nav-w inline on <html> and so overrides
+     this block whenever the two disagree. A broad, labelled rail is worth its
+     width: at 1440 it still leaves ~1120px of content. */
+  @media (min-width: 1280px) {
+    :root {
+      --nav-w: 256px;
+      --topbar-h: 0px;
+      --tabbar-h: 0px;
+      --sticky-top: 0px;
+      --banner-gap: 16px;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    :root {
+      --gutter: 40px;
+    }
+  }
+
+  /* ------------------------------------------------------------------- */
 
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
     scroll-behavior: smooth;
   }
 
   html,
   body {
+    /* clip, never hidden — hidden on an ancestor breaks position: sticky */
     overflow-x: clip;
   }
 
   body {
-    @apply bg-bg text-fg;
+    @apply bg-bg font-sans text-fg;
+    font-weight: 600;
     transition:
       background-color 0.2s ease,
       color 0.2s ease;
   }
 
   ::selection {
-    @apply bg-accent/30;
+    background: rgb(var(--green) / 0.3);
+    color: rgb(var(--fg));
   }
 
   :focus-visible {
-    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-bg rounded-sm;
+    outline: 3px solid rgb(var(--focus));
+    outline-offset: 3px;
+    border-radius: inherit;
+  }
+
+  /* Long strings (email, school and certification names) must never push
+     the layout wider than the viewport. */
+  body {
+    overflow-wrap: break-word;
   }
 }
 
 @layer components {
-  .container-narrow {
-    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  /* ---------------------------------------------------------------------
+   * The one column system (layout spec §1.4). Four columns on a phone, eight
+   * on a tablet, twelve from 1024 up — so width is spent on real columns
+   * rather than on stretched lines of text. Every multi-column block on every
+   * page sits on this grid; no page defines its own.
+   * ------------------------------------------------------------------- */
+  .grid-12 {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
   }
 
-  .link {
-    @apply text-accent underline-offset-4 hover:underline;
+  @media (min-width: 640px) {
+    .grid-12 {
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+      gap: 20px;
+    }
   }
 
-  .eyebrow {
-    @apply text-xs font-semibold uppercase tracking-[0.14em] text-accent;
+  @media (min-width: 1024px) {
+    .grid-12 {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 24px;
+    }
   }
 
-  .btn {
-    @apply inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors;
+  @media (min-width: 1600px) {
+    .grid-12 {
+      gap: 28px;
+    }
   }
 
+  /* ---------------------------------------------------------------------
+   * Type scale (spec 2.5). Pages use these classes, never ad-hoc sizes.
+   * Uppercase always comes from text-transform, so the DOM keeps the
+   * original strings.
+   * ------------------------------------------------------------------- */
+  .t-hero {
+    @apply font-display;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 46px;
+    letter-spacing: -0.02em;
+  }
+
+  .t-h1 {
+    @apply font-display;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: -0.01em;
+  }
+
+  .t-display-num {
+    @apply font-display;
+    font-weight: 700;
+    font-size: 120px;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+
+  .t-h2 {
+    @apply font-sans;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  .t-h3 {
+    @apply font-sans;
+    font-weight: 800;
+    font-size: 19px;
+    line-height: 24px;
+  }
+
+  .t-h4 {
+    @apply font-sans;
+    font-weight: 800;
+    font-size: 17px;
+    line-height: 24px;
+  }
+
+  .t-body-lg {
+    @apply font-sans;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 28px;
+  }
+
+  .t-body {
+    @apply font-sans;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 26px;
+  }
+
+  .t-body-sm {
+    @apply font-sans;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+  .t-label {
+    @apply font-sans;
+    font-weight: 800;
+    font-size: 15px;
+    line-height: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .t-eyebrow {
+    @apply font-sans;
+    font-weight: 800;
+    font-size: 13px;
+    line-height: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .t-micro {
+    @apply font-sans;
+    font-weight: 800;
+    font-size: 12px;
+    line-height: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+
+  /* Tile-sized numbers */
+  .t-stat-lg {
+    @apply font-sans;
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 24px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (max-width: 639px) {
+    .t-hero {
+      font-size: 32px;
+      line-height: 38px;
+    }
+
+    .t-h1 {
+      font-size: 28px;
+      line-height: 34px;
+    }
+
+    .t-display-num {
+      font-size: 96px;
+    }
+
+    .t-h2 {
+      font-size: 22px;
+      line-height: 28px;
+    }
+
+    .t-h3 {
+      font-size: 18px;
+      line-height: 24px;
+    }
+
+    .t-body-lg {
+      font-size: 16px;
+      line-height: 26px;
+    }
+
+    .t-body {
+      font-size: 15px;
+      line-height: 24px;
+    }
+
+    .t-body-sm {
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .t-stat-lg {
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
+
+  /* ---------------------------------------------------------------------
+   * The chunky 3D button (spec 4.1). Depth is a solid lip, never a blur.
+   * ------------------------------------------------------------------- */
+  .btn3d {
+    --lip-h: 4px;
+    --face: var(--green);
+    --lip: var(--green-lip);
+    --label: var(--on-fill);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    white-space: nowrap;
+    border-radius: 16px;
+    background: rgb(var(--face));
+    color: rgb(var(--label));
+    box-shadow: 0 var(--lip-h) 0 rgb(var(--lip));
+    margin-bottom: var(--lip-h);
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition:
+      transform 60ms linear,
+      box-shadow 60ms linear,
+      filter 150ms ease;
+  }
+
+  /* Sizes */
+  .btn-lg {
+    --lip-h: 4px;
+    height: 50px;
+    min-width: 150px;
+    padding-inline: 24px;
+    border-radius: 16px;
+  }
+
+  .btn-md {
+    --lip-h: 4px;
+    height: 46px;
+    padding-inline: 20px;
+    border-radius: 16px;
+  }
+
+  .btn-sm {
+    --lip-h: 3px;
+    height: 36px;
+    padding-inline: 14px;
+    border-radius: 12px;
+  }
+
+  .btn-sm .t-label {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  /* Variants */
   .btn-primary {
-    @apply btn bg-fg text-bg hover:bg-fg/85;
+    --face: var(--green);
+    --lip: var(--green-lip);
+    --label: var(--on-fill);
+  }
+
+  .btn-danger {
+    --face: var(--red);
+    --lip: var(--red-lip);
+    --label: var(--on-fill);
   }
 
   .btn-secondary {
-    @apply btn border border-line bg-card text-fg hover:border-fg/40;
+    --lip-h: 2px;
+    --face: var(--bg);
+    --lip: var(--line);
+    --label: var(--blue-ink);
+    border: 2px solid rgb(var(--line));
+  }
+
+  @media (hover: hover) {
+    .btn3d:hover {
+      filter: brightness(1.1);
+    }
+
+    .btn-secondary:hover {
+      background: rgb(var(--subtle));
+      filter: none;
+    }
+  }
+
+  .btn3d:active:not(:disabled):not([aria-disabled='true']) {
+    transform: translateY(var(--lip-h));
+    box-shadow: 0 0 0 rgb(var(--lip));
+  }
+
+  .btn3d:disabled,
+  .btn3d[aria-disabled='true'] {
+    background: rgb(var(--locked));
+    color: rgb(var(--faint));
+    border-color: rgb(var(--locked));
+    box-shadow: none;
+    transform: translateY(var(--lip-h));
+    filter: none;
+    cursor: default;
+  }
+
+  /* ---------------------------------------------------------------------
+   * Cards (spec 2.4, 4.3)
+   * ------------------------------------------------------------------- */
+  .card {
+    background: rgb(var(--bg));
+    border: 2px solid rgb(var(--line));
+    border-radius: 16px;
+  }
+}
+
+@layer utilities {
+  /* Hidden scrollbar — the SideNav rail. */
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .wrap-anywhere {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* -----------------------------------------------------------------------
+ * Increased contrast (spec 9.1). In light mode the bright faces become
+ * their inks and the lips go 12% darker. Dark mode already passes.
+ * --------------------------------------------------------------------- */
+@media (prefers-contrast: more) {
+  :root:not(.dark) {
+    --green: 58 125 0;
+    --green-lip: 51 110 0;
+    --blue: 21 112 174;
+    --blue-lip: 18 99 153;
+    --purple: 142 68 201;
+    --purple-lip: 125 60 177;
+    --red: 194 27 27;
+    --red-lip: 171 24 24;
+    --orange: 158 90 0;
+    --orange-lip: 139 79 0;
+    --pink: 168 46 112;
+    --pink-lip: 148 40 99;
+  }
+
+  :root:not(.dark) .unit-green {
+    --unit: 58 125 0;
+    --unit-lip: 51 110 0;
+  }
+
+  :root:not(.dark) .unit-purple {
+    --unit: 142 68 201;
+    --unit-lip: 125 60 177;
+  }
+
+  :root:not(.dark) .unit-blue {
+    --unit: 21 112 174;
+    --unit-lip: 18 99 153;
+  }
+}
+
+/* -----------------------------------------------------------------------
+ * Reduced motion (spec 7). Button and card press feedback is deliberately
+ * excluded — it is feedback, not decoration.
+ * --------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  .btn3d {
+    transition:
+      transform 60ms linear,
+      box-shadow 60ms linear,
+      filter 150ms ease !important;
+  }
+}
+
+/* -----------------------------------------------------------------------
+ * Print (spec 3.11). Chrome, path art, mascot and gamification are hidden;
+ * what is left is the text of the résumé.
+ * --------------------------------------------------------------------- */
+@media print {
+  [data-print-hide],
+  .no-print,
+  nav,
+  .achievement-badge,
+  .feedback-bar {
+    display: none !important;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    color: #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    animation: none !important;
+    transition: none !important;
   }
 
   .card {
-    @apply rounded-xl border border-line bg-card shadow-card;
+    border: 1px solid #999 !important;
+    margin-bottom: 0 !important;
+    page-break-inside: avoid;
   }
 
-  .icon-btn {
-    @apply inline-flex h-9 w-9 items-center justify-center rounded-lg border border-line bg-card text-muted transition-colors hover:border-fg/40 hover:text-fg;
+  .shell-content,
+  main {
+    margin-left: 0 !important;
+    padding: 0 !important;
   }
 
-  .chip {
-    @apply inline-flex items-center rounded-md border px-2 py-0.5 text-xs font-medium;
+  a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-size: 11px;
+    word-break: break-all;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    page-break-after: avoid;
   }
 }

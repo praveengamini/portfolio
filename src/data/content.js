@@ -17,6 +17,9 @@ export const profile = {
     'Backend engineer at TalentXO, where I work on an HR product built on Flask, MySQL and React and run its infrastructure on GCP. Before that I built the AI layer of Margdarshak AI — a RAG chatbot, a multi-source job-ingestion pipeline and a personalised roadmap engine — and shipped production LLM features on AWS.',
 };
 
+// Every skill renders from src/data/skills.js, which carries the same names
+// plus their brand marks. There is no second plain-string copy here: two
+// sources would print the whole list twice on one page.
 export const experience = [
   {
     company: 'TalentXO',
@@ -65,50 +68,44 @@ export const experience = [
   },
 ];
 
-export const skills = [
-  { group: 'Languages', items: ['Python', 'Java', 'C', 'JavaScript', 'SQL'] },
+// Newest first. `score` is rendered in the ring; `scoreMax` scales the arc so a
+// CGPA out of 10 and a percentage out of 100 both fill it correctly.
+export const education = [
   {
-    group: 'Backend & AI',
-    items: [
-      'Node.js',
-      'Express',
-      'Flask',
-      'FastAPI',
-      'OAuth',
-      'LangChain',
-      'LangGraph',
-      'MCP',
-      'LLM APIs',
-      'RAG',
-      'Microservices',
-      'RabbitMQ',
-    ],
+    school: 'Maharaj Vijayaram Gajapathi Raj College of Engineering',
+    place: 'Vizianagaram',
+    degree: 'B.Tech, Computer Science Engineering',
+    period: 'Nov 2022 — Apr 2026',
+    score: '8.54',
+    scoreLabel: 'CGPA',
+    scoreMax: 10,
   },
-  { group: 'Frontend', items: ['React', 'Redux Toolkit', 'HTML', 'CSS', 'Tailwind CSS'] },
-  { group: 'Databases', items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Qdrant'] },
-  { group: 'Cloud & DevOps', items: ['GCP', 'AWS', 'Docker', 'Nginx', 'Git', 'CI/CD'] },
+  {
+    school: 'Sriviswa Junior College',
+    place: 'Visakhapatnam',
+    degree: 'MPC (Physics, Chemistry, Maths)',
+    period: 'Apr 2020 — Apr 2022',
+    score: '97.5',
+    scoreLabel: '%',
+    scoreMax: 100,
+  },
 ];
-
-export const education = {
-  school: 'Maharaj Vijayaram Gajapathi Raj College of Engineering',
-  place: 'Vizianagaram',
-  degree: 'B.Tech, Computer Science Engineering',
-  period: 'Nov 2022 — Apr 2026',
-  cgpa: '8.54',
-};
 
 export const achievements = [
   {
     title: 'Winner-2, Aavishkar Season 2 (National Hackathon)',
     detail: 'Placed second among 50+ teams with a ticket-resale platform addressing refund-policy gaps.',
+    badge: { label: '2ND', tone: 'silver', glyph: 'medal', rank: '2nd of 50+' },
   },
   {
     title: 'Winner, Sankalp 2025 — MVGR College of Engineering',
     detail: 'Secured the top position among 175+ teams.',
+    badge: { label: '1ST', tone: 'gold', glyph: 'trophy', rank: '1st of 175+' },
   },
   {
     title: 'Finalist, NLP Challenge — IIT Kharagpur',
     detail: 'Reached the final round of the national NLP challenge.',
+    badge: { label: 'FINAL', tone: 'purple', glyph: 'spark', rank: 'Final round' },
   },
 ];
 

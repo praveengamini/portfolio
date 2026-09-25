@@ -9,8 +9,7 @@
       content="Praveen Gamini — Software Engineer at TalentXO. Backend systems, AI-driven product features, and cloud infrastructure."
     />
     <link rel="canonical" href="https://praveengamini.netlify.app/" />
-    <meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0c0c0e" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#FFFFFF" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Praveen Gamini" />
@@ -30,19 +29,26 @@
       content="Backend systems, AI-driven product features and cloud infrastructure. Currently at TalentXO."
     />
     <meta name="twitter:image" content="https://praveengamini.netlify.app/og.png" />
+    <style>
+      html.dark {
+        background: #131f24;
+      }
+    </style>
     <script>
       (function () {
         try {
           var t = localStorage.getItem('theme');
           var dark = t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
           if (dark) document.documentElement.classList.add('dark');
+          var meta = document.querySelector('meta[name=theme-color]');
+          if (meta) meta.content = dark ? '#131F24' : '#FFFFFF';
         } catch (e) {}
       })();
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800;900&family=Fredoka:wght@600;700&display=swap"
       rel="stylesheet"
     />
     <title>Praveen Gamini — Software Engineer</title>

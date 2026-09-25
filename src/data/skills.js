@@ -24,7 +24,20 @@ import {
   SiGit,
   SiGithubactions,
 } from 'react-icons/si';
-import { FaJava, FaAws, FaRobot, FaDiagramProject, FaKey, FaMagnifyingGlass, FaPlug } from 'react-icons/fa6';
+import {
+  FaJava,
+  FaAws,
+  FaRobot,
+  FaDiagramProject,
+  FaKey,
+  FaMagnifyingGlass,
+  FaPlug,
+  FaCubes,
+  FaCode,
+  FaPalette,
+  FaDatabase,
+  FaCloud,
+} from 'react-icons/fa6';
 
 // Brand colours are used for the icons — they give the section colour without inventing a palette.
 export const skillGroups = [
@@ -49,6 +62,7 @@ export const skillGroups = [
       { name: 'LangGraph', icon: FaDiagramProject, color: '#1C3C3C' },
       { name: 'LLM APIs', icon: FaRobot, color: '#D97757' },
       { name: 'RAG', icon: FaMagnifyingGlass, color: '#7C3AED' },
+      { name: 'Microservices', icon: FaCubes, color: '#8E44C9' },
       { name: 'MCP', icon: FaPlug, color: '#D97757' },
       { name: 'OAuth', icon: FaKey, color: '#2563EB' },
       { name: 'RabbitMQ', icon: SiRabbitmq, color: '#FF6600' },
@@ -87,11 +101,34 @@ export const skillGroups = [
   },
 ];
 
-export const tagStyles = {
-  AI: 'border-violet-500/30 bg-violet-500/10 text-violet-600 dark:text-violet-300',
-  'Full Stack': 'border-sky-500/30 bg-sky-500/10 text-sky-700 dark:text-sky-300',
-  Frontend: 'border-pink-500/30 bg-pink-500/10 text-pink-600 dark:text-pink-300',
-  Backend: 'border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300',
-  Extension: 'border-amber-500/30 bg-amber-500/10 text-amber-700 dark:text-amber-300',
-  Systems: 'border-zinc-500/30 bg-zinc-500/10 text-zinc-600 dark:text-zinc-300',
+// Project tags map to a token hue, never to a class string — the consuming
+// component holds the static hue → class map.
+export const tagHues = {
+  AI: 'purple',
+  'Full Stack': 'blue',
+  Frontend: 'pink',
+  Backend: 'green',
+  Extension: 'gold',
+  Systems: 'neutral',
+};
+
+// Brand marks that go muddy or invisible on the dark page background.
+export const darkIconOverrides = {
+  LangChain: '#F1F7FB',
+  LangGraph: '#F1F7FB',
+  'Redux Toolkit': '#A98BE0',
+  CSS: '#A57BD6',
+  Python: '#5A9BD5',
+  MySQL: '#6FA3CC',
+  SQL: '#7C9CF0',
+  PostgreSQL: '#7C9CF0',
+  Microservices: '#CE82FF',
+};
+
+export const groupMeta = {
+  Languages: { hue: 'blue', icon: FaCode },
+  'Backend & AI': { hue: 'purple', icon: FaRobot },
+  Frontend: { hue: 'pink', icon: FaPalette },
+  Databases: { hue: 'green', icon: FaDatabase },
+  'Cloud & DevOps': { hue: 'orange', icon: FaCloud },
 };

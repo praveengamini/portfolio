@@ -1,15 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
-import {
-  FaEnvelope,
-  FaGithub,
-  FaLinkedinIn,
-  FaLocationDot,
-  FaPaperPlane,
-  FaCircleCheck,
-  FaCircleExclamation,
-} from 'react-icons/fa6';
+import { useReducedMotion } from 'motion/react';
 import { profile } from '../data/content';
+import { celebrateSend } from '../lib/celebrate';
+import identity from '../lib/identity';
+import Button from '../components/ui/Button';
+import Card from '../components/ui/Card';
+import FeedbackBar from '../components/ui/FeedbackBar';
+import PageSection from '../components/ui/PageSection';
+import ContactField from '../components/contact/ContactField';
+import ContactTile from '../components/contact/ContactTile';
+import SentPanel from '../components/contact/SentPanel';
+
+// /contact — a form that works, plus the direct links. The send logic below
+// (constants, encode, the EmailJS branch, the DEV error, the Netlify Forms
+// fallback and the status machine) is unchanged; only the presentation is new.
 
 const SERVICE_ID = import.meta.env.VITE_SERVICE_ID;
 const TEMPLATE_ID = import.meta.env.VITE_TEMPLATE_ID;
@@ -22,18 +27,88 @@ const encode = (data) =>
     .map((k) => `${encodeURIComponent(k)}=${encodeURIComponent(data[k])}`)
     .join('&');
 
-const inputClass =
-  'w-full rounded-lg border border-line bg-bg px-3.5 py-2.5 text-sm text-fg placeholder:text-muted/70 transition-colors focus:border-accent focus:outline-none';
+const FIELDS = ['name', 'email', 'message'];
+
+const HINTS = {
+  name: 'Please enter your name.',
+  email: 'Please enter a valid email.',
+  message: 'Please write a message.',
+};
+
+const EMPTY = { name: '', email: '', message: '' };
+const NONE = { name: false, email: false, message: false };
+
+const DIRECT = [identity.email, identity.linkedin, identity.github, identity.location];
+
+const LEAD = 'Have a role, a project, or just want to talk shop? I usually reply within a day.';
 
 const Contact = () => {
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const reduce = useReducedMotion();
+
+  const [form, setForm] = useState(EMPTY);
   const [status, setStatus] = useState('idle'); // idle | sending | sent | error
   const [errorText, setErrorText] = useState('');
 
-  const onChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+  const [valid, setValid] = useState(NONE);
+  const [touched, setTouched] = useState(NONE);
+  const [attempted, setAttempted] = useState(false);
+  const [shake, setShake] = useState({ name: 0, email: 0, message: 0 });
+  const [cardShake, setCardShake] = useState(0);
+  const [cardShaking, setCardShaking] = useState(false);
+
+  const nameRef = useRef(null);
+  const emailRef = useRef(null);
+  const messageRef = useRef(null);
+  const refs = { name: nameRef, email: emailRef, message: messageRef };
+
+  const allValid = FIELDS.every((field) => valid[field]);
+
+  // Re-trigger the shake on the form card after a failed send.
+  useEffect(() => {
+    if (!cardShake || reduce) return undefined;
+    setCardShaking(false);
+    const frame = requestAnimationFrame(() => setCardShaking(true));
+    const timer = setTimeout(() => setCardShaking(false), 440);
+    return () => {
+      cancelAnimationFrame(frame);
+      clearTimeout(timer);
+    };
+  }, [cardShake, reduce]);
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    const ok = value.trim() !== '' && e.target.checkValidity();
+    setForm((f) => ({ ...f, [name]: value }));
+    setValid((v) => ({ ...v, [name]: ok }));
+  };
+
+  const onBlur = (e) => {
+    const { name } = e.target;
+    setTouched((t) => ({ ...t, [name]: true }));
+  };
+
+  const focusFirstInvalid = () => {
+    setAttempted(true);
+    const first = FIELDS.find((field) => !valid[field]);
+    if (!first) return;
+    refs[first].current?.focus();
+    setShake((s) => ({ ...s, [first]: s[first] + 1 }));
+  };
+
+  const onFormKeyDown = (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+      e.preventDefault();
+      e.currentTarget.requestSubmit();
+    }
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    if (status === 'sending') return;
+    if (!allValid) {
+      focusFirstInvalid();
+      return;
+    }
     setStatus('sending');
     setErrorText('');
     try {
@@ -61,152 +136,208 @@ const Contact = () => {
       }
       setStatus('sent');
       setForm({ name: '', email: '', message: '' });
+      setValid(NONE);
+      setTouched(NONE);
+      setAttempted(false);
+      celebrateSend();
     } catch (err) {
       console.error('[contact] error', err);
       const detail = err?.text || err?.message || (typeof err === 'string' ? err : 'Unknown error');
       setErrorText(detail);
       setStatus('error');
+      setCardShake((count) => count + 1);
     }
   };
 
+  const restart = () => {
+    setStatus('idle');
+    setErrorText('');
+  };
+
+  const hintFor = (field) => (touched[field] || attempted) && !valid[field];
+
+  const sent = status === 'sent';
+  const failed = status === 'error';
+
   return (
-    <section className="container-narrow pb-20 pt-14 sm:pt-20">
-      <p className="eyebrow">Get in touch</p>
-      <h1 className="mt-1 text-3xl font-bold tracking-tight text-fg sm:text-4xl">Contact</h1>
-      <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted">
-        Have a role, a project, or just want to talk shop? Send a message — I usually reply within a day.
-      </p>
+    <div
+      className={
+        failed
+          ? 'flex min-w-0 flex-col gap-10 pb-[240px] md:gap-12 lg:gap-14'
+          : 'flex min-w-0 flex-col gap-10 md:gap-12 lg:gap-14'
+      }
+    >
+      <header className="min-w-0">
+        <h1 className="t-h1 text-fg">Contact</h1>
+        {sent ? null : <p className="t-body-lg mt-2 max-w-[58ch] text-muted">{LEAD}</p>}
+      </header>
 
-      <div className="mt-10 grid gap-8 md:grid-cols-[1fr_1.4fr] md:gap-12">
-        <div className="space-y-5">
-          <a
-            href={profile.mailUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="card flex items-center gap-4 p-4 transition-colors hover:border-fg/30"
-          >
-            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-accent/10 text-accent">
-              <FaEnvelope size={16} />
-            </span>
-            <div className="min-w-0">
-              <p className="text-xs text-muted">Email</p>
-              <p className="truncate text-sm font-medium text-fg">{profile.email}</p>
-            </div>
-          </a>
-          <a
-            href={profile.linkedin}
-            target="_blank"
-            rel="noreferrer"
-            className="card flex items-center gap-4 p-4 transition-colors hover:border-fg/30"
-          >
-            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-accent/10 text-accent">
-              <FaLinkedinIn size={16} />
-            </span>
-            <div>
-              <p className="text-xs text-muted">LinkedIn</p>
-              <p className="text-sm font-medium text-fg">praveen-gamini</p>
-            </div>
-          </a>
-          <a
-            href={profile.github}
-            target="_blank"
-            rel="noreferrer"
-            className="card flex items-center gap-4 p-4 transition-colors hover:border-fg/30"
-          >
-            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-accent/10 text-accent">
-              <FaGithub size={16} />
-            </span>
-            <div>
-              <p className="text-xs text-muted">GitHub</p>
-              <p className="text-sm font-medium text-fg">praveengamini</p>
-            </div>
-          </a>
-          <p className="flex items-center gap-2 px-1 text-sm text-muted">
-            <FaLocationDot size={12} className="text-accent" /> {profile.location}
-          </p>
-        </div>
-
-        <form
-          name={FORM_NAME}
-          method="POST"
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
-          onSubmit={onSubmit}
-          className="card p-6 sm:p-8"
+      {/* One row: the form on cols 1–7, the direct links on 8–12. Stacked below
+          1024 with the form first. `SentPanel` replaces the form card in place,
+          in the same slot, so the page never reflows around it. Both columns
+          wear the same section band, so their cards start on the same line. */}
+      <div className="grid-12 min-w-0 items-start gap-y-10 md:gap-y-12 lg:gap-y-6">
+        <PageSection
+          titleId="contact-form-title"
+          title="Send a message"
+          className="col-span-4 sm:col-span-8 lg:col-span-7"
         >
-          <input type="hidden" name="form-name" value={FORM_NAME} />
-          <p className="hidden">
-            <label>
-              Don&apos;t fill this out: <input name="bot-field" onChange={() => {}} />
-            </label>
-          </p>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <label className="block">
-              <span className="mb-1.5 block text-xs font-medium text-muted">Name</span>
-              <input
-                name="name"
-                value={form.name}
-                onChange={onChange}
-                required
-                placeholder="Your name"
-                className={inputClass}
-              />
-            </label>
-            <label className="block">
-              <span className="mb-1.5 block text-xs font-medium text-muted">Email</span>
-              <input
-                name="email"
-                type="email"
-                value={form.email}
-                onChange={onChange}
-                required
-                placeholder="you@example.com"
-                className={inputClass}
-              />
-            </label>
-          </div>
-          <label className="mt-4 block">
-            <span className="mb-1.5 block text-xs font-medium text-muted">Message</span>
-            <textarea
-              name="message"
-              value={form.message}
-              onChange={onChange}
-              required
-              rows={6}
-              placeholder="What's on your mind?"
-              className={`${inputClass} resize-y`}
-            />
-          </label>
-
-          <div className="mt-5 flex flex-wrap items-center gap-4">
-            <button type="submit" className="btn-primary" disabled={status === 'sending'}>
-              <FaPaperPlane size={12} /> {status === 'sending' ? 'Sending…' : 'Send message'}
-            </button>
-          </div>
-
-          <div aria-live="polite" className="mt-4 empty:hidden">
-            {status === 'sent' && (
-              <p className="flex items-start gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-2.5 text-sm text-emerald-700 dark:text-emerald-300">
-                <FaCircleCheck className="mt-0.5 shrink-0" /> Sent — thanks, I&apos;ll get back to you soon.
-              </p>
-            )}
-            {status === 'error' && (
-              <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-3.5 py-2.5 text-sm text-red-700 dark:text-red-300">
-                <p className="flex items-start gap-2">
-                  <FaCircleExclamation className="mt-0.5 shrink-0" /> Couldn&apos;t send your message. Email
-                  me directly at{' '}
-                  <a className="underline" href={profile.mailUrl} target="_blank" rel="noreferrer">
-                    {profile.email}
-                  </a>
-                  .
+          {sent ? (
+            <SentPanel onRestart={restart} />
+          ) : (
+            <Card padding={24} className={cardShaking ? 'animate-shake' : undefined}>
+              <form
+                id="contact-form"
+                name={FORM_NAME}
+                method="POST"
+                data-netlify="true"
+                data-netlify-honeypot="bot-field"
+                noValidate
+                onSubmit={onSubmit}
+                onKeyDown={onFormKeyDown}
+                className="grid gap-4 sm:grid-cols-2"
+              >
+                <input type="hidden" name="form-name" value={FORM_NAME} />
+                <p className="hidden">
+                  <label>
+                    Don&apos;t fill this out: <input name="bot-field" onChange={() => {}} />
+                  </label>
                 </p>
-                {errorText && <p className="mt-1.5 break-words font-mono text-xs opacity-80">{errorText}</p>}
-              </div>
-            )}
-          </div>
-        </form>
+
+                <ContactField
+                  ref={nameRef}
+                  id="contact-name"
+                  name="name"
+                  label="Name"
+                  placeholder="Your name"
+                  value={form.name}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  valid={valid.name}
+                  invalid={hintFor('name')}
+                  hint={HINTS.name}
+                  shakeKey={shake.name}
+                />
+
+                <ContactField
+                  ref={emailRef}
+                  id="contact-email"
+                  name="email"
+                  type="email"
+                  label="Email"
+                  placeholder="you@example.com"
+                  value={form.email}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  valid={valid.email}
+                  invalid={hintFor('email')}
+                  hint={HINTS.email}
+                  shakeKey={shake.email}
+                />
+
+                <ContactField
+                  ref={messageRef}
+                  textarea
+                  id="contact-message"
+                  name="message"
+                  label="Message"
+                  placeholder="What's on your mind?"
+                  value={form.message}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  valid={valid.message}
+                  invalid={hintFor('message')}
+                  hint={HINTS.message}
+                  shakeKey={shake.message}
+                  rows={5}
+                  className="sm:col-span-2"
+                />
+
+                <div className="sm:col-span-2">
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    size="lg"
+                    loading={status === 'sending'}
+                    aria-disabled={allValid ? undefined : 'true'}
+                    onClick={(event) => {
+                      if (status === 'sending') {
+                        event.preventDefault();
+                        return;
+                      }
+                      if (!allValid) {
+                        event.preventDefault();
+                        focusFirstInvalid();
+                      }
+                    }}
+                  >
+                    {status === 'sending' ? 'Sending…' : 'Send message'}
+                  </Button>
+                </div>
+              </form>
+            </Card>
+          )}
+        </PageSection>
+
+        {/* Four facts, one uniform set, from the same definitions Home and
+            /about use. Location folds into the list, so it is not an orphan
+            line under the grid and renders exactly once on this page. */}
+        <PageSection
+          titleId="contact-direct"
+          title="Reach me directly"
+          className="col-span-4 sm:col-span-8 lg:col-span-5"
+        >
+          <Card padding={0}>
+            <ul aria-label="Direct contact details" className="divide-y-2 divide-line">
+              {DIRECT.map((row) => (
+                <ContactTile
+                  key={row.key}
+                  href={row.href}
+                  label={row.label}
+                  value={row.value}
+                  icon={row.icon}
+                  hue={row.hue}
+                />
+              ))}
+            </ul>
+          </Card>
+        </PageSection>
       </div>
-    </section>
+
+      {failed ? (
+        <FeedbackBar
+          status={status}
+          title="Couldn’t send your message."
+          body={
+            <p>
+              Email me directly at{' '}
+              <a href={profile.mailUrl} target="_blank" rel="noreferrer">
+                {profile.email}
+              </a>
+              .
+            </p>
+          }
+          detail={errorText}
+          secondary={
+            <Button as="a" href={profile.mailUrl} external variant="secondary" size="lg">
+              Email instead
+            </Button>
+          }
+          primary={
+            <Button
+              variant="danger"
+              size="lg"
+              onClick={() => {
+                setErrorText('');
+                setStatus('idle');
+              }}
+            >
+              Try again
+            </Button>
+          }
+        />
+      ) : null}
+    </div>
   );
 };
 
