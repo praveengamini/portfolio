@@ -1,10 +1,11 @@
 import { FaEnvelope, FaFileLines, FaGithub, FaLinkedinIn } from 'react-icons/fa6';
 import IconButton from '../ui/IconButton';
-import ThemeToggle from '../ui/ThemeToggle';
 import { profile } from '../../data/content';
 
-// The one and only footer. Below `md` it also carries the theme toggle and the
-// three off-site links, because there is no SideNav to hold them there.
+// The one and only footer. Below `md` it also carries the off-site links,
+// because there is no SideNav to hold them there. The theme toggle is NOT here:
+// it sits in the mobile TopBar, so changing theme never costs a full scroll to
+// the bottom of the page.
 //
 // It carries no nav row. Home / Projects / About / Contact / Resume were a
 // fourth copy of the same five destinations already in the SideNav, the mobile
@@ -38,7 +39,6 @@ const PageFooter = ({ className = '' }) => (
           icon={social.icon}
         />
       ))}
-      <ThemeToggle size={44} />
     </div>
 
     <p className="t-micro wrap-anywhere normal-case text-muted">

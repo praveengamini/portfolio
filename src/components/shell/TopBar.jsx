@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
+import ThemeToggle from '../ui/ThemeToggle';
 
-// The mobile header: the logo mark and the wordmark, nothing else. The theme
-// toggle and the off-site links live in the page footer on mobile.
+// The mobile header: the wordmark, and the theme toggle on the right.
+//
+// The toggle lives here rather than in the page footer because the footer sits
+// below the whole page — switching theme should not cost a full scroll. The
+// off-site links stay in the footer, where reaching for them is deliberate.
 
 const cx = (...parts) => parts.filter(Boolean).join(' ');
 
@@ -29,6 +33,8 @@ const TopBar = ({ className = '' }) => (
         praveen
       </span>
     </Link>
+
+    <ThemeToggle size={40} className="ml-auto shrink-0" />
   </header>
 );
 
