@@ -1,131 +1,119 @@
-import {
-  FaGraduationCap,
-  FaTrophy,
-  FaCertificate,
-  FaEnvelope,
-  FaGithub,
-  FaLinkedinIn,
-  FaLocationDot,
-} from 'react-icons/fa6';
-import profileImg from '../assets/images/praveen-profile.png';
-import { profile, education, achievements, certifications } from '../data/content';
+import { achievements, education, profile } from '../data/content';
+import PageSection from '../components/ui/PageSection';
+import CourseCard from '../components/about/CourseCard';
+import AchievementRow from '../components/about/AchievementRow';
+import StagesPath from '../components/about/StagesPath';
+
+// /about — the longer story, and nothing Home already says.
+//
+// The identity block that used to open this page (portrait, name, "Software
+// Engineer · TalentXO", location, and the email/GitHub/LinkedIn byline) is
+// gone. Home's hero carries all five of those facts, and repeating them here
+// made /about read as a second landing page instead of an article. Home
+// introduces him; this page continues.
+//
+// What is left is a plain page heading — the same `t-h1 text-fg` on its own
+// header row that /projects and /contact use, so the three pages open the same
+// way — then Achievements, Education, and the bio last.
+//
+// The bio closes the page rather than opening it: awards and qualifications are
+// what a recruiter scans for, and the prose is the longer read for whoever is
+// still going. It wears a section band like every other block so the rhythm
+// down the page does not break.
+//
+// No lead paragraph in the /projects and /contact sense: the bio is the
+// author's own copy and its first paragraph is the lead. It is left exactly as
+// written, at the same weight as the two that follow, rather than split off
+// into a muted one-liner.
+//
+// No manual rule under the header either — every section below wears the
+// SectionBand rule, and a second one here only made the top look bandaged.
+//
+// No experience content lives on this page; experience is the top of Home and
+// appears nowhere else on the site.
+//
+// Every fact still appears exactly once here:
+//   each score                    → inside its own ring (CourseCard)
+//   degree, school, place, period → the education cards
+//   awards                        → the achievement cards
+// Where the bio mentions the city or the degree it is doing so as prose, which
+// is not the duplicated-chip problem this list guards against.
+
+const BIO = [
+  `I'm a software engineer based in ${profile.location}. I graduated in Computer Science from MVGR College of Engineering in 2026 and now work at ${profile.company}, building and running an HR product on Python, React and GCP.`,
+  'Most of my recent work has been on the backend and AI side — ingestion pipelines, RAG services, LLM tool-calling, and the infrastructure to keep them running in production. I care about systems that are simple to operate and easy for the next person to understand.',
+  'Outside work I build side projects, most of them on this site, and I’m usually happy to talk about backend architecture, LLM tooling, or what I’m currently learning.',
+];
 
 const About = () => (
-  <>
-    <section className="container-narrow pt-14 sm:pt-20">
-      <div className="grid gap-10 md:grid-cols-[auto_1fr] md:gap-14">
-        <div className="md:sticky md:top-24 md:self-start">
-          <img
-            src={profileImg}
-            alt="Praveen Gamini"
-            width={1200}
-            height={1600}
-            className="aspect-[4/5] w-full max-w-[16rem] rounded-2xl border border-line object-cover shadow-card md:w-64"
+  <div className="flex min-w-0 flex-col gap-10 md:gap-12 lg:gap-14">
+    <header className="min-w-0">
+      <h1 className="t-h1 text-fg">About</h1>
+    </header>
+
+    <PageSection titleId="achievements-title" title="Achievements" count={`${achievements.length} awards`}>
+      <ul className="grid-12 auto-rows-fr" aria-label="Awards and placements">
+        {achievements.map((achievement, index) => (
+          <AchievementRow
+            key={achievement.title}
+            achievement={achievement}
+            index={index}
+            className="col-span-4 sm:last:col-span-8 lg:col-span-4 lg:last:col-span-4"
           />
-          <div className="mt-4 space-y-2 text-sm text-muted">
-            <p className="flex items-center gap-2">
-              <FaLocationDot size={12} className="text-accent" /> {profile.location}
+        ))}
+      </ul>
+    </PageSection>
+
+    {/* Education used to share a 5/7 row with Certifications. Certifications
+        are gone, so the cards take the full band rather than sitting at 5/12
+        under a 12-column rule with a hole beside it. Both records use the same
+        card, so the degree and the intermediate line up exactly. */}
+    <PageSection titleId="education-title" title="Education" count={`${education.length} qualifications`}>
+      <ul className="flex min-w-0 flex-col gap-4" aria-label="Education">
+        {education.map((course) => (
+          <li key={course.school} className="min-w-0">
+            <CourseCard course={course} />
+          </li>
+        ))}
+      </ul>
+    </PageSection>
+
+    {/* The prose closes the page. Awards and qualifications are the facts a
+        recruiter scans for, so they come first; this is the longer read for
+        whoever is still going. */}
+    <PageSection titleId="background-title" title="Background">
+      {/* The band sits on the site's own .grid-12 rather than a page-local
+          grid; the prose keeps its 68ch cap and simply moves into a cell.
+          The empty right of the band takes the stages timeline.
+
+          StagesPath is content, not decoration, so the cell is NOT aria-hidden
+          — it is an ordered list named by its own heading. It carries one line
+          per stage and nothing else: no bullets, no summaries, no roles, no
+          CGPA. Those live on /experience and in the Education cards above.
+
+          The 1400px threshold is measured, not chosen: 68ch of t-body-lg is
+          693.6px here, and an 8-of-12 cell only clears that once the grid is
+          ~1052px wide, i.e. from a ~1373px viewport up. At 1400 the prose cell
+          is 712px, so the paragraphs still render at the full 68ch they render
+          at today. Below 1400 the cell does not exist and StagesPath returns
+          null, so on phone, tablet and narrow laptops this section is
+          byte-for-byte what it was: one full-width column of prose. The
+          timeline can never cramp the measure at any width. */}
+      <div className="grid-12 items-start">
+        <div className="col-span-4 flex min-w-0 flex-col gap-4 sm:col-span-8 min-[1400px]:col-span-8">
+          {BIO.map((paragraph) => (
+            <p key={paragraph.slice(0, 32)} className="t-body-lg max-w-[68ch] text-fg">
+              {paragraph}
             </p>
-            <a
-              className="flex items-center gap-2 hover:text-fg"
-              href={profile.mailUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FaEnvelope size={12} className="text-accent" /> {profile.email}
-            </a>
-            <a
-              className="flex items-center gap-2 hover:text-fg"
-              href={profile.github}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FaGithub size={12} className="text-accent" /> github.com/praveengamini
-            </a>
-            <a
-              className="flex items-center gap-2 hover:text-fg"
-              href={profile.linkedin}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FaLinkedinIn size={12} className="text-accent" /> LinkedIn
-            </a>
-          </div>
+          ))}
         </div>
 
-        <div>
-          <p className="eyebrow">About me</p>
-          <h1 className="mt-1 text-3xl font-bold tracking-tight text-fg sm:text-4xl">
-            Engineer who likes systems that are simple to run.
-          </h1>
-          <div className="mt-6 max-w-2xl space-y-4 text-base leading-relaxed text-fg/80">
-            <p>
-              I&apos;m a software engineer based in {profile.location}. I graduated in Computer Science from
-              MVGR College of Engineering in 2026 and now work at {profile.company}, building and running an
-              HR product on Python, React and GCP.
-            </p>
-            <p>
-              Most of my recent work has been on the backend and AI side — ingestion pipelines, RAG services,
-              LLM tool-calling, and the infrastructure to keep them running in production. I care about
-              systems that are simple to operate and easy for the next person to understand.
-            </p>
-            <p>
-              Outside work I build side projects, most of them on this site, and I&apos;m usually happy to
-              talk about backend architecture, LLM tooling, or what I&apos;m currently learning.
-            </p>
-          </div>
-
-          <div className="mt-10 space-y-10">
-            <div>
-              <h2 className="flex items-center gap-2.5 text-xl font-semibold text-fg">
-                <FaGraduationCap className="text-accent" size={18} /> Education
-              </h2>
-              <div className="card mt-4 p-5">
-                <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <h3 className="font-semibold text-fg">{education.degree}</h3>
-                  <span className="font-mono text-xs text-muted">{education.period}</span>
-                </div>
-                <p className="mt-1 text-sm text-muted">
-                  {education.school}, {education.place}
-                </p>
-                <p className="mt-2 inline-block rounded-md bg-accent/10 px-2 py-0.5 font-mono text-xs font-medium text-accent">
-                  CGPA {education.cgpa}
-                </p>
-              </div>
-            </div>
-
-            <div>
-              <h2 className="flex items-center gap-2.5 text-xl font-semibold text-fg">
-                <FaTrophy className="text-accent" size={18} /> Achievements
-              </h2>
-              <ul className="mt-4 space-y-3">
-                {achievements.map((a) => (
-                  <li key={a.title} className="card p-5">
-                    <p className="font-medium text-fg">{a.title}</p>
-                    <p className="mt-1 text-sm leading-relaxed text-muted">{a.detail}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h2 className="flex items-center gap-2.5 text-xl font-semibold text-fg">
-                <FaCertificate className="text-accent" size={18} /> Certifications
-              </h2>
-              <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-                {certifications.map((c) => (
-                  <li key={c} className="card px-4 py-3 text-sm text-fg/90">
-                    {c}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+        <div data-print-hide className="hidden min-[1400px]:col-span-4 min-[1400px]:block">
+          <StagesPath />
         </div>
       </div>
-    </section>
-    <div className="h-16" />
-  </>
+    </PageSection>
+  </div>
 );
 
 export default About;
