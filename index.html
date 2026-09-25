@@ -37,8 +37,10 @@
     <script>
       (function () {
         try {
+          // Light is the default. Dark applies only when the visitor has
+          // chosen it, so a dark OS setting no longer decides for them.
           var t = localStorage.getItem('theme');
-          var dark = t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var dark = t === 'dark';
           if (dark) document.documentElement.classList.add('dark');
           var meta = document.querySelector('meta[name=theme-color]');
           if (meta) meta.content = dark ? '#131F24' : '#FFFFFF';

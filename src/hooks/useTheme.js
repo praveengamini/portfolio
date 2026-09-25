@@ -3,8 +3,11 @@ import { useCallback, useEffect, useState } from 'react';
 // Theme state (spec 3.7 / 9.9). The pre-paint script in index.html has already put the
 // right class on <html>, so the first render never flashes.
 //
-// localStorage is written ONLY inside toggle(). While nothing is stored, the theme keeps
-// following the system, exactly as the accessibility section asks.
+// LIGHT IS THE DEFAULT. Dark applies only when the visitor has explicitly chosen it and
+// that choice is in localStorage; a dark OS setting does not decide for them. The system
+// preference is therefore not read at all, and not followed after load.
+//
+// localStorage is written ONLY inside toggle().
 
 const STORAGE_KEY = 'theme';
 
@@ -23,13 +26,7 @@ const readStored = () => {
 const getInitial = () => {
   if (typeof document === 'undefined') return 'light';
   if (document.documentElement.classList.contains('dark')) return 'dark';
-  const stored = readStored();
-  if (stored) return stored;
-  try {
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  } catch {
-    return 'light';
-  }
+  return readStored() === 'dark' ? 'dark' : 'light';
 };
 
 const applyTheme = (theme) => {
@@ -45,26 +42,6 @@ export const useTheme = () => {
   useEffect(() => {
     applyTheme(theme);
   }, [theme]);
-
-  // Follow the system while the visitor has not picked explicitly.
-  useEffect(() => {
-    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') return undefined;
-    let mq;
-    try {
-      mq = window.matchMedia('(prefers-color-scheme: dark)');
-    } catch {
-      return undefined;
-    }
-    const onChange = (event) => {
-      if (!readStored()) setTheme(event.matches ? 'dark' : 'light');
-    };
-    if (typeof mq.addEventListener === 'function') {
-      mq.addEventListener('change', onChange);
-      return () => mq.removeEventListener('change', onChange);
-    }
-    mq.addListener(onChange);
-    return () => mq.removeListener(onChange);
-  }, []);
 
   const toggle = useCallback(() => {
     setTheme((current) => {
