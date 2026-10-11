@@ -6,7 +6,16 @@
 // markers this file used to carry belonged to the game-mechanics build and are
 // gone with it.
 export const pathMeta = {
-  TalentXO: ['Core product', 'AI in the product', 'GCP infrastructure', 'Live-system care'],
+  TalentXO: [
+    'Agents in production',
+    'Agent harness',
+    'Recommendations',
+    'Model evaluation',
+    'Run tracing',
+    'Core product',
+    'GCP infrastructure',
+    'Live-system care',
+  ],
   'Code At Random': [
     'AI backend',
     'Job-ingestion pipeline',

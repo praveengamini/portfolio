@@ -37,6 +37,9 @@ import {
   FaPalette,
   FaDatabase,
   FaCloud,
+  FaSitemap,
+  FaChartLine,
+  FaEye,
 } from 'react-icons/fa6';
 
 // Brand colours are used for the icons — they give the section colour without inventing a palette.
@@ -61,7 +64,10 @@ export const skillGroups = [
       { name: 'LangChain', icon: SiLangchain, color: '#1C3C3C' },
       { name: 'LangGraph', icon: FaDiagramProject, color: '#1C3C3C' },
       { name: 'LLM APIs', icon: FaRobot, color: '#D97757' },
+      { name: 'AI Agents', icon: FaSitemap, color: '#D97757' },
       { name: 'RAG', icon: FaMagnifyingGlass, color: '#7C3AED' },
+      { name: 'Evaluation', icon: FaChartLine, color: '#16A34A' },
+      { name: 'Tracing', icon: FaEye, color: '#0EA5E9' },
       { name: 'Microservices', icon: FaCubes, color: '#8E44C9' },
       { name: 'MCP', icon: FaPlug, color: '#D97757' },
       { name: 'OAuth', icon: FaKey, color: '#2563EB' },
