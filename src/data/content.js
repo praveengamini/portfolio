@@ -14,7 +14,7 @@ export const profile = {
   linkedin: 'https://www.linkedin.com/in/praveen-gamini-3bb729273',
   resume: 'https://drive.google.com/file/d/1yCu5KeB5hPDq2G-DjsDqymvAWVZFacid/view?usp=sharing',
   intro:
-    'Backend engineer at TalentXO, where I work on an HR product built on Flask, MySQL and React and run its infrastructure on GCP. Before that I built the AI layer of Margdarshak AI — a RAG chatbot, a multi-source job-ingestion pipeline and a personalised roadmap engine — and shipped production LLM features on AWS.',
+    'AI and backend engineer at TalentXO, where I build LLM agents that run in production — the orchestration behind them, the MCP tools they call, the evaluation that picked the model and the tracing that explains a bad answer — on top of an HR product built with Flask, MySQL and React and running on GCP. Before that I built the AI layer of Margdarshak AI — a RAG chatbot, a multi-source job-ingestion pipeline and a personalised roadmap engine — and shipped production LLM features on AWS.',
 };
 
 // Every skill renders from src/data/skills.js, which carries the same names
@@ -29,12 +29,16 @@ export const experience = [
     period: 'Jul 2026 — Present',
     location: 'Bangalore',
     summary:
-      'TalentXO builds hiring software for recruiters and employers. I work across the backend and frontend of the product and own a good part of its cloud infrastructure.',
+      'TalentXO builds hiring software for recruiters and employers. I build the AI that runs inside it — agents, retrieval and the harness around them — and work across the backend, frontend and cloud infrastructure of the product.',
     points: [
-      'Develop and maintain the core product on an existing production codebase — Python/Flask services, a MySQL data layer and a React frontend — shipping features and fixes directly to customers.',
-      'Integrate AI into existing product workflows with the Google Gemini and Anthropic Claude APIs: prompt design, structured outputs and guard-rails so model output fits into the product rather than sitting beside it.',
+      'Design and run multi-agent AI workflows in production: Claude agents with custom orchestration, MCP tool servers and tool calling, structured outputs and guard-rails, with retries and fallbacks so a wrong model answer degrades gracefully instead of breaking the flow.',
+      'Build the harness those agents run on — custom Claude Skills, subagents, MCP servers, hooks and scheduled jobs — so every model call arrives with the right context, tools, memory and limits.',
+      'Built a candidate and job recommendation system on embeddings, matching people to roles by semantic similarity rather than keyword overlap.',
+      'Benchmarked 6–7 LLMs against real resume and job-description matching before choosing the production model, and route each step through OpenRouter to the cheapest model that still does the job well.',
+      'Trace every agent run — per-step calls, latency and spend — to find where behaviour went wrong, then iterate the prompt against real production data before shipping it.',
+      'Develop and maintain the core product on an existing production codebase — Python/Flask services, a MySQL data layer and a React/TypeScript frontend — including the candidate-facing portal for applying and tracking applications.',
       'Run production infrastructure on GCP: Compute Engine VMs hosting MySQL, background job workers and the Flask services, Cloud Storage for assets, and an Nginx reverse proxy handling frontend serving and API routing.',
-      'Work on a live system with real users, so changes are made with migrations, backwards compatibility and rollback in mind.',
+      'Work on a live system with real users — migrations, backwards compatibility and rollback — and debug production issues to root cause, including tracing a database bottleneck back to a single endpoint and fixing the write pattern behind it.',
     ],
   },
   {
