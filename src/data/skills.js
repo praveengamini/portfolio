@@ -13,6 +13,7 @@ import {
   SiFastapi,
   SiLangchain,
   SiRabbitmq,
+  SiOpenrouter,
   SiPostgresql,
   SiMysql,
   SiMongodb,
@@ -40,6 +41,7 @@ import {
   FaSitemap,
   FaChartLine,
   FaEye,
+  FaToggleOn,
 } from 'react-icons/fa6';
 
 // Brand colours are used for the icons — they give the section colour without inventing a palette.
@@ -64,6 +66,7 @@ export const skillGroups = [
       { name: 'LangChain', icon: SiLangchain, color: '#1C3C3C' },
       { name: 'LangGraph', icon: FaDiagramProject, color: '#1C3C3C' },
       { name: 'LLM APIs', icon: FaRobot, color: '#D97757' },
+      { name: 'OpenRouter', icon: SiOpenrouter, color: '#6467F2' },
       { name: 'AI Agents', icon: FaSitemap, color: '#D97757' },
       { name: 'RAG', icon: FaMagnifyingGlass, color: '#7C3AED' },
       { name: 'Evaluation', icon: FaChartLine, color: '#16A34A' },
@@ -103,6 +106,7 @@ export const skillGroups = [
       { name: 'Nginx', icon: SiNginx, color: '#009639' },
       { name: 'Git', icon: SiGit, color: '#F05032' },
       { name: 'CI/CD', icon: SiGithubactions, color: '#2088FF' },
+      { name: 'Feature Flags', icon: FaToggleOn, color: '#F59E0B' },
     ],
   },
 ];

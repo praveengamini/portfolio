@@ -39,7 +39,11 @@ const ExternalMark = () => (
   <FaArrowUpRightFromSquare aria-hidden="true" size={11} className="shrink-0 opacity-70" />
 );
 
-const JobArticle = ({ job, index = 0, current = false }) => {
+// `maxPoints` caps how many bullets render. Home passes it so the current role
+// introduces itself without running to four screens; /experience passes nothing
+// and shows the full record. The cap is stated in the section band ("6 of 12"),
+// never silent — the same way Home labels its project strip.
+const JobArticle = ({ job, index = 0, current = false, maxPoints }) => {
   const labels = labelsFor(job.company);
   const tags = TAGS[job.company] || [];
 
@@ -139,7 +143,7 @@ const JobArticle = ({ job, index = 0, current = false }) => {
           aria-label={`What I did at ${job.company}`}
           className="mt-5 min-w-0 space-y-7 lg:space-y-8"
         >
-          {job.points.map((point, i) => (
+          {(maxPoints ? job.points.slice(0, maxPoints) : job.points).map((point, i) => (
             <li
               key={point}
               role="listitem"

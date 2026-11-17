@@ -7,11 +7,15 @@
 // gone with it.
 export const pathMeta = {
   TalentXO: [
+    'Leads engine',
+    'Scoring at scale',
+    'Outreach integrations',
+    'Credit attribution',
     'Agents in production',
     'Agent harness',
-    'Recommendations',
-    'Model evaluation',
-    'Run tracing',
+    'Ranking evaluation',
+    'Model selection',
+    'Matching engine',
     'Core product',
     'GCP infrastructure',
     'Live-system care',

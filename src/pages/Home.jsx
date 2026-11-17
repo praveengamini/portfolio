@@ -26,6 +26,11 @@ import { skillGroups } from '../data/skills';
 // The section id="skills" is load-bearing: /skills redirects to /#skills.
 
 const current = experience[0];
+
+// The current role carries a long record. Home shows the first few bullets and
+// says how many there are; /experience renders every one. Same idea as the
+// project strip's "3 of 9" — a stated subset, not a silent truncation.
+const HOME_POINTS = 6;
 const skillCount = skillGroups.reduce((total, group) => total + group.items.length, 0);
 
 // The quiet band link, in the same muted-text-to-blue-on-hover treatment the
@@ -44,8 +49,14 @@ const Home = () => (
   <div className="flex min-w-0 flex-col gap-10 md:gap-12 lg:gap-14">
     <Masthead />
 
-    <PageSection id="experience" titleId="experience-title" title="Current role" actions={allExperienceLink}>
-      <JobArticle job={current} index={0} current />
+    <PageSection
+      id="experience"
+      titleId="experience-title"
+      title="Current role"
+      count={current.points.length > HOME_POINTS ? `${HOME_POINTS} of ${current.points.length}` : undefined}
+      actions={allExperienceLink}
+    >
+      <JobArticle job={current} index={0} current maxPoints={HOME_POINTS} />
     </PageSection>
 
     <PageSection
