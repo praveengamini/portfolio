@@ -30,7 +30,10 @@ const UNIT = ['unit-green', 'unit-purple', 'unit-blue'];
 // omitted is still in the prose and in the Skills band below. Neutral, never
 // tinted — the record's hue budget is already spent.
 const TAGS = {
-  TalentXO: ['Python', 'Flask', 'MySQL', 'React', 'GCP', 'Nginx', 'Gemini & Claude'],
+  // Nginx and the second model name gave way to Claude and MCP once the record
+  // led with the LLM scoring engine, the agents and the MCP toolchain: a
+  // recruiter scanning this row should see the AI surface, not a proxy.
+  TalentXO: ['Python', 'Flask', 'MySQL', 'React', 'GCP', 'Claude', 'MCP'],
   'Code At Random': ['Python', 'FastAPI', 'LangChain', 'RAG', 'RabbitMQ', 'PostgreSQL', 'Qdrant'],
   'MADTIN Technologies': ['FastAPI', 'PostgreSQL', 'JWT', 'REST', 'AWS', 'Docker', 'CI/CD'],
 };
