@@ -16,7 +16,13 @@ import { duration, springPop } from '../lib/motion';
 //
 // The page sets no container width — AppShell owns that.
 
-const LEAD = 'Things I’ve built outside work — most with a live deployment. Source is linked for each.';
+// "Side projects", not "Recent projects". The newest of these is from 2025, so
+// a heading promising recency quietly implied the building had stopped — while
+// the current work is on /experience and is mostly internal and unlinkable.
+// Framing them as personal projects makes the dates read as context, not as a
+// gap, and the lead points at the work that is actually current.
+const LEAD =
+  'Personal projects, built alongside study and work — most with a live deployment, and source linked for each. My current work is at TalentXO, where most of what I build is internal.';
 const EARLY_CAPTION = 'From my first couple of years learning to code. Kept for the record.';
 
 // Featured work leads the grid; .sort() is stable, so the data order holds inside
@@ -106,7 +112,7 @@ const Projects = () => {
         <p className="t-body-lg mt-2 max-w-[58ch] text-muted">{LEAD}</p>
       </header>
 
-      <PageSection titleId="recent-projects" title="Recent projects">
+      <PageSection titleId="recent-projects" title="Side projects">
         <div className={FILTER_BAR} style={{ top: 'var(--sticky-top)' }}>
           <FilterPills
             label="Filter projects"

@@ -1,4 +1,4 @@
-import png from '../../assets/images/praveen-profile.png';
+import fallback from '../../assets/images/praveen-profile-fallback.jpg';
 import w240 from '../../assets/images/praveen-profile-240.webp';
 import w480 from '../../assets/images/praveen-profile-480.webp';
 import w960 from '../../assets/images/praveen-profile-960.webp';
@@ -7,8 +7,12 @@ import w960 from '../../assets/images/praveen-profile-960.webp';
 // circle: the circle plus its green ring is half of why the old hero read cheap.
 //
 // The aspect box means the image can never distort — `object-cover` crops to the
-// declared ratio at the stored focal point. WebP first with the original PNG as
-// the fallback source, so the picture still renders if a WebP is missing.
+// declared ratio at the stored focal point. WebP first, with an 83KB JPEG as the
+// fallback source so the picture still renders if a WebP is missing.
+//
+// The fallback is deliberately NOT the 1.9MB source PNG. A WebP-capable browser
+// never fetches it, but it was still 1.9MB of every deploy — five times the JS
+// bundle — to serve a case that barely exists any more.
 //
 // Pass `aspect={null}` to drop the inline ratio and size the box from classes
 // instead — the About plate does that so its image cell can take the slack in a
@@ -41,7 +45,7 @@ const Portrait = ({
   >
     <source type="image/webp" srcSet={`${w240} 240w, ${w480} 480w, ${w960} 960w`} sizes={sizes} />
     <img
-      src={png}
+      src={fallback}
       alt={alt}
       decoding="async"
       loading={priority ? 'eager' : 'lazy'}
