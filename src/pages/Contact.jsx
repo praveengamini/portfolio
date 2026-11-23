@@ -167,6 +167,18 @@ const Contact = () => {
           : 'flex min-w-0 flex-col gap-10 md:gap-12 lg:gap-14'
       }
     >
+      {/* Always mounted, so it is a live region BEFORE it has anything to say.
+          FeedbackBar carries its own aria-live, but it only mounts when the
+          send fails — a region inserted at the same moment as its text is
+          routinely missed by screen readers, so the failure was announced to
+          sighted users only. 'sent' is deliberately absent: SentPanel moves
+          focus to its heading, which announces on its own, and adding it here
+          would say it twice. */}
+      <p aria-live="polite" className="sr-only">
+        {status === 'sending' ? 'Sending your message.' : null}
+        {failed ? `Couldn’t send your message. You can email ${profile.email} directly.` : null}
+      </p>
+
       <header className="min-w-0">
         <h1 className="t-h1 text-fg">Contact</h1>
         {sent ? null : <p className="t-body-lg mt-2 max-w-[58ch] text-muted">{LEAD}</p>}
