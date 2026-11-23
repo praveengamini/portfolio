@@ -10,6 +10,7 @@ export const pathMeta = {
     'Leads engine',
     'Scoring at scale',
     'Outreach integrations',
+    'Outreach A/B test',
     'Credit attribution',
     'Recommendation engine',
     'Agents in production',
